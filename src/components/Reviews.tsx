@@ -26,7 +26,7 @@ const Reviews = () => {
     }
   ];
 
-  const scrollContainerRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isScrollable, setIsScrollable] = useState(false);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Reviews = () => {
   const scroll = (direction:any) => {
     if (scrollContainerRef.current) {
       // Calculate the width of one card plus any gap
-      const cardWidth = scrollContainerRef.current.querySelector('.review-card')?.offsetWidth || 300;
+      const cardWidth = (scrollContainerRef.current.querySelector('.review-card') as HTMLElement)?.offsetWidth || 300;
       const gap = 24; // Matches space-x-6 in Tailwind (6 * 0.25rem = 1.5rem = 24px)
       
       // Scroll by the width of one card plus gap
