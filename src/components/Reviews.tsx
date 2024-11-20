@@ -5,22 +5,22 @@ import { useRef, useEffect, useState } from 'react';
 const Reviews = () => {
   const reviews = [
     {
-      name: "Reviewer Name",
+      name: "P O lane",
       content: "Lorem Ipsum",
       subtitle: "It's Always Sunny in Philadelphia"
     },
     {
-      name: "Reviewer Name",
+      name: "Tomas Name",
       content: "Lorem Ipsum",
       subtitle: "It's Always Sunny in Philadelphia"
     },
     {
-      name: "Reviewer Name",
+      name: "Achraf Name",
       content: "Lorem Ipsum",
       subtitle: "It's Always Sunny in Philadelphia"
     },
     {
-      name: "Reviewer Name",
+      name: "Allan Name",
       content: "Lorem Ipsum",
       subtitle: "It's Always Sunny in Philadelphia"
     }
@@ -95,7 +95,7 @@ const Reviews = () => {
           {reviews.map((review, index) => (
             <div 
               key={index} 
-              className="review-card flex-shrink-0"
+              className="review-card flex-shrink-0 "
             >
               <ReviewCard {...review} />
             </div>
