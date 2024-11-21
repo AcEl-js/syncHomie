@@ -8,7 +8,7 @@ interface ReviewCardProps {
 
 const ReviewCard = ({ name, content, subtitle }: ReviewCardProps) => {
   return (
-    <div className="bg-[#141421] p-4 rounded-lg min-w-[300px]">
+    <div className="bg-[#141421] p-4 rounded-lg min-w-[350px]">
       <div className="flex items-center mb-4">
         <div className="w-10 h-10 bg-gray-600 rounded-full mr-3"></div>
         <div>

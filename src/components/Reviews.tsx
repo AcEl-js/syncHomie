@@ -1,6 +1,6 @@
 "use client";
+import React, { useRef, useState, useEffect } from 'react';
 import ReviewCard from './ReviewCard';
-import { useRef, useEffect, useState } from 'react';
 
 const Reviews = () => {
   const reviews = [
@@ -18,28 +18,59 @@ const Reviews = () => {
       name: "Achraf Name",
       content: "Lorem Ipsum",
       subtitle: "It's Always Sunny in Philadelphia"
-    },
-    {
+    }, {
+      name: "Allan Name",
+      content: "Lorem Ipsum",
+      subtitle: "It's Always Sunny in Philadelphia"
+    },{
+      name: "Achraf Name",
+      content: "Lorem Ipsum",
+      subtitle: "It's Always Sunny in Philadelphia"
+    }, {
       name: "Allan Name",
       content: "Lorem Ipsum",
       subtitle: "It's Always Sunny in Philadelphia"
     }
   ];
 
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const startDragging = (e: React.MouseEvent) => {
+    if (!scrollContainerRef.current) return;
+    
+    setIsDragging(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  const stopDragging = () => {
+    setIsDragging(false);
+  };
+
+  const drag = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
   const [isScrollable, setIsScrollable] = useState(false);
 
   useEffect(() => {
     const checkScrollable = () => {
       if (scrollContainerRef.current) {
-        // Check if the container's scroll width is greater than its client width
         setIsScrollable(
           scrollContainerRef.current.scrollWidth > scrollContainerRef.current.clientWidth
         );
       }
     };
 
-    // Check scrollability on mount and on window resize
     checkScrollable();
     window.addEventListener('resize', checkScrollable);
 
@@ -48,21 +79,40 @@ const Reviews = () => {
     };
   }, []);
 
-  const scroll = (direction:any) => {
-    if (scrollContainerRef.current) {
-      // Calculate the width of one card plus any gap
-      const cardWidth = (scrollContainerRef.current.querySelector('.review-card') as HTMLElement)?.offsetWidth || 300;
-      const gap = 24; // Matches space-x-6 in Tailwind (6 * 0.25rem = 1.5rem = 24px)
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current && !isAnimating) {
+      setIsAnimating(true);
       
-      // Scroll by the width of one card plus gap
-      const scrollAmount = direction === 'left' 
-        ? -(cardWidth + gap) 
-        : (cardWidth + gap);
+      const container = scrollContainerRef.current;
+      const cardWidth = (container.querySelector('.review-card') as HTMLElement)?.offsetWidth || 300;
+      const gap = 24;
+      const scrollAmount = direction === 'left' ? -(cardWidth + gap) : (cardWidth + gap);
+      const startPosition = container.scrollLeft;
+      const targetPosition = startPosition + scrollAmount;
       
-      scrollContainerRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
+      let startTime: number | null = null;
+      const duration = 800; // Animation duration in milliseconds
+      
+      function animate(currentTime: number) {
+        if (startTime === null) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smoother animation
+        const easeInOutCubic = (t: number) => 
+          t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        
+        const currentPosition = startPosition + (targetPosition - startPosition) * easeInOutCubic(progress);
+        container.scrollLeft = currentPosition;
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setIsAnimating(false);
+        }
+      }
+      
+      requestAnimationFrame(animate);
     }
   };
 
@@ -75,13 +125,15 @@ const Reviews = () => {
             <div className="flex gap-2">
               <button
                 onClick={() => scroll('left')}
-                className="w-8 h-8 rounded-full bg-[#1A1A2E] flex items-center justify-center"
+                disabled={isAnimating}
+                className="w-8 h-8 rounded-full bg-[#1A1A2E] flex items-center justify-center disabled:opacity-50"
               >
                 <span className="text-gray-400">←</span>
               </button>
               <button
                 onClick={() => scroll('right')}
-                className="w-8 h-8 rounded-full bg-[#1A1A2E] flex items-center justify-center"
+                disabled={isAnimating}
+                className="w-8 h-8 rounded-full bg-[#1A1A2E] flex items-center justify-center disabled:opacity-50"
               >
                 <span className="text-gray-400">→</span>
               </button>
@@ -89,13 +141,17 @@ const Reviews = () => {
           )}
         </div>
         <div 
-          ref={scrollContainerRef} 
-          className="flex space-x-6 overflow-x-auto pb-6 scroll-smooth hide-scrollbar"
+          ref={scrollContainerRef}
+          className="flex space-x-6 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing"
+          onMouseDown={startDragging}
+          onMouseLeave={stopDragging}
+          onMouseUp={stopDragging}
+          onMouseMove={drag}
         >
           {reviews.map((review, index) => (
             <div 
               key={index} 
-              className="review-card flex-shrink-0 "
+              className="review-card flex-shrink-0 pointer-events-none"
             >
               <ReviewCard {...review} />
             </div>

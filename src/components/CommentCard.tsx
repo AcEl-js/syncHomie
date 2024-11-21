@@ -8,7 +8,7 @@ interface CommentCardProps {
 
 const CommentCard = ({ episodeId, comment, showTitle }: CommentCardProps) => {
   return (
-    <div className="bg-[#141421] p-4 rounded-lg min-w-[300px]">
+    <div className="bg-[#141421] p-4 rounded-lg min-w-[400px]">
       <div className="flex items-center gap-2 mb-2">
         <div className="w-4 h-4 rounded-full bg-white"></div>
         <span className="text-gray-400 text-sm">S15E{episodeId}</span>

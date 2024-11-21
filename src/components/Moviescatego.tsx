@@ -19,7 +19,11 @@ const comments = [
     episodeId: "21",
     comment: "Funny episode, kinda makes you rethink a lot. Like what? If we're all connected to one super mega-consciousness!",
     showTitle: "It's Always Sunny in Philadelphia"
-  }
+  },{
+    episodeId: "1",
+    comment: "Funny episode, kinda makes you rethink a lot. Like what? If we're all connected to one super mega-consciousness!",
+    showTitle: "It's Always Sunny in Philadelphia"
+  },
 ];
 
 const movies = [
@@ -62,7 +66,33 @@ const movies = [
 ];
 
 const Moviescatego = () => {
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const startDragging = (e: React.MouseEvent) => {
+    if (!scrollContainerRef.current) return;
+    
+    setIsDragging(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  const stopDragging = () => {
+    setIsDragging(false);
+  };
+
+  const drag = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
   const [isScrollable, setIsScrollable] = useState(false);
 
   useEffect(() => {
@@ -82,21 +112,45 @@ const Moviescatego = () => {
     };
   }, []);
 
-  const scroll = (direction: string) => {
-    if (scrollContainerRef.current) {
-      const cardWidth = (scrollContainerRef.current.querySelector('.review-card') as HTMLElement)?.offsetWidth || 300;
-      const gap = 24; // 1.5rem in pixels
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current && !isAnimating) {
+      setIsAnimating(true);
+      
+      const container = scrollContainerRef.current;
+      const cardWidth = (container.querySelector('.review-card') as HTMLElement)?.offsetWidth || 300;
+      const gap = 24;
       const scrollAmount = direction === 'left' ? -(cardWidth + gap) : (cardWidth + gap);
-
-      scrollContainerRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
+      const startPosition = container.scrollLeft;
+      const targetPosition = startPosition + scrollAmount;
+      
+      let startTime: number | null = null;
+      const duration = 800; // Animation duration in milliseconds
+      
+      function animate(currentTime: number) {
+        if (startTime === null) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smoother animation
+        const easeInOutCubic = (t: number) => 
+          t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        
+        const currentPosition = startPosition + (targetPosition - startPosition) * easeInOutCubic(progress);
+        container.scrollLeft = currentPosition;
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setIsAnimating(false);
+        }
+      }
+      
+      requestAnimationFrame(animate);
     }
   };
 
   return (
-    <div className="px-6">
+    <div className=" flex flex-col px-6">
       <div className="mb-16">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-semibold text-gray-200">• Trending Comments</h2>
@@ -118,8 +172,12 @@ const Moviescatego = () => {
           )}
         </div>
         <div
-          className="flex space-x-6 overflow-x-auto pb-6 hide-scrollbar"
           ref={scrollContainerRef}
+          className="flex space-x-6 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing"
+          onMouseDown={startDragging}
+          onMouseLeave={stopDragging}
+          onMouseUp={stopDragging}
+          onMouseMove={drag}
         >
           {comments.map((comment, index) => (
             <CommentCard key={index} {...comment} />
@@ -127,16 +185,16 @@ const Moviescatego = () => {
         </div>
       </div>
 
-      <div className="my-20 text-center">
+      <div className=" flex flex-col w-full my-20 lg:w-3/6 self-center text-center p-6 rounded-lg bg-[#1b1b1b] ">
         <h3 className="text-xl font-semibold mb-6 text-white">Register to select your Streaming Services</h3>
-        <div className="lg:flex gap-16 justify-center h-12">
+        <div className="lg:flex gap-16 justify-center">
           <div className="flex justify-center space-x-4 mb-8 gap-8">
             <img src="./icons/netflix.png" alt="Netflix" className="h-11 rounded-full" />
             <img src="./icons/hbo.jpeg" alt="HBO" className="h-11 rounded-full" />
             <img src="./icons/hulu.jpeg" alt="Hulu" className="h-11 rounded-full" />
             <img src="./icons/disney.jpeg" alt="Disney+" className="h-11 rounded-full" />
           </div>
-          <button className="bg-blue-500 text-white px-8 py-3 rounded-md hover:bg-blue-600 transition-colors">
+          <button className="bg-blue-500 text-white px-8 py-3 rounded-md hover:bg-blue-600 transition-colors h-12">
             Register Now
           </button>
         </div>
@@ -172,11 +230,11 @@ const Moviescatego = () => {
         </div>
       </div>
 
-      <footer className="border-t border-gray-800 py-20 px-2 mt-16">
-        <div className="flex items-center justify-between">
+      <footer className="border-t border-gray-800 py-20 px-2 mt-16 ">
+        <div className="flex max-500flex-col items-center justify-between">
           <div className="flex items-center gap-4">
             <img src="/logo.png" alt="SyncHomie" className="h-8" />
-            <p className="text-gray-400 text-sm">Copyrights © 2024. All rights reserved by SyncHomie.com</p>
+            <p className="text-gray-400 text-sm text-wrap">Copyrights © 2024. All rights reserved by SyncHomie.com</p>
           </div>
           <div className="flex items-center gap-6">
             <a href="#" className="text-gray-400 hover:text-white">Privacy</a>
