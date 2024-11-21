@@ -10,15 +10,15 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#0D0D1F] p-4 fixed z-50 w-full">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto ">
         {/* Main navbar content */}
         <div className="flex justify-between items-center">
           {/* Left side with logo and nav items */}
-          <div className="flex items-center">
+          <div className="flex items-center h-5/6">
             <img src="logo.png" alt="SyncHomie" className="h-10" />
             
             {/* Navigation items - hidden on mobile */}
-            <div className="hidden sm:flex ml-8 space-x-6 text-gray-300">
+            <div className="hidden sm:flex ml-8 sm:space-x-5 lg:space-x-14 text-gray-300">
               <a href="#" className="hover:text-blue-400">Home</a>
               <a href="#" className="hover:text-blue-400">Discover</a>
               <a href="#" className="hover:text-blue-400">Calendar</a>
