@@ -2,8 +2,8 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    <div className="text-center py-20 px-4">
-      <h1 className="text-6xl font-bold text-blue-300 mb-6">SyncHomie</h1>
+    <div className="text-center pt-20 px-4">
+      <h1 className="text-6xl font-bold mt-5 text-blue-300 mb-6">SyncHomie</h1>
       <p className="text-xl text-gray-300 mb-8">
         Keep track of all your media, and make friends while doing it
       </p>

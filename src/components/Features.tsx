@@ -38,7 +38,7 @@ const Features = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16">
+    <div className="max-w-7xl mx-auto px-4 py-16 flex justify-center">
       <div className="grid grid-cols-2 mt-11 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {features.map((feature, index) => (
           <FeatureCard key={index} {...feature} />

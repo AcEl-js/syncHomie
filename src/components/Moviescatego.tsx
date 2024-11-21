@@ -185,7 +185,7 @@ const Moviescatego = () => {
         </div>
       </div>
 
-      <div className=" flex flex-col w-full my-20 lg:w-3/6 self-center text-center p-6 rounded-lg bg-[#1b1b1b] ">
+      <div className=" flex flex-col  my-20 lg:w-3/6 self-center text-center px-12 p-4 rounded-lg bg-[#1a1a2d] ">
         <h3 className="text-xl font-semibold mb-6 text-white">Register to select your Streaming Services</h3>
         <div className="lg:flex gap-16 justify-center">
           <div className="flex justify-center space-x-4 mb-8 gap-8">
@@ -230,8 +230,8 @@ const Moviescatego = () => {
         </div>
       </div>
 
-      <footer className="border-t border-gray-800 py-20 px-2 mt-16 ">
-        <div className="flex max-500flex-col items-center justify-between">
+      <footer className="border-t border-gray-800 py-20 px-2 mt-16 flex ">
+        <div className="flex flex-col lg:flex-row md:flex-row sm:flex-row items-center justify-between">
           <div className="flex items-center gap-4">
             <img src="/logo.png" alt="SyncHomie" className="h-8" />
             <p className="text-gray-400 text-sm text-wrap">Copyrights © 2024. All rights reserved by SyncHomie.com</p>
