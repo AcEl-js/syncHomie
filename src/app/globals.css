@@ -23,6 +23,9 @@ body {
 img {
   user-drag: none;
   -webkit-user-drag: none; /* For Safari */
+
+    pointer-events: none; /* Disables all mouse interactions */
+  
 }
 
 body::-webkit-scrollbar-track {
