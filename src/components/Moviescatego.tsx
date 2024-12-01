@@ -185,20 +185,46 @@ const Moviescatego = () => {
         </div>
       </div>
 
-      <div className=" flex flex-col  my-20 lg:w-3/6 self-center text-center px-12 p-4 rounded-lg bg-[#1a1a2d] ">
-        <h3 className="text-xl font-semibold mb-6 text-white">Register to select your Streaming Services</h3>
-        <div className="lg:flex gap-16 justify-center">
-          <div className="flex justify-center space-x-4 mb-8 gap-8">
-            <img src="./icons/netflix.png" alt="Netflix" className="h-11 rounded-full" />
-            <img src="./icons/hbo.jpeg" alt="HBO" className="h-11 rounded-full" />
-            <img src="./icons/hulu.jpeg" alt="Hulu" className="h-11 rounded-full" />
-            <img src="./icons/disney.jpeg" alt="Disney+" className="h-11 rounded-full" />
-          </div>
-          <button className="bg-blue-500 text-white px-8 py-3 rounded-md hover:bg-blue-600 transition-colors h-12">
-            Register Now
-          </button>
-        </div>
+      <div className="flex flex-col my-20 self-center text-center px-4 p-4 rounded-lg bg-[#141421]">
+  <h3 className="text-xl font-semibold mb-6 text-white">Register to select your Streaming Services</h3>
+  <div className="lg:flex gap-16 justify-center">
+    <div className="flex justify-center space-x-4 mb-8 gap-6 ">
+      <div className=' transition-transform duration-300 hover:scale-110  hover:brightness-110 cursor-pointer'>
+
+      <img 
+        src="./icons/netflix.png" 
+        alt="Netflix" 
+        className="h-11 rounded-full" 
+      />
       </div>
+      <div className=' transition-transform duration-300 hover:scale-110  hover:brightness-110 cursor-pointer'>
+      <img 
+        src="./icons/hbo.jpeg" 
+        alt="HBO" 
+        className="h-11 rounded-full transition-transform duration-300 hover:scale-125 hover:brightness-110 cursor-pointer" 
+      />
+      </div>
+      <div className=' transition-transform duration-300 hover:scale-110  hover:brightness-110 cursor-pointer'>
+      <img 
+        src="./icons/hulu.jpeg" 
+        alt="Hulu" 
+        className="h-11 rounded-full transition-transform duration-300 hover:hidden hover:scale-125 hover:brightness-110 cursor-pointer" 
+      />
+        </div>
+        <div className=' transition-transform duration-300 hover:scale-110  hover:brightness-110 cursor-pointer'>
+        
+      <img 
+        src="./icons/disney.jpeg" 
+        alt="Disney+" 
+        className="h-11 rounded-full transition-transform duration-300 hover:scale-125 hover:brightness-110 cursor-pointer" 
+      />
+        </div>
+    </div>
+    <button className="bg-blue-500 text-white px-8 py-3 rounded-md hover:bg-blue-600 transition-colors h-12">
+      Register Now
+    </button>
+  </div>
+</div>
 
       <TrendingMovies movies={movies} categorie="Movies" />
       <TrendingMovies movies={movies} categorie="TV Shows" />
