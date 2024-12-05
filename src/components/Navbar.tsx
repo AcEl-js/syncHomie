@@ -10,7 +10,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className=" bg-gradient-to-b from-[#282453] to-black p-4 sticky top-0 z-50 w-full">
+    <nav className=" bg-gradient-to-b from-[#282453] to-black p-4 fixed top-0 z-50 w-full">
       <div className="max-w-7xl mx-auto ">
         {/* Main navbar content */}
         <div className="flex justify-between items-center">
