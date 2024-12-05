@@ -49,16 +49,22 @@ export function MediaCard({
           </div>
           <div className="flex flex-col justify-between items-start gap-1 sm:gap-2">
             <div className="w-full">
-              <h2 className="text-base sm:text-xl font-semibold text-white mb-1 sm:mb-2">{title}</h2>
-              <div className="flex flex-wrap gap-1 sm:gap-2">
+              <div className=' flex flex-row items-center justify-between h-full'>
+              <h2 className="text-base sm:text-xl font-semibold text-white ">{title}</h2>
+              
+              <div className="flex flex-wrap gap-1 sm:gap-2 items-center h-full">
                 {genres.map((genre) => (
                   <Badge key={genre} variant="secondary" className="bg-zinc-800 text-zinc-400 text-[10px] sm:text-xs">
                     {genre}
                   </Badge>
                 ))}
               </div>
+
+              </div>
+              
             </div>
             <div className="flex items-center gap-1 mt-1 sm:mt-0">
+            <div className=' flex flex-row items-center justify-between'>
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
@@ -66,14 +72,14 @@ export function MediaCard({
                 />
               ))}
             </div>
-          </div>
-
-          <div className="flex flex-wrap gap-1 sm:gap-2">
-            {[Info, FileText, Share2, Bookmark].map((Icon, index) => (
-              <Button key={index} size="icon" variant="ghost" className="text-zinc-400 hover:text-white h-8 w-8 sm:h-10 sm:w-10">
-                <Icon className="w-3 h-3 sm:w-4 sm:h-4" />
-              </Button>
-            ))}
+            <div className="flex flex-wrap gap-1 sm:gap-2 items-center ">
+                {[Info, FileText, Share2, Bookmark].map((Icon, index) => (
+                  <Button key={index} size="icon" variant="ghost" className="text-zinc-400 hover:bg-zinc-800 hover:text-white h-8 w-8 sm:h-10 sm:w-10">
+                    <Icon className="w-3 h-3 sm:w-4 sm:h-4" />
+                  </Button>
+                ))}
+              </div>
+            </div>
           </div>
 
           {isExpanded && (

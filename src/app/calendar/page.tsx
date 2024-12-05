@@ -1,5 +1,6 @@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Import } from 'lucide-react'
+import "./style.css"
 
 import Navbar from "@/components/Navbar"
 import { Button } from "@/components/ui/button"
@@ -70,9 +71,9 @@ export default function StreamingCalendar() {
   ]
 
   return (
-    <div className="w-full min-h-screen bg-black text-white ">
+    <div className="w-full min-h-screen bg-black text-white mt-[65px]">
        <Navbar />
-       <nav className=" p-4 border-b border-zinc-800 bg-black sticky top-[72px] z-40">
+       <nav className=" p-4 border-b border-zinc-800 bg-black fixed w-screen top-[72px] z-40">
        <div className=" flex flex-row gap-3 p-2 text-center items-center ">
         <h3 className="text-lg">Calendar</h3>
         <span className="text-zinc-400">185 Upcoming Releases</span>
@@ -109,7 +110,7 @@ export default function StreamingCalendar() {
         </div>
       </nav>
 
-      <div className="h-[calc(100vh-200px)] w-full mt-4 lg:ml-8">
+      <div className="h-[calc(100vh-200px)] w-full pt-5  lg:ml-8 mt-[180px]">
         <div className="space-y-6">
           <div className="mb-4 bg-black pb-3">
             
