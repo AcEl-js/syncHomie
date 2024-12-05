@@ -1,0 +1,24 @@
+.bookmarksbg{
+    background-color: black;
+    background-image: none;
+}
+.draggable-nav {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow-x: scroll;
+    cursor: grab;
+  }
+  
+  .draggable-nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .draggable-nav.active {
+    cursor: grabbing;
+  }
+  
+  .drag-container {
+    display: flex;
+    gap: 0.5rem;
+    width: max-content;
+  }

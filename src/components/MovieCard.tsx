@@ -29,7 +29,7 @@ const MovieCard = ({ title, image, rating, genre }: MovieCardProps) => {
         </div>
       </div>
      
-      <Card className="w-full h-full max-w-sm bg-zinc-900 text-white">
+      <Card className="w-full h-full max-w-sm border-opacity-100 bg-zinc-900 text-white">
         <CardContent className="p-4 space-y-2">
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center justify-between w-full">

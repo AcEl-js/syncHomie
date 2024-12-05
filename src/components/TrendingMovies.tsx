@@ -13,10 +13,11 @@ interface Movie {
 interface TrendingMoviesProps {
   movies: Movie[];
   categorie:string
+  colore:string
 }
 
 
-const TrendingMovies: React.FC<TrendingMoviesProps> = ({ movies, categorie }) => {
+const TrendingMovies: React.FC<TrendingMoviesProps> = ({ movies, categorie, colore }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -106,7 +107,7 @@ const TrendingMovies: React.FC<TrendingMoviesProps> = ({ movies, categorie }) =>
         {/* movies */}
         <div className="mb-8">
           <div className="flex items-baseline gap-2">
-            <span className="text-6xl font-bold text-[#571B3F]">132,784</span>
+            <span className={`text-6xl font-bold ${colore}`}>132,784</span>
             <span className="text-3xl text-blue-500 ">{categorie}</span>
           </div>
           <h2 className="text-xl mt-4 flex items-center gap-2 text-white">

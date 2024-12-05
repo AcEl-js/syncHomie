@@ -11,8 +11,8 @@ import Moviescatego from '@/components/Moviescatego';
 function App() {
   return (
     <div className="min-h-screen w-screen ">
-       <div className='first-part w-screen'>
       <Navbar />
+       <div className='first-part w-screen'>
       <Hero />
       <Features />
      </div>

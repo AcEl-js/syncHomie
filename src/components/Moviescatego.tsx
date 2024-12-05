@@ -226,10 +226,10 @@ const Moviescatego = () => {
   </div>
 </div>
 
-      <TrendingMovies movies={movies} categorie="Movies" />
-      <TrendingMovies movies={movies} categorie="TV Shows" />
-      <TrendingMovies movies={movies} categorie="Anime" />
-      <TrendingMovies movies={movies} categorie="Drama" />
+      <TrendingMovies movies={movies} categorie="Movies" colore='text-[#6c204e30]' />
+      <TrendingMovies movies={movies} categorie="TV Shows" colore='text-[#E5498830]' />
+      <TrendingMovies movies={movies} categorie="Anime" colore='text-[#FEC97B30]'/>
+      <TrendingMovies movies={movies} categorie="Drama" colore="text-[#67BFAF30]" />
 
       <div className="mt-20 text-center pb-16">
         <h2 className="text-4xl font-semibold mb-8 text-white">Start Tracking What You Watch</h2>
@@ -291,7 +291,7 @@ const Moviescatego = () => {
               </a>
               <a href="#" className="text-gray-400 hover:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-              <path fill="currentColor" fill-rule="evenodd" d="M9.429 8.969h3.714v1.85c.535-1.064 1.907-2.02 3.968-2.02c3.951 0 4.889 2.118 4.889 6.004V22h-4v-6.312c0-2.213-.535-3.461-1.897-3.461c-1.889 0-2.674 1.345-2.674 3.46V22h-4zM2.57 21.83h4V8.799h-4zM7.143 4.55a2.53 2.53 0 0 1-.753 1.802a2.57 2.57 0 0 1-1.82.748a2.6 2.6 0 0 1-1.818-.747A2.55 2.55 0 0 1 2 4.55c0-.677.27-1.325.753-1.803A2.58 2.58 0 0 1 4.571 2c.682 0 1.336.269 1.819.747s.753 1.126.753 1.803" clip-rule="evenodd"
+              <path fill="currentColor" fillRule="evenodd" d="M9.429 8.969h3.714v1.85c.535-1.064 1.907-2.02 3.968-2.02c3.951 0 4.889 2.118 4.889 6.004V22h-4v-6.312c0-2.213-.535-3.461-1.897-3.461c-1.889 0-2.674 1.345-2.674 3.46V22h-4zM2.57 21.83h4V8.799h-4zM7.143 4.55a2.53 2.53 0 0 1-.753 1.802a2.57 2.57 0 0 1-1.82.748a2.6 2.6 0 0 1-1.818-.747A2.55 2.55 0 0 1 2 4.55c0-.677.27-1.325.753-1.803A2.58 2.58 0 0 1 4.571 2c.682 0 1.336.269 1.819.747s.753 1.126.753 1.803" clipRule="evenodd"
               />
               </svg>
               </a>

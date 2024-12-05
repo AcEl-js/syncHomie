@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 const Navbar = () => {
@@ -9,7 +10,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-[#0D0D1F] p-4 fixed z-50 w-full">
+    <nav className=" bg-gradient-to-b from-[#282453] to-black p-4 sticky top-0 z-50 w-full">
       <div className="max-w-7xl mx-auto ">
         {/* Main navbar content */}
         <div className="flex justify-between items-center">
@@ -19,16 +20,16 @@ const Navbar = () => {
             
             {/* Navigation items - hidden on mobile */}
             <div className="hidden sm:flex ml-8 sm:space-x-5 lg:space-x-14 text-gray-300">
-              <a href="#" className="hover:text-blue-400">Home</a>
-              <a href="#" className="hover:text-blue-400">Discover</a>
-              <a href="#" className="hover:text-blue-400">Calendar</a>
-              <a href="#" className="hover:text-blue-400">People</a>
-              <a href="#" className="hover:text-blue-400 flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+              <Link href="/" className='hover:text-blue-400' >Home</Link>
+              <Link href="/people" className='hover:text-blue-400' >People</Link>
+              <Link href="/discover" className='hover:text-blue-400' >Discover</Link>
+              <Link href="/calendar" className='hover:text-blue-400' >Calendar</Link>
+              <Link href="/bookmarks" className='hover:text-blue-400 flex items-center gap-1' >
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                   <path fill="currentColor" d="m12 18l-4.2 1.8q-1 .425-1.9-.162T5 17.975V5q0-.825.588-1.412T7 3h10q.825 0 1.413.588T19 5v12.975q0 1.075-.9 1.663t-1.9.162z"/>
                 </svg>
                 Bookmarks
-              </a>
+              </Link>
             </div>
           </div>
 
