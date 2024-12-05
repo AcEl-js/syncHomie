@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button"
 
 const sidebarItems = [
-  { label: "All", color: "white", count: 36 },
-  { label: "Watching", color: "green-500", count: 4 },
-  { label: "Completed", color: "teal-500", count: 7 },
-  { label: "On-Hold", color: "amber-500", count: 4 },
-  { label: "Dropped", color: "pink-500", count: 9 },
-  { label: "Plan to Watch", color: "zinc-500", count: 12 },
+  { label: "All", color: "bg-white", count: 36 },
+  { label: "Watching", color: "bg-[#5DD952]", count: 4 },
+  { label: "Completed", color: "bg-[#52D9D9]", count: 7 },
+  { label: "On-Hold", color: "bg-[#D9B352]", count: 4 },
+  { label: "Dropped", color: "bg-[#D95A52]", count: 9 },
+  { label: "Plan to Watch", color: "bg-[#878E8E]", count: 12 },
 ]
 
 export function Sidebar() {
@@ -18,8 +18,8 @@ export function Sidebar() {
           variant="ghost"
           className="w-full justify-start py-5 hover:bg-[#cc8b8b0c] hover:text-white"
         >
-          <span className={`w-3 h-3 rounded-full bg-${item.color} mr-3`}></span>
-          {item.label} <span className="ml-auto text-zinc-400">({item.count})</span>
+          <span className={`w-3 h-3 rounded-full ${item.color} mr-3`}></span>
+          {item.label} <span className={`ml-auto `} >({item.count})</span>
         </Button>
       ))}
     </div>
