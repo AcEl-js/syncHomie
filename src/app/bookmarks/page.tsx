@@ -50,7 +50,7 @@ export default function StreamingDashboard() {
     <div className="bg-black w-full min-h-screen text-white mt-[55px]">
       <Navbar />
       
-      <nav className="py-2 sm:py-4 border-b border-zinc-800 bg-black fixed top-[72px] z-40">
+      <nav className="py-2 sm:py-4 border-b border-zinc-800 bg-black fixed top-[72px] z-40 w-screen">
         <div className="w-full mx-auto flex flex-wrap items-center justify-between px-4">
           {/* Existing nav items */}
           <div className="flex items-center flex-wrap space-x-2 sm:space-x-4">

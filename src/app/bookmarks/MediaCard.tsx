@@ -49,7 +49,7 @@ export function MediaCard({
           </div>
           <div className="flex flex-col justify-between items-start gap-1 sm:gap-2">
             <div className="w-full">
-              <div className=' flex flex-row items-center justify-between h-full'>
+              <div className=' flex flex-row items-center justify-between h-full '>
               <h2 className="text-base sm:text-xl font-semibold text-white ">{title}</h2>
               
               <div className="flex flex-wrap gap-1 sm:gap-2 items-center h-full">
@@ -63,8 +63,8 @@ export function MediaCard({
               </div>
               
             </div>
-            <div className="flex items-center gap-1 mt-1 sm:mt-0">
-            <div className=' flex flex-row items-center justify-between'>
+            <div className="flex items-center gap-1 mt-1 sm:mt-0 lg:gap-9 justify-between w-full">
+            <div className=' flex flex-row items-center justify-around'>
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
