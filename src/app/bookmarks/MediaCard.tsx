@@ -38,9 +38,9 @@ export function MediaCard({
         <Image
           src={imageSrc}
           alt={`${title} Poster`}
-          width={100}
-          height={150}
-          className="w-20 h-30 sm:w-[150px] sm:h-[200px] rounded-lg object-cover mx-auto sm:mx-0"
+          width={150}
+          height={200}
+          className="h-30 sm:w-full md:w-[150px] h-[200px] rounded-lg object-cover mx-auto sm:mx-0"
         />
         <div className="flex-1 space-y-1 sm:space-y-2">
           <div className="flex items-center gap-1 text-[#4caf50] mb-2">
@@ -85,7 +85,6 @@ export function MediaCard({
           {isExpanded && (
             <p className="text-zinc-400 text-sm">{description}</p>
           )}
-
           <EpisodeProgress
             currentEpisode={currentEpisode}
             latestEpisode={latestEpisode}

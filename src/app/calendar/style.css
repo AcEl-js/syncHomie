@@ -1,3 +1,14 @@
 body{
     background-color: black;
 }
+.group-hover\:bg-zinc-800:hover {
+    background-color: #1c1c1c; /* Adjust the color for the hover effect */
+  }
+  
+  .group-hover\:text-white:hover {
+    color: white; /* Example text color change */
+  }
+  
+  .transition {
+    transition: all 0.3s ease; /* Smooth effect for hover changes */
+  }

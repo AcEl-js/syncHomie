@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar"
 import { MediaCard } from "./MediaCard"
 import {NavButton } from "./NavButton"
 import {Sidebar} from "./Sidebar"
+import "./style.css"
 
 import { Button } from "@/components/ui/button"
 import { Import, Menu } from 'lucide-react'
@@ -47,7 +48,7 @@ const mediaItems = [
 export default function StreamingDashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   return (
-    <div className="bg-black w-full min-h-screen text-white mt-[55px]">
+    <div className="bg-black w-full  text-white mt-[55px]">
       <Navbar />
       
       <nav className="py-2 sm:py-4 border-b border-zinc-800 bg-black fixed top-[72px] z-40 w-screen">
@@ -67,7 +68,6 @@ export default function StreamingDashboard() {
               </NavButton>
             ))}
           </div>
-
           {/* Desktop buttons */}
           <div className="hidden lg:flex items-center flex-wrap space-x-2 sm:space-x-4">
             <NavButton count={5} icon={Import} className="text-xs sm:text-sm hover:bg-zinc-800 hover:text-white">
@@ -186,12 +186,17 @@ export default function StreamingDashboard() {
 
         {/* Main Content */}
         <main className="w-full sm:ml-[234px] p-2 sm:p-6 bg-black">
-          <div className="w-full max-w-[790px] space-y-4 sm:space-y-6 bg-black mx-auto">
-            {mediaItems.map((item, index) => (
-              <MediaCard key={index} {...item} />
-            ))}
+          <div className="w-full max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-1 gap-6 grid-cols-2-lg mt-11">
+              {mediaItems.map((item, index) => (
+                <MediaCard key={index} {...item} />
+              ))}
+            </div>
           </div>
         </main>
+
+
+
       </div>
     </div>   
   )

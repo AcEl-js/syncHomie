@@ -13,7 +13,8 @@ export default {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
-        'max-500': {'max': '500px'}
+        'max-500': {'max': '500px'},
+        xl2: '1361px',
       },
     },
   	extend: {
