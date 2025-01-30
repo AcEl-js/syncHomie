@@ -1,10 +1,17 @@
 import React from 'react';
 import { Star, Info } from 'lucide-react';
-import type { Movie } from '../types/movie';
+
 
 interface MovieCardProps {
   movie: Movie;
   index: number;
+}
+interface Movie {
+  id: number;
+title: string;
+rating: number;
+boxOffice: string;
+imageUrl: string;
 }
 
 export function MovieCard({ movie, index }: MovieCardProps) {

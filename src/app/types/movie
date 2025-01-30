@@ -1,7 +1,0 @@
-export interface Movie {
-  id: number;
-  title: string;
-  rating: number;
-  boxOffice: string;
-  imageUrl: string;
-}
