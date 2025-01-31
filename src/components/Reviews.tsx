@@ -1,6 +1,8 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
 import ReviewCard from './ReviewCard';
+import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
+
 
 const Reviews = () => {
   const reviews = [
@@ -124,19 +126,17 @@ const Reviews = () => {
           {isScrollable && (
             <div className="flex gap-2">
               <button
-                onClick={() => scroll('left')}
-                disabled={isAnimating}
-                className="w-8 h-8 rounded-full bg-[#1A1A2E] flex items-center justify-center disabled:opacity-50"
-              >
-                <span className="text-gray-400">←</span>
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                disabled={isAnimating}
-                className="w-8 h-8 rounded-full bg-[#1A1A2E] flex items-center justify-center disabled:opacity-50"
-              >
-                <span className="text-gray-400">→</span>
-              </button>
+                    onClick={() => scroll('left')}
+                    
+                  >
+                    <CircleArrowLeft className="text-[#79797989]"/>
+                  </button>
+                  <button
+                    onClick={() => scroll('right')}
+                    
+                  >
+                    <CircleArrowRight className="  text-[#797979]"/>
+                  </button>
             </div>
           )}
         </div>

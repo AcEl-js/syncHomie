@@ -18,6 +18,17 @@ interface Movie {
   imageUrl: string;
 }
 
+interface Show {
+  date:string
+  time: string
+  duration: string
+  title: string
+  poster: string
+  genre: string
+  cast: string[]
+  platforms: string[]
+}
+
 function App() {
     const [upvotes, setUpvotes] = useState(57)
     const [downvotes, setDownvotes] = useState(43)
@@ -73,6 +84,29 @@ function App() {
     },
   ];
 
+  const shows: Show[] = [
+    {
+      date: "October, 28th",
+      time: "20h00",
+      duration: "(CET+1)",
+      title: "Venom: The Last Dance",
+      poster: "/placeholder.svg?height=80&width=60",
+      genre: "Action - Adventure - Fantasy",
+      cast: ["Tom Hardy", "Juno Temple", "Alanna Ubach", "Andy Serkis"],
+      platforms: ["./icons/netflix.png", "./icons/hbo.jpeg"]
+    },
+    {
+      date: "October, 28th",
+      time: "20h00",
+      duration: "(CET+1)",
+      title: "Venom: The Last Dance",
+      poster: "/placeholder.svg?height=80&width=60",
+      genre: "Action - Adventure - Fantasy",
+      cast: ["Tom Hardy", "Juno Temple", "Alanna Ubach", "Andy Serkis"],
+      platforms: ["./icons/disney.jpeg", "./icons/hulu.jpeg"]
+    },
+   
+  ]
   return (
     <div>
         <Navbar/>
@@ -141,7 +175,7 @@ function App() {
         <Button 
           variant="ghost" 
           size="sm" 
-          className="text-gray-300 hover:text-white"
+          className="text-gray-300 h-11 hover:text-white flex gap-2 items-center  rounded-[10px] px-[18px] py-[8px]  bg-[#A3A3A30D] shadow-[0_1px_2px_0_#FFFFFF0D_inset]"
         >
           <Pencil className="w-4 h-4 mr-1" />
           Edit
@@ -153,14 +187,70 @@ function App() {
       </div>
 
       {/* Known For Section */}
-      <div>
-        <h2 className="text-xl font-semibold mb-6">Known For</h2>
+      <div className='mb-20'>
+      
+        <h2 className="text-xl font-semibold mb-6"><span className='text-[#F5C518]'>•</span> Known For</h2>
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 grid-cols- gap-6">
           {movies.map((movie, index) => (
            <MovieCard key={movie.id} movie={movie} index={index} />
           ))}
         </div>
       </div>
+
+
+      {/* credits */}
+      {shows.map((show, index) => (
+      <div
+        key={index}
+        className="m-4 group w-auto " // Add a 'group' class for hover effects
+      >
+    {index === 0 || shows[index].date !== shows[index - 1].date ? (
+      <h2 className="text-xl font-semibold mb-6"><span className='text-[#F5C518]'>•</span> Credits</h2>
+    ) : null}
+    <div className="flex rounded-lg overflow-hidden flex-row flex-1 hover:bg-zinc-800 transition">
+      <div className="min-w-[60px] text-sm text-gray-400 flex flex-col px-3 justify-center items-center">
+        <div>{show.time}</div>
+        <div>{show.duration}</div>
+      </div>
+      <img src="/movies/venom.png" alt="" />
+      <div>
+        <h3 className="font-semibold mb-1 h-full flex items-center px-3 text-wrap">
+          {show.title}
+        </h3>
+      </div>
+      <div
+        className={`flex gap-4 w-[3px] h-[70px] mx-7 self-center rounded-md ${
+          index % 2 === 0 ? 'bg-[#83BAAB]' : 'bg-[#C85684]'
+        }`}
+      />
+      <div
+        className={`flex gap-4 p-4 text-center rounded-md min-h-24 ${
+          index % 2 === 0
+            ? 'border-l-8 border-[#83BAAB] bg-[#83baab61]'
+            : 'border-l-8 border-[#C85684] bg-[#C856842A]'
+        }`}
+      >
+        <div className="flex-1">
+          <div className="text-sm text-gray-400 mb-1">{show.genre}</div>
+          <div className="flex flex-wrap gap-2 lg:gap-8">
+            {show.cast.map((member, idx) => (
+              <span key={idx} className="text-sm text-gray-300">
+                {member}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      {show.platforms.map((platform, idx) => (
+        <img
+          key={idx}
+          className="h-8 w-8 rounded-full self-center ml-4 mr-2"
+          src={platform}
+        />
+      ))}
+    </div>
+  </div>
+))}
     </div>
     </div>
    

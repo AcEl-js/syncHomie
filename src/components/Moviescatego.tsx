@@ -3,6 +3,7 @@ import ReviewCard from './ReviewCard';
 import { useRef, useEffect, useState } from 'react';
 import TrendingMovies from './TrendingMovies';
 import CommentCard from './CommentCard';
+import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
 
 const comments = [
   {
@@ -156,18 +157,18 @@ const Moviescatego = () => {
           <h2 className="text-2xl font-semibold text-gray-200">• Trending Comments</h2>
           {isScrollable && (
             <div className="flex gap-2">
-              <button
-                onClick={() => scroll('left')}
-                className="w-8 h-8 rounded-full bg-[#1A1A2E] flex items-center justify-center"
-              >
-                <span className="text-gray-400">←</span>
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                className="w-8 h-8 rounded-full bg-[#1A1A2E] flex items-center justify-center"
-              >
-                <span className="text-gray-400">→</span>
-              </button>
+               <button
+                    onClick={() => scroll('left')}
+                    
+                  >
+                    <CircleArrowLeft className="text-[#79797989]"/>
+                  </button>
+                  <button
+                    onClick={() => scroll('right')}
+                    
+                  >
+                    <CircleArrowRight className="  text-[#797979]"/>
+                  </button>
             </div>
           )}
         </div>
