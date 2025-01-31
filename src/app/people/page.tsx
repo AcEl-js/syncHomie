@@ -120,9 +120,9 @@ function App() {
       </header>
       <div className="flex gap-6 mb-12 mt-4">
         <img
-          src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200&h=200"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0V4Lh6pGemaiN-qCSuf6j1TjYPN4YT1yUA&s"
           alt="Actor profile"
-          className="w-48 h-48 object-cover rounded-lg"
+          className="w-48 h-72 object-cover rounded-lg"
         />
         <div className="flex flex-col ">
           <div>
@@ -251,6 +251,28 @@ function App() {
     </div>
   </div>
 ))}
+
+<div className='mt-20'>
+<h2 className="text-xl font-semibold mb-6"><span className='text-[#F5C518]'>•</span> Other Details</h2>
+<div className="max-w-sm rounded overflow-hidden shadow-lg p-6  ">
+      <div className="font-bold text-xl mb-2"></div>
+      <p className="text-gray-400 text-base my-5">
+        <strong>Official Name:</strong>Charlie Peckham Day
+      </p>
+      <p className="text-gray-400 text-base my-5">
+        <strong>Born:</strong> June 28, 1991, San Jose, Costa Rica
+      </p>
+      <p className="text-gray-400 text-base my-5">
+        <strong>Height:</strong> 59" (1.75 cm)
+      </p>
+      <p className="text-gray-400 text-base my-5">
+        <strong>Parents:</strong> Daniel Day
+      </p>
+      <p className="text-gray-400 text-base my-5">
+        <strong>Awards:</strong> Top Rated Serie #102 Nominations
+      </p>
+    </div>
+</div>
     </div>
     </div>
    
