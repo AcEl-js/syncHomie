@@ -226,7 +226,7 @@ const Moviescatego = () => {
   </div>
 </div>
 
-      <TrendingMovies movies={movies} categorie="Movies" colore='text-[#6c204e]' />
+      <TrendingMovies movies={movies} categorie="Movies" colore='text-[#F5C518]' />
       <TrendingMovies movies={movies} categorie="TV Shows" colore='text-[#E54988]' />
       <TrendingMovies movies={movies} categorie="Anime" colore='text-[#FEC97B]'/>
       <TrendingMovies movies={movies} categorie="Drama" colore="text-[#67BFAF]" />

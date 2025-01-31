@@ -18,10 +18,11 @@ body {
   
 }
 *{
-  font-family: "Roboto" ,Helvetica, sans-serif;;
-  font-weight: 300;
+  font-family: "Roboto" , sans-serif;;
+  font-weight: 400;
   font-style: normal;
 }
+
 body {
   overflow-x: hidden;
 }

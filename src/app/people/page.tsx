@@ -50,6 +50,27 @@ function App() {
       boxOffice: "$9.9M",
       imageUrl: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=250&h=350"
     },
+    {
+      id: 4,
+      title: "Kung Fu Panda 4",
+      rating: 7.8,
+      boxOffice: "$99M",
+      imageUrl: "/movies/panda.png"
+    },
+    {
+      id: 5,
+      title: "Dune: Part Two",
+      rating: 4.4,
+      boxOffice: "$19.5M",
+      imageUrl: "/movies/dunc.png"
+    },
+    {
+      id: 6,
+      title: "Imaginary",
+      rating: 8.1,
+      boxOffice: "$22M",
+      imageUrl: "/movies/imaginary.png"
+    },
   ];
 
   return (
@@ -69,12 +90,12 @@ function App() {
           alt="Actor profile"
           className="w-48 h-48 object-cover rounded-lg"
         />
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col ">
           <div>
             <div className="flex items-center gap-3">
               <h1 className="text-2xl font-bold">Charlie Day</h1>
               <span className="text-green-500">57%</span>
-              <Heart className="text-gray-400 cursor-pointer hover:text-red-500 transition-colors" />
+              <Heart className="text-gray-400 cursor-pointer flex justify-self-start hover:text-red-500 transition-colors" />
             </div>
             <p className="text-gray-400 mt-4 max-w-2xl">
               Charlie was born in New York City and raised in Middletown, Rhode Island. His parents are both music teachers - his mother, Mary (Peckham), is a piano teacher and his father, Dr. Thomas Charles Day, was a professor of music at Salve Regina University in Newport, Rhode Island. Charlie plays both piano and guitar. He has Italian (from his paternal grandfather), Irish, and English ancestry.
@@ -82,10 +103,10 @@ function App() {
           </div>
         {/* rate section */}
           <div className="w-full max-w-2xl p-4 space-y-4 rounded-lg text-white">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4 p-2 rounded-sm  bg-[#1a1f2b]">
-          <span className="text-gray-300">Rate this Actor</span>
-          <div className="flex items-center gap-2">
+      <div className=" xl:flex  gap-4 items-center ">
+        <div className="flex items-center gap-4 p-2 rounded-sm   bg-[#1a1f2b]">
+          <span className="text-gray-300 text-nowrap">Rate this Actor</span>
+          <div className="flex items-center gap-2 ">
             <Button 
               variant="ghost" 
               size="sm"
@@ -103,17 +124,9 @@ function App() {
               {downvotes}%
             </Button>
           </div>
+          
         </div>
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className="text-gray-300 hover:text-white"
-        >
-          <Pencil className="w-4 h-4 mr-1" />
-          Edit
-        </Button>
-      </div>
-      <div className="flex gap-2">
+        <div className="flex gap-2 my-4">
         {reactions.map((reaction) => (
           <Button
             key={reaction.name}
@@ -125,6 +138,16 @@ function App() {
           </Button>
         ))}
       </div>
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="text-gray-300 hover:text-white"
+        >
+          <Pencil className="w-4 h-4 mr-1" />
+          Edit
+        </Button>
+      </div>
+      
     </div>
         </div>
       </div>
@@ -132,7 +155,7 @@ function App() {
       {/* Known For Section */}
       <div>
         <h2 className="text-xl font-semibold mb-6">Known For</h2>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-2 xl:grid-cols-3 grid-cols- gap-6">
           {movies.map((movie, index) => (
            <MovieCard key={movie.id} movie={movie} index={index} />
           ))}
