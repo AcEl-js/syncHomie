@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import React from 'react';
+import EpisodeList from './eposode-lists';
 
 const App = () => {
     return (
@@ -42,8 +43,11 @@ const App = () => {
                     <div className="flex items-center cursor-pointer" >Infuriating 😠</div>
                     <div className="flex items-center cursor-pointer" >Sad 😢</div>
                 </div>
+
             </div>
+            <EpisodeList/>
             </div>
+            
         </div>
     );
 }
