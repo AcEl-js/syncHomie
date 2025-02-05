@@ -8,6 +8,49 @@ import { Bookmark, ChevronDown, Star, ChevronLeft, ChevronRight  } from 'lucide-
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '@radix-ui/react-dropdown-menu';
 import Reviews from '@/components/Reviews';
 
+import Image from "next/image"
+import Footer from '@/components/footer';
+
+
+interface Show {
+  title: string
+  rating: number
+  image: string
+}
+
+const shows: Show[] = [
+  {
+    title: "Scrubs",
+    rating: 4.0,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0V4Lh6pGemaiN-qCSuf6j1TjYPN4YT1yUA&s",
+  },
+  {
+    title: "How I Met Your Mother",
+    rating: 4.4,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0V4Lh6pGemaiN-qCSuf6j1TjYPN4YT1yUA&s",
+  },
+  {
+    title: "The Big Bang Theory",
+    rating: 4.3,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0V4Lh6pGemaiN-qCSuf6j1TjYPN4YT1yUA&s",
+  },
+  {
+    title: "Curb Your Enthusiasm",
+    rating: 4.7,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0V4Lh6pGemaiN-qCSuf6j1TjYPN4YT1yUA&s",
+  },
+  {
+    title: "Fuller House",
+    rating: 4.5,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0V4Lh6pGemaiN-qCSuf6j1TjYPN4YT1yUA&s",
+  },
+  {
+    title: "Blockbuster",
+    rating: 4.2,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0V4Lh6pGemaiN-qCSuf6j1TjYPN4YT1yUA&s",
+  },
+]
+
 const App = () => {
     const reviews = [
         {
@@ -82,9 +125,9 @@ const App = () => {
             </div>
              <div>
                 <div className=' lg:grid grid-container'>
-                    <img className='grid-img1' src="/movies/always.png" alt="" />
+                    <img className='grid-img1 rounded-md' src="/movies/always.png" alt="" />
                     <div className=' flex relative grid-img2'>
-                        <img  className=' ' src="https://www.figma.com/file/doFTVNXU6JS5vkDwViNO0x/image/35432983b9e7fab5da1fe629c93460840cef9c2f" alt="" />
+                        <img  className=' rounded-md' src="https://www.figma.com/file/doFTVNXU6JS5vkDwViNO0x/image/35432983b9e7fab5da1fe629c93460840cef9c2f" alt="" />
                         <div className=' absolute top-4 right-4 flex gap-4'>
                         <Button variant="secondary" className="gap-2 h-[42px] rounded-[10px] px-[18px] py-[8px]  bg-[#A3A3A3]/30 shadow-[0_1px_2px_0_#FFFFFF0D_inset] text-white"><Star/>Rate </Button>
                         <DropdownMenu>
@@ -121,8 +164,8 @@ const App = () => {
                     </div>
                     <div className='grid grid-cols-3 grid-rows-2 col-span-4'> 
                         <div className='flex watch-item1'>
-                            <span className='text-[#F5C518] '>•</span>
-                            <h1>Watch On</h1>
+                            
+                            <h1 className='text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Watch On</h1>
                         </div>
 
                         <div className='flex gap-2 watch-item2'>
@@ -159,10 +202,64 @@ const App = () => {
                     </div>
                 </div>
              </div>
-             <Reviews  reviews={reviews} title='•  User Reviews' />
+             <Reviews  reviews={reviews} title='• User Reviews' />
+
+             <h1 className='text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Season 1: 12/12 Episodes Released</h1>
+
             <EpisodeList/>
             </div>
-           
+
+        {/*  Behind The Scenes */}
+   
+
+            <h1 className=' text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Behind The Scenes </h1>
+            <div>
+            <div className="grid ml-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {shows.map((show) => (
+            <div key={show.title} className="group relative">
+                <div className="aspect-square overflow-hidden rounded-lg">
+                <img
+                    src={show.image || "/placeholder.svg"}
+                    alt={show.title}
+                    width={200}
+                    height={200}
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+                </div>
+                <div className="mt-2 space-y-1">
+                <h3 className="text-sm font-medium text-white truncate">{show.title}</h3>
+                <div className="flex items-center">
+                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                    <span className="ml-1 text-sm text-gray-400">{show.rating}</span>
+                </div>
+                </div>
+            </div>
+            ))}
+            
+            
+      </div>
+      <div className="max-w-sm rounded overflow-hidden shadow-lg p-6  ">
+        <div className="font-bold text-xl mb-2"></div>
+        <p className="text-gray-400 text-base my-5">
+            <strong>Official Name:</strong>Charlie Peckham Day
+        </p>
+        <p className="text-gray-400 text-base my-5">
+            <strong>Born:</strong> June 28, 1991, San Jose, Costa Rica
+        </p>
+        <p className="text-gray-400 text-base my-5">
+            <strong>Height:</strong> 59" (1.75 cm)
+        </p>
+        <p className="text-gray-400 text-base my-5">
+            <strong>Parents:</strong> Daniel Day
+        </p>
+        <p className="text-gray-400 text-base my-5">
+            <strong>Awards:</strong> Top Rated Serie #102 Nominations
+        </p>
+    </div>
+
+            </div>
+
+           <Footer/>
         </div>
     );
 }

@@ -5,6 +5,7 @@ import Features from '../components/Features';
 import Reviews from '../components/Reviews';
 import TrendingMovies from '@/components/TrendingMovies';
 import Moviescatego from '@/components/Moviescatego';
+import Footer from '@/components/footer';
 
 
 
@@ -48,6 +49,7 @@ function App() {
      
       <Reviews reviews={reviews} title='• Trending Reviews' />
       <Moviescatego />
+      <Footer/>
     </div>
   );
 }
