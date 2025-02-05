@@ -9,6 +9,35 @@ import Moviescatego from '@/components/Moviescatego';
 
 
 function App() {
+  const reviews = [
+      {
+        name: "P O lane",
+        content: "Lorem Ipsum",
+        subtitle: "It's Always Sunny in Philadelphia"
+      },
+      {
+        name: "Tomas Name",
+        content: "Lorem Ipsum",
+        subtitle: "It's Always Sunny in Philadelphia"
+      },
+      {
+        name: "Achraf Name",
+        content: "Lorem Ipsum",
+        subtitle: "It's Always Sunny in Philadelphia"
+      }, {
+        name: "Allan Name",
+        content: "Lorem Ipsum",
+        subtitle: "It's Always Sunny in Philadelphia"
+      },{
+        name: "Achraf Name",
+        content: "Lorem Ipsum",
+        subtitle: "It's Always Sunny in Philadelphia"
+      }, {
+        name: "Allan Name",
+        content: "Lorem Ipsum",
+        subtitle: "It's Always Sunny in Philadelphia"
+      }
+    ];
   return (
     <div className="min-h-screen w-screen ">
       <Navbar />
@@ -16,7 +45,8 @@ function App() {
       <Hero />
       <Features />
      </div>
-      <Reviews />
+     
+      <Reviews reviews={reviews} title='• Trending Reviews' />
       <Moviescatego />
     </div>
   );

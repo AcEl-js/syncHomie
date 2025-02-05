@@ -3,37 +3,20 @@ import React, { useRef, useState, useEffect } from 'react';
 import ReviewCard from './ReviewCard';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
 
+ interface ReviewComment{
+  name:string;
+  content:string;
+  subtitle:string;
+ }
+ interface ReviewsProps{
+  reviews:ReviewComment[]
+  title:string
 
-const Reviews = () => {
-  const reviews = [
-    {
-      name: "P O lane",
-      content: "Lorem Ipsum",
-      subtitle: "It's Always Sunny in Philadelphia"
-    },
-    {
-      name: "Tomas Name",
-      content: "Lorem Ipsum",
-      subtitle: "It's Always Sunny in Philadelphia"
-    },
-    {
-      name: "Achraf Name",
-      content: "Lorem Ipsum",
-      subtitle: "It's Always Sunny in Philadelphia"
-    }, {
-      name: "Allan Name",
-      content: "Lorem Ipsum",
-      subtitle: "It's Always Sunny in Philadelphia"
-    },{
-      name: "Achraf Name",
-      content: "Lorem Ipsum",
-      subtitle: "It's Always Sunny in Philadelphia"
-    }, {
-      name: "Allan Name",
-      content: "Lorem Ipsum",
-      subtitle: "It's Always Sunny in Philadelphia"
-    }
-  ];
+ }
+
+
+const Reviews: React.FC<ReviewsProps>  = ({reviews, title}) => {
+  
 
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -122,7 +105,7 @@ const Reviews = () => {
     <div className='py-16 px-4'>
       <div className="mb-16">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-semibold text-gray-200 mb-8 ml-4">• Trending Reviews</h2>
+          <h2 className="text-2xl font-semibold text-gray-200 mb-8 ml-4">{title} </h2>
           {isScrollable && (
             <div className="flex gap-2">
               <button
@@ -156,6 +139,7 @@ const Reviews = () => {
               <ReviewCard {...review} />
             </div>
           ))}
+          
         </div>
       </div>
     </div>

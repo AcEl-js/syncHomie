@@ -30,7 +30,7 @@ export function MovieCard({ movie, index }: MovieCardProps) {
         <img
           src={movie.imageUrl}
           alt={movie.title}
-          className="w-32 h-[194px] object-cover rounded-sm"
+          className="w-32 h-[194px] object-cover rounded-sm "
         />
       </div>
 

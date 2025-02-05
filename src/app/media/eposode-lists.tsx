@@ -1,9 +1,12 @@
+"use client"
+import { useState } from "react"
 import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
 export default function EpisodeList() {
   const seasons = Array.from({ length: 16 }, (_, i) => i + 1)
+  const [selectedSeason,setSelectedSeason] = useState(1)
   const episodes = [
     {
       id: 1,
@@ -50,8 +53,9 @@ export default function EpisodeList() {
         {seasons.map((season) => (
           <Button
             key={season}
-            variant={season === 1 ? "default" : "ghost"}
-            className={`min-w-[40px] ${season === 1 ? "bg-pink-600 hover:bg-pink-700" : ""}`}
+            variant={season === selectedSeason ? "default" : "ghost"}
+            className={`min-w-[40px] ${season === selectedSeason ? "bg-pink-600 hover:bg-pink-700" : ""}`}
+            onClick={()=>{setSelectedSeason(season)}}
           >
             S{season}
           </Button>
