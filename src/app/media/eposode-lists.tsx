@@ -47,7 +47,7 @@ export default function EpisodeList() {
   ]
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div className=" bg-black text-white p-6">
       {/* Season Navigation */}
       <div className="flex gap-2 overflow-x-auto pb-4 mb-6">
         {seasons.map((season) => (

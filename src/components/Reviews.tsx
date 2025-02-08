@@ -125,7 +125,7 @@ const Reviews: React.FC<ReviewsProps>  = ({reviews, title}) => {
         </div>
         <div 
           ref={scrollContainerRef}
-          className="flex space-x-6 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing"
+          className="flex space-x-6 overflow-x-auto hide-scrollbar cursor-grab active:cursor-grabbing"
           onMouseDown={startDragging}
           onMouseLeave={stopDragging}
           onMouseUp={stopDragging}

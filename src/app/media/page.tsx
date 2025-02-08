@@ -5,7 +5,8 @@ import "./style.css"
 import OverviewMenu from './OverviewMenu';
 import { Button } from '@/components/ui/button';
 import { Bookmark, ChevronDown, Star, ChevronLeft, ChevronRight  } from 'lucide-react';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '@radix-ui/react-dropdown-menu';
+import { DropdownMenu, DropdownMenuTrigger} from '@radix-ui/react-dropdown-menu';
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Reviews from '@/components/Reviews';
 
 import Image from "next/image"
@@ -221,9 +222,9 @@ const App = () => {
                 <img
                     src={show.image || "/placeholder.svg"}
                     alt={show.title}
-                    width={200}
-                    height={200}
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    width={181}
+                    height={181}
+                    className="object-cover rounded-lg transition-transform duration-300 group-hover:scale-110 h-[181px] w-[181px] "
                 />
                 </div>
                 <div className="mt-2 space-y-1">
@@ -258,6 +259,57 @@ const App = () => {
     </div>
 
             </div>
+            <h1 className=' text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Media </h1>
+
+
+            <div className="w-full bg-black  text-white">
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="flex items-center gap-4 mb-6 justify-between">
+       
+          <Tabs defaultValue="popular" className="w-full flex justify-between">
+            <TabsList className="bg-transparent border-b text border-neutral-800 w-full justify-center h-auto p-0 gap-6">
+              <TabsTrigger
+                value="popular"
+                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-white data-[state=active]:text-black text-neutral-400 h-auto bg-transparent"
+              >
+                Most Popular
+              </TabsTrigger>
+              <TabsTrigger
+                value="videos"
+                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-white data-[state=active]:text-white text-neutral-400 h-auto bg-transparent"
+              >
+                Videos
+              </TabsTrigger>
+              <TabsTrigger
+                value="backdrops"
+                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-white data-[state=active]:text-white text-neutral-400 h-auto bg-transparent"
+              >
+                Backdrops
+              </TabsTrigger>
+              <TabsTrigger
+                value="posters"
+                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-white data-[state=active]:text-white text-neutral-400 h-auto bg-transparent"
+              >
+                Posters
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <button className="text-sm text-neutral-400 hover:text-white transition-colors">Edit</button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="relative aspect-[3/2] overflow-hidden rounded-lg">
+              <img
+                src="https://s3-alpha-sig.figma.com/img/3fc8/7243/333eceac0409db8fcd7bdfe9e1df4204?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=HqW9EsI~ArfAOq2b7MwVw9NuiSj6wVDryFQDPUagell3uJ2if49BCgo7CBGkH9~kuy7wV6k3ThsuvuupHem~XpMyG-nw6X7TpcPY6jMYNdEw~0cOyKRwwazorPhBUCXCZFipMLNq140gaunBD6ppmZQGwo5ah58UQ6vRj~ct~0VflTyrBzwYMttY5cYt~aXHkh7o3h1-UL5OP2zvKYZvsTNlMHcrQ5dNBgtutW-W5tI8xsvtgQez0uB3ddn6igOMbq7GK2p2YB1tksShIvwu6n-cXchV4L00R4MZMgP-MdAxZMTvhp2DB5TxfcyslaxNY3undfQdPBYeizUr5A~V4w__"
+                alt="Media gallery image"
+                className="object-cover hover:opacity-75 transition-opacity cursor-pointer"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
 
            <Footer/>
         </div>
