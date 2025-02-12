@@ -16,11 +16,11 @@ const Page = () => {
     const timeRanges: TimeRange[] = ['All Time', 'Last 24h', '7 Days', '30 Days'];
     
     const categories: Category[] = [
-      { name: 'Movies', entries: 204, color: 'green-400' },
-      { name: 'TV Series', entries: 147, color: 'blue-400' },
-      { name: 'Anime', entries: 141, color: 'purple-400' },
-      { name: 'Drama', entries: 116, color: 'pink-400' },
-      { name: 'Sport', entries: 108, color: 'orange-400' },
+      { name: 'Movies', entries: 204, color: '-green-400' },
+      { name: 'TV Series', entries: 147, color: '-blue-400' },
+      { name: 'Anime', entries: 141, color: '-purple-400' },
+      { name: 'Drama', entries: 116, color: '-pink-400' },
+      { name: 'Sport', entries: 108, color: '-orange-400' },
     ];
   
     const totalBookmarks = categories.reduce((sum, cat) => sum + cat.entries, 0);
@@ -67,13 +67,14 @@ const Page = () => {
               key={category.name}
               className=" rounded-lg p-4 text-center  cursor-pointer"
             >
-              <div className= {`text-sm w-[75px] h-[25px] flex justify-center items-center rounded-sm text-white ${category.color}`}>{category.name}</div>
-              <div className="mt-1 font-bold">
-                <span className={`text-${category.color}`}>{category.entries}</span> <span className="text-xs">Entries</span>
+              <div className= {`text-sm w-[75px] h-[25px] flex justify-center items-center rounded-sm bg${category.color}`}>{category.name}</div>
+              <div className="mt-1 font-bold flex items-center gap-2 ">
+                <h1 className={`text${category.color}`} >{category.entries}</h1>
+                <span className="text-xs">Entries</span>
               </div>
               <div className="mt-2 h-1 rounded-full bg-gray-700">
                 <div
-                  className={`h-full rounded-full bg-${category.color}`}
+                  className={`h-full rounded-full bg${category.color}`}
                   style={{
                     width: `${(category.entries / totalBookmarks) * 100}%`,
                   }}
