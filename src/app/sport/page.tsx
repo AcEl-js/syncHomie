@@ -1,7 +1,9 @@
+"use client"
 import Navbar from '@/components/Navbar';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Link from "next/link"
+import MatchDay from './matchDay';
 
 const sports = [
   { name: "MMA", icon: "mma.svg" },
@@ -16,61 +18,91 @@ const sports = [
   { name: "Rugby", icon: "rugby.svg" },
 ]
 
-const matches = [
-  {
-    day: 11,
-    matches: [
-      {
-        player1: { name: "Alex Pena", percentage: "88.5%" },
-        player2: { name: "Connor Sparrow", percentage: "75%" },
-        time: "08:15 PM",
-        date: "Nov 18",
-      },
-    ],
-  },
-  {
-    day: 12,
-    matches: [
-      {
-        player1: { name: "Alex Pena", percentage: "88.5%" },
-        player2: { name: "Connor Sparrow", percentage: "75%" },
-        time: "08:15 PM",
-        date: "Nov 18",
-      },
-      {
-        player1: { name: "Alex Pena", percentage: "88.5%" },
-        player2: { name: "Connor Sparrow", percentage: "75%" },
-        time: "08:15 PM",
-        date: "Nov 18",
-      },
-      {
-        player1: { name: "Alex Pena", percentage: "88.5%" },
-        player2: { name: "Connor Sparrow", percentage: "75%" },
-        time: "08:15 PM",
-        date: "Nov 18",
-      },
-      {
-        player1: { name: "Alex Pena", percentage: "88.5%" },
-        player2: { name: "Connor Sparrow", percentage: "75%" },
-        time: "08:15 PM",
-        date: "Nov 18",
-      }, {
-        player1: { name: "Alex Pena", percentage: "88.5%" },
-        player2: { name: "Connor Sparrow", percentage: "75%" },
-        time: "08:15 PM",
-        date: "Nov 18",
-      },{
-        player1: { name: "Alex Pena", percentage: "88.5%" },
-        player2: { name: "Connor Sparrow", percentage: "75%" },
-        time: "08:15 PM",
-        date: "Nov 18",
-      },
-    ],
-  },
-]
 
 
 const Page = () => {
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [isAnimating, setIsAnimating] = useState(false);
+  
+    const startDragging = (e: React.MouseEvent) => {
+      if (!scrollContainerRef.current) return;
+      
+      setIsDragging(true);
+      setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+      setScrollLeft(scrollContainerRef.current.scrollLeft);
+    };
+  
+    const stopDragging = () => {
+      setIsDragging(false);
+    };
+  
+    const drag = (e: React.MouseEvent) => {
+      if (!isDragging || !scrollContainerRef.current) return;
+      
+      e.preventDefault();
+      const x = e.pageX - scrollContainerRef.current.offsetLeft;
+      const walk = (x - startX) * 2;
+      scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+    };
+  
+    const [isScrollable, setIsScrollable] = useState(false);
+  
+    useEffect(() => {
+      const checkScrollable = () => {
+        if (scrollContainerRef.current) {
+          setIsScrollable(
+            scrollContainerRef.current.scrollWidth > scrollContainerRef.current.clientWidth
+          );
+        }
+      };
+  
+      checkScrollable();
+      window.addEventListener('resize', checkScrollable);
+  
+      return () => {
+        window.removeEventListener('resize', checkScrollable);
+      };
+    }, []);
+  
+    const scroll = (direction: 'left' | 'right') => {
+      if (scrollContainerRef.current && !isAnimating) {
+        setIsAnimating(true);
+        
+        const container = scrollContainerRef.current;
+        const cardWidth = (container.querySelector('.review-card') as HTMLElement)?.offsetWidth || 300;
+        const gap = 24;
+        const scrollAmount = direction === 'left' ? -(cardWidth + gap) : (cardWidth + gap);
+        const startPosition = container.scrollLeft;
+        const targetPosition = startPosition + scrollAmount;
+        
+        let startTime: number | null = null;
+        const duration = 800; // Animation duration in milliseconds
+        
+        function animate(currentTime: number) {
+          if (startTime === null) startTime = currentTime;
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Easing function for smoother animation
+          const easeInOutCubic = (t: number) => 
+            t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          
+          const currentPosition = startPosition + (targetPosition - startPosition) * easeInOutCubic(progress);
+          container.scrollLeft = currentPosition;
+          
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            setIsAnimating(false);
+          }
+        }
+        
+        requestAnimationFrame(animate);
+      }
+    };
     return (
         <div>
             <Navbar/>
@@ -98,8 +130,14 @@ const Page = () => {
             {/* Leagues Section */}
             <div className="px-4 py-6">
                 <h2 className="text-lg font-semibold mb-4">Leagues & tournaments</h2>
-                <ScrollArea className="w-full whitespace-nowrap rounded-md">
-                <div className="flex space-x-4 pb-4">
+                
+                <div 
+                ref={scrollContainerRef}
+                className="flex space-x-4  p-4 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing"
+                onMouseDown={startDragging}
+                onMouseLeave={stopDragging}
+                onMouseUp={stopDragging}
+                onMouseMove={drag}>
                     {[
                     { name: "NBA", logo: "/sport/NBA.svg" },
                     { name: "UEFA Nations League", logo: "/sport/UEFA.svg" },
@@ -112,23 +150,21 @@ const Page = () => {
                     { name: "Premier League", logo: "/sport/PremierLeague.svg" },
                     { name: "International Friendly Games", logo: "/sport/InternationlFriendly.svg" },
                     ].map((league) => (
-                    <Link
+                    <div
                         key={league.name}
-                        href={`#${league.name.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="inline-flex flex-col items-center group  bg-gray-800 rounded-lg justify-center p-2 group-hover:bg-gray-700 transition-colors w-[146px] h-[146px] "
+                        className="inline-flex flex-col items-center group bg-gray-800 rounded-lg justify-center p-2 group-hover:bg-gray-700 transition-colors w-[146px] h-[146px] "
                         draggable='false'
                     >
                         <div className="w-24 flex justify-center items-center my-2 ">
-                        <img src={league.logo} className="w-16 h-16 bg-gray-700 rounded-lg" />
+                        <img src={league.logo} className="w-[50px] h-[50px] bg-gray-700 rounded-lg" />
                         </div>
                         <span className="mt-2 text-sm text-gray-400 group-hover:text-white text-center max-w-[120px] text-wrap">
                         {league.name}
                         </span>
-                    </Link>
+                    </div>
                     ))}
                 </div>
-                <ScrollBar orientation="horizontal" />
-                </ScrollArea>
+              
             </div>
 
             {/* Existing Sports Navigation */}
@@ -136,11 +172,11 @@ const Page = () => {
                 <h1 className="text-xl font-semibold mb-4">Sports</h1>
 
                 <ScrollArea className="w-full whitespace-nowrap rounded-md">
-                <div className="flex space-x-4 p-4">
+                <div className="flex space-x-4  p-4 ">
                     {sports.map((sport) => (
                     <Link
                         key={sport.name}
-                        href={`#${sport.name.toLowerCase()}`}
+                        href={`/sport/${sport.name.toLowerCase()}`}
                         className="inline-flex flex-col items-center group"
                         draggable="false"
                     >
@@ -157,43 +193,7 @@ const Page = () => {
                 <ScrollBar orientation="horizontal" />
                 </ScrollArea>
 
-                <div className="mt-8 space-y-6">
-                {matches.map((day) => (
-                    <div key={day.day} className=' cursor-pointer'>
-                    <h2 className="text-gray-400 text-sm mb-3">MATCH DAY {day.day}</h2>
-                    <div className="grid gap-3 xl:grid-cols-3 md:grid-cols-2">
-                        {day.matches.map((match, idx) => (
-                          
-                        <div key={idx} className="bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition-colors">
-                            <div className="flex justify-between items-center">
-                            <div className="space-y-2">
-                                <div className="flex items-center space-x-2">
-                                <img src='https://s3-alpha-sig.figma.com/img/14bc/0966/9750ae0f1e96bde99b243b0e7d424e3a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=WeN35vCdFzZu-nvY~o4iw8dFyifcBkor7rcFSKL3tPyWbck7DnHd0YryJmdcynB4a2urqGQVJa5C3u1MV~IX2cdovAg9VudX4DuApeM~9bD4xoL6QvcZHv6LwvoSPx-sjVHTJd6cibdN-FVshBfj8dUonJZ2pzywLyMIw4rvXOhJI89HQzAKx~AwCV~5SBLl6x9bqjNOro9g5dUSQ0t67rVx47BenU7cICRhwi5knilPCKt39iC~J2EPFKWq8~yCdc4YtCskVVmGujWyezED3z~RGWHC1OTtcu~UPiTNO2o4dO4zfz9TWMho6d~~QRIit~EcUP7ZBbSd3GFekxj~pw__' 
-                                className="w-6 h-6 rounded-full object-contain" />
-                                <span>{match.player1.name}</span>
-                                <span className="text-gray-400">({match.player1.percentage})</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                <img src='https://s3-alpha-sig.figma.com/img/9d2b/729d/4f4a4548d168e5028c3c65ba1d0e9738?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=s6CSIa-ceAbGoihzp-AcLKo7LWlIZCRsl5PMcgJ0Ax2W~SpALxaIQ~0vKQyteMi8KUfWFggH15IXRuH3dSGuR378wHjhcKsPDSQzLmpDow2El1Uwb7KNYbABCCoZekcZPcXCxsV2UWhEdR~iGJkhpiA~o52XiohBNNc5WTUnqlJv3zKgedTYNtFoAGW6AsINbgAyCX4Tg7~k4w70KhjHSB1ExRuK~cH1cT-KdbL9NzNaJKvgqau0Axo7mu0hcYsS~Nx9SkO6Nwlk3Gj-7khzEYfTIesaOnJvxyKM0yfuCuWKvuNpgE~9jhkLw~rQ-Byo4DXUIFudqhHFM8ylR~5Qug__' 
-                                className="w-6 h-6 rounded-full object-contain" />
-                                <span>{match.player2.name}</span>
-                                <span className="text-gray-400">({match.player2.percentage})</span>
-                                </div>
-                                
-
-                            </div>
-                            <div className="text-right">
-                                <div className="text-sm text-gray-400">{match.date}</div>
-                                <div>{match.time}</div>
-                            </div>
-                            <div><img src="/Button.svg" alt="" /></div>
-                            </div>
-                        </div>
-                        ))}
-                    </div>
-                    </div>
-                ))}
-                </div>
+                <MatchDay/>
             </div>
             </div>
             
