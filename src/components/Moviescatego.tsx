@@ -227,10 +227,10 @@ const Moviescatego = () => {
   </div>
 </div>
 
-      <TrendingMovies movies={movies} categorie="Movies" colore='text-[#F5C518]' />
-      <TrendingMovies movies={movies} categorie="TV Shows" colore='text-[#E54988]' />
-      <TrendingMovies movies={movies} categorie="Anime" colore='text-[#FEC97B]'/>
-      <TrendingMovies movies={movies} categorie="Drama" colore="text-[#67BFAF]" />
+      <TrendingMovies movies={movies} categorie="Movies" colore='text-[#F5C518]'   Istitle={true} />
+      <TrendingMovies movies={movies} categorie="TV Shows" colore='text-[#E54988]'  Istitle={true} />
+      <TrendingMovies movies={movies} categorie="Anime" colore='text-[#FEC97B]' Istitle={true} />
+      <TrendingMovies movies={movies} categorie="Drama" colore="text-[#67BFAF]"  Istitle={true} />
 
       <div className="mt-20 text-center pb-16">
         <h2 className="text-4xl font-semibold mb-8 text-white">Start Tracking What You Watch</h2>

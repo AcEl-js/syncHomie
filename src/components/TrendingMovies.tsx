@@ -14,10 +14,11 @@ interface TrendingMoviesProps {
   movies: Movie[];
   categorie:string
   colore:string
+  Istitle:boolean
 }
 
 
-const TrendingMovies: React.FC<TrendingMoviesProps> = ({ movies, categorie, colore }) => {
+const TrendingMovies: React.FC<TrendingMoviesProps> = ({ movies, categorie, colore,Istitle }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -107,13 +108,13 @@ const TrendingMovies: React.FC<TrendingMoviesProps> = ({ movies, categorie, colo
         {/* movies */}
         <div className="mb-8">
           <div className="flex items-baseline gap-2">
-            <span className={`text-6xl font-bold ${colore}`}>132,784</span>
-            <span className="text-3xl text-blue-500 ">{categorie}</span>
+           { Istitle && <span className={`text-6xl font-bold ${colore}`}>132,784</span>}
+            <span className={`text-3xl ${Istitle ? "text-blue-500 ":"text-white"}  `}>{categorie}</span>
           </div>
-          <h2 className="text-xl mt-4 flex items-center gap-2 text-white">
+          {Istitle && <h2 className="text-xl mt-4 flex items-center gap-2 text-white">
             <div className="w-1 h-6 bg-blue-500 " />
             Most watched movies this month
-          </h2>
+          </h2>}
         </div>
         <div 
       
