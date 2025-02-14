@@ -1,5 +1,7 @@
+"use client"
 import Navbar from '@/components/Navbar';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import TriviaTitles from './triviaTitles';
 
 interface TriviaTitle{
     id: number;
@@ -22,37 +24,134 @@ interface TriviaQuiz {
 
 
 const App = () => {
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [isAnimating, setIsAnimating] = useState(false);
+  
+    const startDragging = (e: React.MouseEvent) => {
+      if (!scrollContainerRef.current) return;
+      
+      setIsDragging(true);
+      setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+      setScrollLeft(scrollContainerRef.current.scrollLeft);
+    };
+  
+    const stopDragging = () => {
+      setIsDragging(false);
+    };
+  
+    const drag = (e: React.MouseEvent) => {
+      if (!isDragging || !scrollContainerRef.current) return;
+      
+      e.preventDefault();
+      const x = e.pageX - scrollContainerRef.current.offsetLeft;
+      const walk = (x - startX) * 2;
+      scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+    };
+  
+    const [isScrollable, setIsScrollable] = useState(false);
+  
+    useEffect(() => {
+      const checkScrollable = () => {
+        if (scrollContainerRef.current) {
+          setIsScrollable(
+            scrollContainerRef.current.scrollWidth > scrollContainerRef.current.clientWidth
+          );
+        }
+      };
+  
+      checkScrollable();
+      window.addEventListener('resize', checkScrollable);
+  
+      return () => {
+        window.removeEventListener('resize', checkScrollable);
+      };
+    }, []);
+  
+    const scroll = (direction: 'left' | 'right') => {
+      if (scrollContainerRef.current && !isAnimating) {
+        setIsAnimating(true);
+        
+        const container = scrollContainerRef.current;
+        const cardWidth = (container.querySelector('.review-card') as HTMLElement)?.offsetWidth || 300;
+        const gap = 24;
+        const scrollAmount = direction === 'left' ? -(cardWidth + gap) : (cardWidth + gap);
+        const startPosition = container.scrollLeft;
+        const targetPosition = startPosition + scrollAmount;
+        
+        let startTime: number | null = null;
+        const duration = 800; // Animation duration in milliseconds
+        
+        function animate(currentTime: number) {
+          if (startTime === null) startTime = currentTime;
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Easing function for smoother animation
+          const easeInOutCubic = (t: number) => 
+            t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          
+          const currentPosition = startPosition + (targetPosition - startPosition) * easeInOutCubic(progress);
+          container.scrollLeft = currentPosition;
+          
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            setIsAnimating(false);
+          }
+        }
+        
+        requestAnimationFrame(animate);
+      }
+    };
 
-    const colors = ["bg-[#4E402A]","bg-[#2F1F1F]","bg-[#4A282D]","bg-[#28362F]"]
+   
 
-    const triviaItems: TriviaTitle[] = Array(6).fill({
+    const triviaItems: TriviaTitle[] = [
+        {
         id: 1,
         image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
         title: 'Browse Trivia',
         subtitle: 'Godzilla x Kong: The New Empire'
-      });
+      }, {
+        id: 2,
+        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        title: 'Browse Trivia',
+        subtitle: 'Godzilla x Kong: The New Empire'
+      } ,{
+        id: 3,
+        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        title: 'Browse Trivia',
+        subtitle: 'Godzilla x Kong: The New Empire'
+      } ,{
+        id: 4,
+        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        title: 'Browse Trivia',
+        subtitle: 'Godzilla x Kong: The New Empire'
+      }, {
+        id: 5,
+        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        title: 'Browse Trivia',
+        subtitle: 'Godzilla x Kong: The New Empire'
+      }, {
+        id: 6,
+        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        title: 'Browse Trivia',
+        subtitle: 'Godzilla x Kong: The New Empire'
+      }];
 
     return (
+
         <div className='text-white'>
             <Navbar/>
             <div className=' mt-28'>
                 <h1>Tending Trivia Titles</h1>
-                    <div className='flex gap-5'>
-                        
-                    {triviaItems.map((item)=>(
-                    <div key={item.id} className={`w-[231px] rounded-xl flex flex-col justify-center items-center ${colors[Math.floor(Math.random()*4)]}`}>
-                    <div>
-                        <img className='rounded-xl' src={item.image} alt="" />
-                    </div>
-                    <div className='flex flex-row gap-3 text-white'>
-                        <img src="/icons/GameController.svg" className='h-[18px] w-[18px]' />
-                        <h1 className=' text-base'>{item.title} </h1>
-                    </div>
-                    <h1 className='text-[#C3C3C3] text-base '>{item.subtitle} </h1>
+                <TriviaTitles triviaTitle={triviaItems}/>
 
-                </div>
-                ))}
-                    </div>
+
+                
             </div>
         </div>
     );
