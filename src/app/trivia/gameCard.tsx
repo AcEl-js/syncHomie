@@ -25,7 +25,7 @@ export default function GameCard({triviaQuiz}:GameCardProps) {
         className="flex space-x-6 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing select-none ml-5"
         {...dragHandlers}>
             {triviaQuiz.map((trivia)=>(
-                <div className=" min-w-[150px]  rounded-xl  p-3 text-white">
+                <div key={trivia.id} className=" min-w-[150px]  rounded-xl  p-3 text-white">
                 <div className="space-y-2">
                 <div className="text-xs text-blue-400 h-6 text-center">{trivia.title}</div>
                 <div className="flex items-center justify-between text-sm">

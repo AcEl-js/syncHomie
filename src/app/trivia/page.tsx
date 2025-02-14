@@ -93,7 +93,7 @@ const App = () => {
             description: "# of plays Submitted by Taken by x friends",
             likes: 22,
             dislikes: 0,
-        },,{
+        },{
             id: 4,
             title: "Black Mirror",
             subtitle: "Match",
@@ -113,7 +113,7 @@ const App = () => {
             description: "# of plays Submitted by Taken by x friends",
             likes: 13,
             dislikes: 5,
-        },,{
+        },{
             id: 6,
             title: "Black Mirror",
             subtitle: "Match",
@@ -123,7 +123,7 @@ const App = () => {
             description: "# of plays Submitted by Taken by x friends",
             likes: 22,
             dislikes: 0,
-        },,{
+        },{
             id: 7,
             title: "Black Mirror",
             subtitle: "Match",
@@ -155,6 +155,9 @@ const App = () => {
                 <TriviaTitles triviaTitle={triviaItems}/>
                 <h1 className=' text-2xl text-[#C3C3C3] mb-5 ml-5 '><span className='text-[#F5C518]'>•</span> Trending Trivia Quizzes</h1>
                 <GameCard triviaQuiz={triviaQuiz}/>
+                <h1 className=' text-2xl text-[#C3C3C3] mb-5 ml-5 '><span className='text-[#F5C518]'>•</span> Trivia Completed by Friends</h1>
+                <GameCard triviaQuiz={triviaQuiz}/>
+                <h1 className=' text-2xl text-[#C3C3C3] mb-5 ml-5 '><span className='text-[#F5C518]'>•</span> Top Ranking Users</h1>
 
 
                 
