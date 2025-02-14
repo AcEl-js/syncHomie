@@ -1,7 +1,8 @@
 "use client"
 import Navbar from '@/components/Navbar';
-import React, { useEffect, useRef, useState } from 'react';
+
 import TriviaTitles from './triviaTitles';
+import GameCard from './gameCard';
 
 interface TriviaTitle{
     id: number;
@@ -24,88 +25,7 @@ interface TriviaQuiz {
 
 
 const App = () => {
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
-    const [isAnimating, setIsAnimating] = useState(false);
-  
-    const startDragging = (e: React.MouseEvent) => {
-      if (!scrollContainerRef.current) return;
-      
-      setIsDragging(true);
-      setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
-      setScrollLeft(scrollContainerRef.current.scrollLeft);
-    };
-  
-    const stopDragging = () => {
-      setIsDragging(false);
-    };
-  
-    const drag = (e: React.MouseEvent) => {
-      if (!isDragging || !scrollContainerRef.current) return;
-      
-      e.preventDefault();
-      const x = e.pageX - scrollContainerRef.current.offsetLeft;
-      const walk = (x - startX) * 2;
-      scrollContainerRef.current.scrollLeft = scrollLeft - walk;
-    };
-  
-    const [isScrollable, setIsScrollable] = useState(false);
-  
-    useEffect(() => {
-      const checkScrollable = () => {
-        if (scrollContainerRef.current) {
-          setIsScrollable(
-            scrollContainerRef.current.scrollWidth > scrollContainerRef.current.clientWidth
-          );
-        }
-      };
-  
-      checkScrollable();
-      window.addEventListener('resize', checkScrollable);
-  
-      return () => {
-        window.removeEventListener('resize', checkScrollable);
-      };
-    }, []);
-  
-    const scroll = (direction: 'left' | 'right') => {
-      if (scrollContainerRef.current && !isAnimating) {
-        setIsAnimating(true);
-        
-        const container = scrollContainerRef.current;
-        const cardWidth = (container.querySelector('.review-card') as HTMLElement)?.offsetWidth || 300;
-        const gap = 24;
-        const scrollAmount = direction === 'left' ? -(cardWidth + gap) : (cardWidth + gap);
-        const startPosition = container.scrollLeft;
-        const targetPosition = startPosition + scrollAmount;
-        
-        let startTime: number | null = null;
-        const duration = 800; // Animation duration in milliseconds
-        
-        function animate(currentTime: number) {
-          if (startTime === null) startTime = currentTime;
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          
-          // Easing function for smoother animation
-          const easeInOutCubic = (t: number) => 
-            t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-          
-          const currentPosition = startPosition + (targetPosition - startPosition) * easeInOutCubic(progress);
-          container.scrollLeft = currentPosition;
-          
-          if (progress < 1) {
-            requestAnimationFrame(animate);
-          } else {
-            setIsAnimating(false);
-          }
-        }
-        
-        requestAnimationFrame(animate);
-      }
-    };
+    
 
    
 
@@ -142,6 +62,90 @@ const App = () => {
         subtitle: 'Godzilla x Kong: The New Empire'
       }];
 
+      const triviaQuiz=[
+        {
+            id: 1,
+            title: "The Good Place",
+            subtitle: "Multiple Choice",
+            level:"LEVEL 1",
+            IQ: "20Q",
+            image: "https://s3-alpha-sig.figma.com/img/d146/0cf1/cbd75a737fea9589da6e684e051f5ca6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uTV-Ch0WNyic00aDDvtLkLFQ9lCfh2yzMnVQPumJtxsbm~PSRAeNanxQwVl1v9WGDikLam-SHcPkk0h~TtewT7TNabQJ5PSF3pD17bxw35pCJ7eJtv71OxVygX9I1HH0qP0jcFhkavmUlafkWs3Ya87y2Au4z2KdEmUwQmzh2VSeeE-rw9PXJP0j1S-aItDRMTUO6EBOW3~QkZad37yHtzaJEdUPlzFYhFQNVPIWSYhLZr4E~lg8zxi5ZisgYqzTxOyUIcqy7ovdlLtr3-TWtJGvVyVakIg1nIVwGXr69g0xDVEDVddGZjrp8pWmkaZhxIbXb2moXdq4tJD27J2-QA__",
+            description: "# of plays Submitted by Taken by x friends",
+            likes: 3,
+            dislikes: 1,
+        },{
+            id: 2,
+            title: "It’s Always Sunny in Philadelhpia",
+            subtitle: "Multiple Choice",
+            level:"Nosedive",
+            IQ: "30Q",
+            image: "https://s3-alpha-sig.figma.com/img/d501/b874/1b793ccf15f88e34dc40f1df29c3293b?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=TJgO62-e7jowg~OJOI1CnJXAFn3IlB532YAo68YCOj7WGjlU44DakwGqFL2gDVKglVwb~DLpmg685VrRV18FBxrdub6K6ot0Uou3NAzktR5xWVLZfOaU2TtRd7vKFMYcsheBpKdxcI3mtGjJFH4uBRe6vIF7PXQc5fJwNR2AzxdfCg1qLD6fj7OkmRAbduS4elyIkN7D3mQyTAF3qrNgJvMlY83of5PiFq1d88h7FWK6JU1vRgvHjswWfZ8I9SACxnM2hVUxOCn5Bi6UrlNd-xF44XDRNnEfPDsGpz419fU878zeUZvzL0FUs3BkLiBjeD~76wnR1HQpW3mkorVGNQ__",
+            description: "# of plays Submitted by Taken by x friends",
+            likes: 13,
+            dislikes: 5,
+        },{
+            id: 3,
+            title: "Black Mirror",
+            subtitle: "Match",
+            level:"LEVEL 3",
+            IQ: "6Q",
+            image: "https://s3-alpha-sig.figma.com/img/d146/0cf1/cbd75a737fea9589da6e684e051f5ca6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uTV-Ch0WNyic00aDDvtLkLFQ9lCfh2yzMnVQPumJtxsbm~PSRAeNanxQwVl1v9WGDikLam-SHcPkk0h~TtewT7TNabQJ5PSF3pD17bxw35pCJ7eJtv71OxVygX9I1HH0qP0jcFhkavmUlafkWs3Ya87y2Au4z2KdEmUwQmzh2VSeeE-rw9PXJP0j1S-aItDRMTUO6EBOW3~QkZad37yHtzaJEdUPlzFYhFQNVPIWSYhLZr4E~lg8zxi5ZisgYqzTxOyUIcqy7ovdlLtr3-TWtJGvVyVakIg1nIVwGXr69g0xDVEDVddGZjrp8pWmkaZhxIbXb2moXdq4tJD27J2-QA__",
+            description: "# of plays Submitted by Taken by x friends",
+            likes: 22,
+            dislikes: 0,
+        },,{
+            id: 4,
+            title: "Black Mirror",
+            subtitle: "Match",
+            level:"LEVEL 3",
+            IQ: "6Q",
+            image: "https://s3-alpha-sig.figma.com/img/d146/0cf1/cbd75a737fea9589da6e684e051f5ca6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uTV-Ch0WNyic00aDDvtLkLFQ9lCfh2yzMnVQPumJtxsbm~PSRAeNanxQwVl1v9WGDikLam-SHcPkk0h~TtewT7TNabQJ5PSF3pD17bxw35pCJ7eJtv71OxVygX9I1HH0qP0jcFhkavmUlafkWs3Ya87y2Au4z2KdEmUwQmzh2VSeeE-rw9PXJP0j1S-aItDRMTUO6EBOW3~QkZad37yHtzaJEdUPlzFYhFQNVPIWSYhLZr4E~lg8zxi5ZisgYqzTxOyUIcqy7ovdlLtr3-TWtJGvVyVakIg1nIVwGXr69g0xDVEDVddGZjrp8pWmkaZhxIbXb2moXdq4tJD27J2-QA__",
+            description: "# of plays Submitted by Taken by x friends",
+            likes: 22,
+            dislikes: 0,
+        },{
+            id: 5,
+            title: "It’s Always Sunny in Philadelhpia",
+            subtitle: "Multiple Choice",
+            level:"Nosedive",
+            IQ: "30Q",
+            image: "https://s3-alpha-sig.figma.com/img/d501/b874/1b793ccf15f88e34dc40f1df29c3293b?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=TJgO62-e7jowg~OJOI1CnJXAFn3IlB532YAo68YCOj7WGjlU44DakwGqFL2gDVKglVwb~DLpmg685VrRV18FBxrdub6K6ot0Uou3NAzktR5xWVLZfOaU2TtRd7vKFMYcsheBpKdxcI3mtGjJFH4uBRe6vIF7PXQc5fJwNR2AzxdfCg1qLD6fj7OkmRAbduS4elyIkN7D3mQyTAF3qrNgJvMlY83of5PiFq1d88h7FWK6JU1vRgvHjswWfZ8I9SACxnM2hVUxOCn5Bi6UrlNd-xF44XDRNnEfPDsGpz419fU878zeUZvzL0FUs3BkLiBjeD~76wnR1HQpW3mkorVGNQ__",
+            description: "# of plays Submitted by Taken by x friends",
+            likes: 13,
+            dislikes: 5,
+        },,{
+            id: 6,
+            title: "Black Mirror",
+            subtitle: "Match",
+            level:"LEVEL 3",
+            IQ: "6Q",
+            image: "https://s3-alpha-sig.figma.com/img/d146/0cf1/cbd75a737fea9589da6e684e051f5ca6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uTV-Ch0WNyic00aDDvtLkLFQ9lCfh2yzMnVQPumJtxsbm~PSRAeNanxQwVl1v9WGDikLam-SHcPkk0h~TtewT7TNabQJ5PSF3pD17bxw35pCJ7eJtv71OxVygX9I1HH0qP0jcFhkavmUlafkWs3Ya87y2Au4z2KdEmUwQmzh2VSeeE-rw9PXJP0j1S-aItDRMTUO6EBOW3~QkZad37yHtzaJEdUPlzFYhFQNVPIWSYhLZr4E~lg8zxi5ZisgYqzTxOyUIcqy7ovdlLtr3-TWtJGvVyVakIg1nIVwGXr69g0xDVEDVddGZjrp8pWmkaZhxIbXb2moXdq4tJD27J2-QA__",
+            description: "# of plays Submitted by Taken by x friends",
+            likes: 22,
+            dislikes: 0,
+        },,{
+            id: 7,
+            title: "Black Mirror",
+            subtitle: "Match",
+            level:"LEVEL 3",
+            IQ: "6Q",
+            image: "https://s3-alpha-sig.figma.com/img/d146/0cf1/cbd75a737fea9589da6e684e051f5ca6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uTV-Ch0WNyic00aDDvtLkLFQ9lCfh2yzMnVQPumJtxsbm~PSRAeNanxQwVl1v9WGDikLam-SHcPkk0h~TtewT7TNabQJ5PSF3pD17bxw35pCJ7eJtv71OxVygX9I1HH0qP0jcFhkavmUlafkWs3Ya87y2Au4z2KdEmUwQmzh2VSeeE-rw9PXJP0j1S-aItDRMTUO6EBOW3~QkZad37yHtzaJEdUPlzFYhFQNVPIWSYhLZr4E~lg8zxi5ZisgYqzTxOyUIcqy7ovdlLtr3-TWtJGvVyVakIg1nIVwGXr69g0xDVEDVddGZjrp8pWmkaZhxIbXb2moXdq4tJD27J2-QA__",
+            description: "# of plays Submitted by Taken by x friends",
+            likes: 22,
+            dislikes: 0,
+        },{
+            id: 8,
+            title: "It’s Always Sunny in Philadelhpia",
+            subtitle: "Multiple Choice",
+            level:"Nosedive",
+            IQ: "30Q",
+            image: "https://s3-alpha-sig.figma.com/img/d501/b874/1b793ccf15f88e34dc40f1df29c3293b?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=TJgO62-e7jowg~OJOI1CnJXAFn3IlB532YAo68YCOj7WGjlU44DakwGqFL2gDVKglVwb~DLpmg685VrRV18FBxrdub6K6ot0Uou3NAzktR5xWVLZfOaU2TtRd7vKFMYcsheBpKdxcI3mtGjJFH4uBRe6vIF7PXQc5fJwNR2AzxdfCg1qLD6fj7OkmRAbduS4elyIkN7D3mQyTAF3qrNgJvMlY83of5PiFq1d88h7FWK6JU1vRgvHjswWfZ8I9SACxnM2hVUxOCn5Bi6UrlNd-xF44XDRNnEfPDsGpz419fU878zeUZvzL0FUs3BkLiBjeD~76wnR1HQpW3mkorVGNQ__",
+            description: "# of plays Submitted by Taken by x friends",
+            likes: 13,
+            dislikes: 5,
+        }
+      ]
+
     return (
 
         <div className='text-white'>
@@ -149,6 +153,8 @@ const App = () => {
             <div className=' mt-[70px] pt-2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FEC97B21] to-[#A33B3B00]'>
                 <h1 className=' text-2xl text-[#C3C3C3] mb-5 ml-5 '><span className='text-[#F5C518]'>•</span> Tending Trivia Titles</h1>
                 <TriviaTitles triviaTitle={triviaItems}/>
+                <h1 className=' text-2xl text-[#C3C3C3] mb-5 ml-5 '><span className='text-[#F5C518]'>•</span> Trending Trivia Quizzes</h1>
+                <GameCard triviaQuiz={triviaQuiz}/>
 
 
                 
