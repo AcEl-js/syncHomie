@@ -80,16 +80,16 @@ const Navbar = () => {
           pt-4 mt-4 border-t border-gray-700
         `}>
           <div className="flex flex-col space-y-4 text-gray-300">
-            <a href="#" className="hover:text-blue-400">Home</a>
-            <a href="#" className="hover:text-blue-400">Discover</a>
-            <a href="#" className="hover:text-blue-400">Calendar</a>
-            <a href="#" className="hover:text-blue-400">People</a>
-            <a href="#" className="hover:text-blue-400 flex items-center gap-1">
+          <Link href="/" className='hover:text-blue-400' >Home</Link>
+              <Link href="/people" className='hover:text-blue-400' >People</Link>
+              <Link href="/discover" className='hover:text-blue-400' >Discover</Link>
+              <Link href="/calendar" className='hover:text-blue-400' >Calendar</Link>
+              <Link href="/bookmarks" className='hover:text-blue-400 flex items-center gap-1' >
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                <path fill="currentColor" d="m12 18l-4.2 1.8q-1 .425-1.9-.162T5 17.975V5q0-.825.588-1.412T7 3h10q.825 0 1.413.588T19 5v12.975q0 1.075-.9 1.663t-1.9.162z"/>
-              </svg>
-              Bookmarks
-            </a>
+                  <path fill="currentColor" d="m12 18l-4.2 1.8q-1 .425-1.9-.162T5 17.975V5q0-.825.588-1.412T7 3h10q.825 0 1.413.588T19 5v12.975q0 1.075-.9 1.663t-1.9.162z"/>
+                </svg>
+                Bookmarks
+              </Link>
           </div>
         </div>
       </div>

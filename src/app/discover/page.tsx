@@ -63,8 +63,8 @@ const App = () => {
             <nav className=" p-4 border-b border-zinc-800 bg-black fixed w-screen top-[72px] z-40">
                     <div className="max-w-7xl mx-auto flex items-center ">
                 <div className=" items-center gap-3 mr-14 flex ">
-                    <img src="./icons/Sparkle.png" alt="" />
-                    <span className="text-zinc-400  text-sm font-thin">For You</span>
+                    <img className='w-6' src="./icons/filter.svg" alt="" />
+                    <span className="text-zinc-400  text-sm font-thin">Filter</span>
                     <div className=" bg-zinc-400 w-[1px] h-8 ml-4"/>
                     </div>
                     <div className="flex items-center flex-wrap space-x-2 sm:space-x-4">
