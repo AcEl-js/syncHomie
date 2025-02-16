@@ -3,6 +3,7 @@ import { ArrowLeft } from 'lucide-react';
 import Entries from '../releases/entries';
 import Navbar from '@/components/Navbar';
 import FeedItems from '../releases/feedItems';
+import { Switch } from "@/components/ui/switch"
 
 interface Comment{
   avatar?: string;
@@ -50,7 +51,7 @@ function App() {
 
         <div className='flex flex-col justify-center items-center '>
           {/* Header */}
-        <div className="flex items-center mb-6 lg:w-[800px]">
+        <div className="flex items-center mb-6 lg:w-[800px] sm:w-5/6">
           <ArrowLeft className="w-6 h-6 mr-3" />
           <div>
             <h1 className="text-xl font-semibold">SevyrX</h1>
@@ -58,9 +59,7 @@ function App() {
           </div>
           <div className="ml-auto">
             <div className="flex items-center">
-              <div className="w-12 h-6 bg-gray-700 rounded-full relative">
-                <div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
-              </div>
+            <Switch />
               <span className="ml-2 text-sm">Public Profile</span>
             </div>
           </div>

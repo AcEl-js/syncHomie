@@ -4,7 +4,8 @@ import { MessageSquare, Image, Smile, ThumbsUp, ThumbsDown, Share2, Play, } from
 import "./style.css"
 import TrendingMovies from '@/components/TrendingMovies';
 import { Button } from "@/components/ui/button"
-import Entries from './entries';
+import FeedItems from './feedItems';
+import Navbar from '@/components/Navbar';
 
 type TimeRange = 'All Time' | 'Last 24h' | '7 Days' | '30 Days';
 type Category = {
@@ -13,13 +14,6 @@ type Category = {
   color: string;
   text: string
 };
-const categories: Category[] = [
-  { name: 'Movies', entries: 204, text: 'text-[#8AD056]', color: 'bg-[#8AD056]' },
-  { name: 'TV Series', entries: 147, text: 'text-[#62A5F4]', color: 'bg-[#62A5F4]' },
-  { name: 'Anime', entries: 141, text: 'text-[#885DE5]', color: 'bg-[#885DE5]' },
-  { name: 'Drama', entries: 116, text: 'text-[#DB7F9F]', color: 'bg-[#DB7F9F]' },
-  { name: 'Sport', entries: 108, text: 'text-[#CC6675]', color: 'bg-[#CC6675]' },
-];
 
 const comments:Comment[] =[
   {
@@ -100,12 +94,7 @@ const movies = [
   }
 ];
 
-const reactions = [
-  { name: 'Funny', emoji: '😂' },
-  { name: 'Interesting', emoji: '🤔' },
-  { name: 'Infuriating', emoji: '😠' },
-  { name: 'Sad', emoji: '😢' }
-]
+
 
 interface Comment{
   avatar?: string;
@@ -116,66 +105,9 @@ interface Comment{
   image?: string;
 }
 
-interface CommentProps{
-  Comment:Comment
-}
 
-function FeedItem({avatar,username,subtitles,time,content,image}:Comment) {
-  return (
-    <div className=" rounded-lg p-4 mb-4">
-      <div className="flex items-center mb-4">
-        <img src={avatar} alt={username} className="w-10 h-10 rounded-full mr-3" />
-        <div className='flex gap-3 items-center text-[#8899A6] '>
-          <h3 className="text-white font-semibold">{username}</h3>
-          <h2>{subtitles}</h2>
-          <span className=" text-sm">{time}</span>
-        </div>
-      </div>
-      <p className="text-gray-200 mb-4">{content}</p>
-      {image && (
-        <div className="relative mb-4 rounded-lg overflow-hidden border border-[#8899A6]">
-          <img src={image} alt="Post content" className="w-full h-auto " />
-          {image.includes('trivia') && (
-            <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white px-6 py-2 rounded-full flex items-center">
-              <Play className="w-4 h-4 mr-2" />
-              Play
-            </button>
-          )}
-        </div>
-      )}
-      
-      <div className="flex items-center justify-between text-gray-400">
-        <div className="flex space-x-4">
-          <button className="hover:text-white flex items-center">
-            <ThumbsUp className="w-5 h-5 mr-1" />
-          </button>
-          <button className="hover:text-white flex items-center">
-            <ThumbsDown className="w-5 h-5 mr-1" />
-          </button>
-          <button className="hover:text-white flex items-center">
-            <MessageSquare className="w-5 h-5 mr-1" />
-          </button>
-          <button className="hover:text-white flex items-center">
-            <Share2 className="w-5 h-5 mr-1" />
-          </button>
-        </div>
-        <div className="flex gap-2 my-4">
-        {reactions.map((reaction) => (
-          <Button
-            key={reaction.name}
-            variant="secondary"
-            size="sm"
-            className="bg-[#2a2f3b] hover:bg-[#3a3f4b] text-gray-300"
-          >
-            {reaction.emoji} {reaction.name}
-          </Button>
-        ))}
-      </div>
-        
-      </div>
-    </div>
-  );
-}
+
+
 
 
 const Page = () => {
@@ -183,12 +115,20 @@ const Page = () => {
   
     const timeRanges: TimeRange[] = ['All Time', 'Last 24h', '7 Days', '30 Days'];
     
-   
+    const categories: Category[] = [
+      { name: 'Movies', entries: 204, text: 'text-[#8AD056]', color: 'bg-[#8AD056]' },
+      { name: 'TV Series', entries: 147, text: 'text-[#62A5F4]', color: 'bg-[#62A5F4]' },
+      { name: 'Anime', entries: 141, text: 'text-[#885DE5]', color: 'bg-[#885DE5]' },
+      { name: 'Drama', entries: 116, text: 'text-[#DB7F9F]', color: 'bg-[#DB7F9F]' },
+      { name: 'Sport', entries: 108, text: 'text-[#CC6675]', color: 'bg-[#CC6675]' },
+    ];
   
     const totalBookmarks = categories.reduce((sum, cat) => sum + cat.entries, 0);
     return (
-        <div className="min-h-screen bg-black text-white p-8">
-      <div className="max-w-4xl mx-auto flex flex-col justify-center items-center">
+      <div>
+          <Navbar/>
+        <div className="min-h-screen bg-black text-white p-8 mt-16">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className=" text-5xl font-extrabold mb-12 text-center flex justify-center items-center gap-4">
           <span className="text-[#AAD0FF] ">Welcome Back</span>
@@ -204,8 +144,11 @@ const Page = () => {
                 <div className="text-gray-400 uppercase tracking-wider">Total Bookmarks</div>
             </div>
         </div>
+
+
+        {/* Time Range Tabs */}
         <div className='w-full max-w-[500px] flex flex-col justify-center items-center'>
-        <div className="flex justify-center gap-2 mb-8 justify-self-center">
+        <div className="flex justify-center gap-2 mb-8">
           {timeRanges.map((range) => (
             <button
               key={range}
@@ -220,14 +163,31 @@ const Page = () => {
             </button>
           ))}
         </div>
-        <Entries/>
+
+        <div className="grid grid-cols-5 w-full justify-center gap-3 ">
+          {categories.map((category) => (
+            <div
+              key={category.name}
+              className=" rounded-lg p-4 text-center  cursor-pointer"
+            >
+              <div className= {`text-sm w-[75px] h-[25px] flex justify-center items-center rounded-sm ${category.color}`}>{category.name}</div>
+              <div className="mt-1 font-bold flex items-center gap-2 ">
+                <h1 className={`${category.text}`}>{category.entries}</h1>
+                <span className="text-xs">Entries</span>
+              </div>
+              <div className="mt-2 h-1 rounded-full bg-gray-700">
+                <div
+                  className={`h-full rounded-full ${category.color}`}
+                  
+                />
+              </div>
+            </div>
+          ))}
+        <div className=' w-full h-2 x-4 bg-fuchsia-300 col-span-5 '></div>
         </div>
 
-       
 
-
-        {/* Time Range Tabs */}
-        
+        </div>
 
         {/* Categories */}
         
@@ -280,7 +240,7 @@ const Page = () => {
 
         <div>
           {comments.map((comment,index)=>(
-            <FeedItem key={index} {...comment}/>
+            <FeedItems key={index} {...comment}/>
           ))}
         </div>
 
@@ -290,8 +250,11 @@ const Page = () => {
       </div>
     </div>
     </div>
+      </div>
 
     );
 }
 
 export default Page;
+/* 
+ */
