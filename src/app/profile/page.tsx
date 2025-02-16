@@ -6,7 +6,7 @@ function App() {
         { name: 'Movies', entries: 204, color: 'bg-green-400' },
         { name: 'TV Series', entries: 147, color: 'bg-blue-400' },
         { name: 'Anime', entries: 141, color: 'bg-purple-400' },
-        { name: 'Gaming', entries: 115, color: 'bg-pink-400' },
+        { name: 'Drama', entries: 115, color: 'bg-pink-400' },
         { name: 'Sport', entries: 108, color: 'bg-red-400' }
       ];
     

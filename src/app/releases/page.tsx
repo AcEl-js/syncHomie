@@ -4,6 +4,7 @@ import { MessageSquare, Image, Smile, ThumbsUp, ThumbsDown, Share2, Play, } from
 import "./style.css"
 import TrendingMovies from '@/components/TrendingMovies';
 import { Button } from "@/components/ui/button"
+import Entries from './entries';
 
 type TimeRange = 'All Time' | 'Last 24h' | '7 Days' | '30 Days';
 type Category = {
@@ -12,6 +13,13 @@ type Category = {
   color: string;
   text: string
 };
+const categories: Category[] = [
+  { name: 'Movies', entries: 204, text: 'text-[#8AD056]', color: 'bg-[#8AD056]' },
+  { name: 'TV Series', entries: 147, text: 'text-[#62A5F4]', color: 'bg-[#62A5F4]' },
+  { name: 'Anime', entries: 141, text: 'text-[#885DE5]', color: 'bg-[#885DE5]' },
+  { name: 'Drama', entries: 116, text: 'text-[#DB7F9F]', color: 'bg-[#DB7F9F]' },
+  { name: 'Sport', entries: 108, text: 'text-[#CC6675]', color: 'bg-[#CC6675]' },
+];
 
 const comments:Comment[] =[
   {
@@ -175,18 +183,12 @@ const Page = () => {
   
     const timeRanges: TimeRange[] = ['All Time', 'Last 24h', '7 Days', '30 Days'];
     
-    const categories: Category[] = [
-      { name: 'Movies', entries: 204, text: 'text-[#8AD056]', color: 'bg-[#8AD056]' },
-      { name: 'TV Series', entries: 147, text: 'text-[#62A5F4]', color: 'bg-[#62A5F4]' },
-      { name: 'Anime', entries: 141, text: 'text-[#885DE5]', color: 'bg-[#885DE5]' },
-      { name: 'Drama', entries: 116, text: 'text-[#DB7F9F]', color: 'bg-[#DB7F9F]' },
-      { name: 'Sport', entries: 108, text: 'text-[#CC6675]', color: 'bg-[#CC6675]' },
-    ];
+   
   
     const totalBookmarks = categories.reduce((sum, cat) => sum + cat.entries, 0);
     return (
         <div className="min-h-screen bg-black text-white p-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto flex flex-col justify-center items-center">
         {/* Header */}
         <div className=" text-5xl font-extrabold mb-12 text-center flex justify-center items-center gap-4">
           <span className="text-[#AAD0FF] ">Welcome Back</span>
@@ -196,16 +198,14 @@ const Page = () => {
 
         {/* Stats Card */}
         <div className="rounded-xl backdrop-blur-sm p-8 mb-8  relative">
-    <img src="/other/Background.svg" alt="" />
-    <div className="text-center absolute sm:text-xl" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-        <div className="sm:text-6xl text-3xl font-bold mb-2">{totalBookmarks}</div>
-        <div className="text-gray-400 uppercase tracking-wider">Total Bookmarks</div>
-    </div>
-</div>
-
-
-        {/* Time Range Tabs */}
-        <div className="flex justify-center gap-2 mb-8">
+            <img src="/other/Background.svg" alt="" />
+            <div className="text-center absolute sm:text-xl" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                <div className="sm:text-6xl text-3xl font-bold mb-2">{totalBookmarks}</div>
+                <div className="text-gray-400 uppercase tracking-wider">Total Bookmarks</div>
+            </div>
+        </div>
+        <div className='w-full max-w-[500px] flex flex-col justify-center items-center'>
+        <div className="flex justify-center gap-2 mb-8 justify-self-center">
           {timeRanges.map((range) => (
             <button
               key={range}
@@ -220,30 +220,17 @@ const Page = () => {
             </button>
           ))}
         </div>
+        <Entries/>
+        </div>
+
+       
+
+
+        {/* Time Range Tabs */}
+        
 
         {/* Categories */}
-        <div className="grid grid-cols-5 gap-4 ">
-          {categories.map((category) => (
-            <div
-              key={category.name}
-              className=" rounded-lg p-4 text-center  cursor-pointer"
-            >
-              <div className= {`text-sm w-[75px] h-[25px] flex justify-center items-center rounded-sm ${category.color}`}>{category.name}</div>
-              <div className="mt-1 font-bold flex items-center gap-2 ">
-                <h1 className={`${category.text}`}>{category.entries}</h1>
-                <span className="text-xs">Entries</span>
-              </div>
-              <div className="mt-2 h-1 rounded-full bg-gray-700">
-                <div
-                  className={`h-full rounded-full ${category.color}`}
-                  style={{
-                    width: `${(category.entries / totalBookmarks) * 100}%`,
-                  }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+        
       </div>
       <TrendingMovies movies={movies} categorie="New Episodes / Releases" colore='text-white' Istitle={false} />
       
