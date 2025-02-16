@@ -20,7 +20,7 @@ const Entries = () => {
       const totalBookmarks = categories.reduce((sum, cat) => sum + cat.entries, 0);
       
     return (
-        <div>
+        <div className='max-w-[500px]'>
             <div className="grid grid-cols-5 w-full justify-center gap-3 ">
           {categories.map((category) => (
             <div
@@ -35,7 +35,7 @@ const Entries = () => {
              
             </div>
           ))}
-        <div className=' w-full h-2 mx-4 flex col-span-5 rounded-full'>
+        <div className=' w-full h-2 mx-4  flex col-span-5 rounded-full'>
             {categories.map((categorie,index)=>(
                 <div key={index} 
                 className={`  h-3 ${categorie.color}`}
