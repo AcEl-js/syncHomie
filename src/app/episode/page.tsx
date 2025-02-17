@@ -22,6 +22,7 @@ import Navbar from "@/components/Navbar"
 import CommentCard from "@/components/CommentCard"
 import {useState,useRef,useEffect } from "react"
 import SubtitesSelector from "./SubtitlesSelector"
+import CommentSys from "@/components/CommentSys"
 
 
 const comments = [
@@ -312,6 +313,7 @@ export default function Page() {
           ))}
         </div>
         </div>
+        <CommentSys/>
       </div>
     </div>
   )
