@@ -66,13 +66,13 @@ const MatchDay = () => {
                     <div className="flex justify-between items-center">
                     <div className="space-y-2">
                         <div className="flex items-center space-x-2">
-                        <img src='https://s3-alpha-sig.figma.com/img/14bc/0966/9750ae0f1e96bde99b243b0e7d424e3a?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=WeN35vCdFzZu-nvY~o4iw8dFyifcBkor7rcFSKL3tPyWbck7DnHd0YryJmdcynB4a2urqGQVJa5C3u1MV~IX2cdovAg9VudX4DuApeM~9bD4xoL6QvcZHv6LwvoSPx-sjVHTJd6cibdN-FVshBfj8dUonJZ2pzywLyMIw4rvXOhJI89HQzAKx~AwCV~5SBLl6x9bqjNOro9g5dUSQ0t67rVx47BenU7cICRhwi5knilPCKt39iC~J2EPFKWq8~yCdc4YtCskVVmGujWyezED3z~RGWHC1OTtcu~UPiTNO2o4dO4zfz9TWMho6d~~QRIit~EcUP7ZBbSd3GFekxj~pw__' 
+                        <img src='https://s3-alpha-sig.figma.com/img/14bc/0966/9750ae0f1e96bde99b243b0e7d424e3a?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ke6SD7wOZvam02VjsqCp-~~RUJs~3Cj~3scCbTKT9IaShUbjSfDP7mRHFAOwfMMDXBCwN6Ofvs1HWJybZJifyzhfZwrov~nqI3hymxyBtX4F6WZnCku1cxxZrWqcf250pH2uEZMcHmFLF~BDqwVkEQKuFUMAFMnphIHtWDJGqgGeF19HmlIps70DYJLv7s0o08FSp20zdNdyYMkM9MW0xLHu1TW-mJ0Y~Uc7QQvOqm6uHOLR7g-OP3oIgI3FQDfAqOEyMlS0mzQHAoULoF4h0bOzxOSOhXmT7xbv50y5atyQv7MSUdXlE53NvpCXC~Jcq0J67yD0OJuk3Wmisspn~w__' 
                         className="w-6 h-6 rounded-full object-contain" />
                         <span>{match.player1.name}</span>
                         <span className="text-gray-400">({match.player1.percentage})</span>
                         </div>
                         <div className="flex items-center space-x-2">
-                        <img src='https://s3-alpha-sig.figma.com/img/9d2b/729d/4f4a4548d168e5028c3c65ba1d0e9738?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=s6CSIa-ceAbGoihzp-AcLKo7LWlIZCRsl5PMcgJ0Ax2W~SpALxaIQ~0vKQyteMi8KUfWFggH15IXRuH3dSGuR378wHjhcKsPDSQzLmpDow2El1Uwb7KNYbABCCoZekcZPcXCxsV2UWhEdR~iGJkhpiA~o52XiohBNNc5WTUnqlJv3zKgedTYNtFoAGW6AsINbgAyCX4Tg7~k4w70KhjHSB1ExRuK~cH1cT-KdbL9NzNaJKvgqau0Axo7mu0hcYsS~Nx9SkO6Nwlk3Gj-7khzEYfTIesaOnJvxyKM0yfuCuWKvuNpgE~9jhkLw~rQ-Byo4DXUIFudqhHFM8ylR~5Qug__' 
+                        <img src='https://s3-alpha-sig.figma.com/img/9d2b/729d/4f4a4548d168e5028c3c65ba1d0e9738?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=L40NYtIwi2pqBj6xTUckhiU~bK23TiXybSFxB1oPm5aepv-FFWS4YZ4Y6eApRIUbeR3EfdoHI2I~bGgEW9V54Z3nQ6HQFOXCawHBMsKcjQJMtzdjlEMgGMW90yT9jK1WKSDOnZdNLsqYKU8lDdAVLFq6aPVOU3vQbKUiXA1GTPnY9as6EU~N89SqEoqstg-af1r3DnNSh~IgMGCAwBmJ-1iJF65ZAZkgsiJJdIECigPnlQzH8j6udyDrysbgZml-sQTSioVEWK~9lu7xWIL4CBaejVX5SXLf51eT~KnMqV-nVcjjXMjinoCPbDMYzui5v0TibVFztctvp6DTFh-F8Q__' 
                         className="w-6 h-6 rounded-full object-contain" />
                         <span>{match.player2.name}</span>
                         <span className="text-gray-400">({match.player2.percentage})</span>
