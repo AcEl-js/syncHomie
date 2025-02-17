@@ -9,6 +9,7 @@ import { ThumbsUp, ThumbsDown, Pencil } from 'lucide-react'
 
 import Navbar from '@/components/Navbar';
 import { MovieCard } from './MovieCard';
+import CommentSys from '@/components/CommentSys';
 
 interface Movie {
   id: number;
@@ -197,6 +198,8 @@ function App() {
         </div>
       </div>
 
+
+      <CommentSys/>
 
       {/* credits */}
       {shows.map((show, index) => (

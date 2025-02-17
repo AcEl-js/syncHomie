@@ -11,6 +11,7 @@ import Reviews from '@/components/Reviews';
 
 import Image from "next/image"
 import Footer from '@/components/footer';
+import CommentSys from '@/components/CommentSys';
 
 
 interface Show {
@@ -82,11 +83,13 @@ const App = () => {
           subtitle: "It's Always Sunny in Philadelphia"
         }
       ];
+
+      let array = new Array(4).fill(4)
     return (
-        <div className='min-h-screen bg-black text-white '>
+        <div className='min-h-screen  bg-black text-white '>
             <Navbar/>
             {/* header */}
-            <div className="mb-6  px-4 py-6 pt-16 flex flex-col gap-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E5498821] to-[#A33B3B00] ">
+            <div className="mb-6 pl-5  px-4 py-6 pt-16 flex flex-col gap-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E5498821] to-[#A33B3B00] ">
             <div className="flex pt-4 items-center gap-2 text-sm text-gray-400">
                 <div className="flex items-center h-[42px] rounded-[10px] px-[18px] py-[8px] gap-[10px] bg-[#A3A3A3]/5 shadow-[0_1px_2px_0_#FFFFFF0D_inset]">
                 <h1>Currently Watching </h1>
@@ -210,15 +213,43 @@ const App = () => {
             <EpisodeList/>
             </div>
 
+            <div>
+            <h1 className=' text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Trivia </h1>
+            <div className='grid grid-cols-5 ml-4'>
+              <div className='col-span-2 flex justify-center items-center'><h1 className='text-5xl text-white'>Are you a True Fan? 😎</h1></div>
+              <div className='md:flex justify-center items-center hidden'><img src="./other/corn.svg" /></div>
+              <div className='bg-[#020426B2] flex flex-col justify-center items-center gap-4 w-[392px] h-[220px] border relative top-6 right-16 px-4 py-8 border-[#E318F5] rounded-lg  '>
+                <div className='fles justify-center items-center ' >
+                  <h1 className='text-center'>Submit The Good Place Trivia!</h1>
+                  <p className='text-[#737373]'>Use your knowledge to test your peers </p>
+                  </div>
+                <div className=' flex gap-5 justify-center'>
+                  {array.map((item,index)=>(
+                    <div key={index} className='flex items-center flex-col'>
+
+                      <div className='text-gray-500 overflow-hidden border-2 border-[#E318F5] w-11 h-11 rounded-full flex justify-center flex-col '>
+                        <img src="https://s3-alpha-sig.figma.com/img/e48b/0cb2/7a06bddc2dfe414eb8cbf0b8bbcbb44b?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Rvj3RAJVV3wQ0lyDnk4kk53ap9dmaPnGbxuueDXPkq7E0OpT9aEHU1ldu2hXM71jAJ-ZyROfQNA7cXHbd4qXuzXRWnXsCXuNJmbur~moOU-udiETJyY7uGVejdrYxNRnzIu6zWD3OcY8wendZYt6Mxius4q8EVURaL7cvrxMl9qtFe7C20ezY8qmLLnYJ7JWmc81sPlQW-nQoZCN22ypdC2wrs1QGuddpIwBzyOyKMvl8fzSnsKHMalUlXUhInghNT4Q9xa03jZN8-J778bQDMyWksUZgQq6YyQPjmr7HIjrydK5qbU2WDi6NpPHKpQK3nWr0V8mW1vOaSWqNp93pw__" alt="" />
+                      </div>
+                      ?
+                    </div>
+                  ))}
+                </div>
+                <div className=' rounded-full w-full h-11 py-2 bg-[#B02EBC] flex justify-center items-center '>Submit Trivia Question</div>
+              </div>
+            </div>
+            </div>
+
+            <CommentSys/>
+
         {/*  Behind The Scenes */}
    
 
             <h1 className=' text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Behind The Scenes </h1>
             <div>
-            <div className="grid ml-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid w-max-[1219px] ml-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {shows.map((show) => (
             <div key={show.title} className="group relative">
-                <div className="aspect-square overflow-hidden rounded-lg">
+                <div className=" overflow-hidden rounded-lg">
                 <img
                     src={show.image || "/placeholder.svg"}
                     alt={show.title}
@@ -230,8 +261,8 @@ const App = () => {
                 <div className="mt-2 space-y-1">
                 <h3 className="text-sm font-medium text-white truncate">{show.title}</h3>
                 <div className="flex items-center">
-                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                    <span className="ml-1 text-sm text-gray-400">{show.rating}</span>
+                    
+                    <span className="ml-1 text-sm text-gray-400">Charlie</span>
                 </div>
                 </div>
             </div>
@@ -241,20 +272,20 @@ const App = () => {
       </div>
       <div className="max-w-sm rounded overflow-hidden shadow-lg p-6  ">
         <div className="font-bold text-xl mb-2"></div>
-        <p className="text-gray-400 text-base my-5">
-            <strong>Official Name:</strong>Charlie Peckham Day
+        <p className="text-[#D8C882] text-base my-5">
+            <strong className='text-[#797979]'>Official Name:</strong>Charlie Peckham Day
         </p>
-        <p className="text-gray-400 text-base my-5">
-            <strong>Born:</strong> June 28, 1991, San Jose, Costa Rica
+        <p className="text-[#D8C882] text-base my-5">
+            <strong className='text-[#797979]'>Born:</strong> June 28, 1991, San Jose, Costa Rica
         </p>
-        <p className="text-gray-400 text-base my-5">
-            <strong>Height:</strong> 59" (1.75 cm)
+        <p className="text-[#D8C882] text-base my-5">
+            <strong className='text-[#797979]'>Height:</strong> 59" (1.75 cm)
         </p>
-        <p className="text-gray-400 text-base my-5">
-            <strong>Parents:</strong> Daniel Day
+        <p className="text-[#D8C882] text-base my-5">
+            <strong className='text-[#797979]'>Parents:</strong> Daniel Day
         </p>
-        <p className="text-gray-400 text-base my-5">
-            <strong>Awards:</strong> Top Rated Serie #102 Nominations
+        <p className="text-[#D8C882] text-base my-5">
+            <strong className='text-[#797979]'>Awards:</strong> Top Rated Serie #102 Nominations
         </p>
     </div>
 
@@ -301,7 +332,7 @@ const App = () => {
           {[1, 2, 3].map((i) => (
             <div key={i} className="relative aspect-[3/2] overflow-hidden rounded-lg">
               <img
-                src="https://s3-alpha-sig.figma.com/img/3fc8/7243/333eceac0409db8fcd7bdfe9e1df4204?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=HqW9EsI~ArfAOq2b7MwVw9NuiSj6wVDryFQDPUagell3uJ2if49BCgo7CBGkH9~kuy7wV6k3ThsuvuupHem~XpMyG-nw6X7TpcPY6jMYNdEw~0cOyKRwwazorPhBUCXCZFipMLNq140gaunBD6ppmZQGwo5ah58UQ6vRj~ct~0VflTyrBzwYMttY5cYt~aXHkh7o3h1-UL5OP2zvKYZvsTNlMHcrQ5dNBgtutW-W5tI8xsvtgQez0uB3ddn6igOMbq7GK2p2YB1tksShIvwu6n-cXchV4L00R4MZMgP-MdAxZMTvhp2DB5TxfcyslaxNY3undfQdPBYeizUr5A~V4w__"
+                src="https://s3-alpha-sig.figma.com/img/3fc8/7243/333eceac0409db8fcd7bdfe9e1df4204?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Ph6GQtKyMyLp7QzATE2U1CIxKK31qt-aCPIKd18hOosLiTKJiDcl44RwF6QNhxbRtP0R~1qTGPX4pgaR-Dfx8VwEv7M47vnAY~9LVbgbapaJDLmRn2KKj1outaHCqaSvY2C4D~CbahlJ4-5f~HHxQ0lIGGVFgEohZxhDGPo7B0KvBCribSionxSUVF6guStV9xn~iQyaCU11Hh29Dc51m70MYRAUBB4AldpCvzp-NBJ56q9s34JCYPhhtgQOJboMWvW~dkvmnEpLYykg~iO7Yl78kumM4vOge7DZ1DjA7p1MhZTa~v1aHrjyeG-vG6urU0580lQI-WWXi0m22J5mIQ__"
                 alt="Media gallery image"
                 className="object-cover hover:opacity-75 transition-opacity cursor-pointer"
               />
@@ -309,6 +340,39 @@ const App = () => {
           ))}
         </div>
       </div>
+
+      {/*  more liked*/}
+      
+      <h1 className=' text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> More Like This</h1>
+            <div>
+            <div className="grid w-max-[1219px] ml-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {shows.map((show) => (
+            <div key={show.title} className="group relative">
+                <div className=" overflow-hidden rounded-lg">
+                <img
+                    src={show.image || "/placeholder.svg"}
+                    alt={show.title}
+                    width={181}
+                    height={181}
+                    className="object-cover rounded-lg transition-transform duration-300 group-hover:scale-110 h-[181px] w-[181px] "
+                />
+                </div>
+                <div className="mt-2 space-y-1">
+                <h3 className="text-sm font-medium text-white truncate">{show.title}</h3>
+                <div className="flex items-center">
+                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                    <span className="ml-1 text-sm text-gray-400">{show.rating}</span>
+                </div>
+                </div>
+            </div>
+            ))}
+            
+            
+      </div>
+      
+
+            </div>
+      
     </div>
 
            <Footer/>

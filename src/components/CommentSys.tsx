@@ -398,7 +398,7 @@ export default function CommentSys() {
 
   return (
     <div className="min-h-screen  text-gray-100">
-                <h2 className="text-xl font-semibold mb-6 my-5"><span className='text-[#F5C518]'>•</span> Comment</h2>
+                <h1 className=' text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Comment</h1>
 
     <div className="max-w-3xl mx-auto py-8 px-4">
     <div className="flex items-center justify-between mb-5">

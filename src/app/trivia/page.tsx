@@ -172,7 +172,7 @@ const App = () => {
 
     return (
 
-        <div className='text-white'>
+        <div className='text-white bg-black'>
             <Navbar/>
             <div className=' mt-[70px] pt-2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FEC97B21] to-[#A33B3B00]'>
                 <h1 className=' text-2xl text-[#C3C3C3] mb-5 ml-5 '><span className='text-[#F5C518]'>•</span> Tending Trivia Titles</h1>

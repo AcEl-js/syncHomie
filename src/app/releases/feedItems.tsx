@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { MessageSquare, Play, Share2, ThumbsDown, ThumbsUp } from 'lucide-react';
+import { CircleAlert, Play, Share2, ThumbsDown, ThumbsUp } from 'lucide-react';
 import React from 'react';
 
 interface Comment{
@@ -52,7 +52,7 @@ const FeedItems = ({avatar,username,subtitles,time,content,image}:Comment) => {
               <ThumbsDown className="w-5 h-5 mr-1" />
             </button>
             <button className="hover:text-white flex items-center">
-              <MessageSquare className="w-5 h-5 mr-1" />
+              <CircleAlert className="w-5 h-5 mr-1" />
             </button>
             <button className="hover:text-white flex items-center">
               <Share2 className="w-5 h-5 mr-1" />
