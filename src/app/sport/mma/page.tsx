@@ -6,6 +6,7 @@ import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import MatchDay from '../matchDay';
 import Link from "next/link"
+import { useDragScroll } from '@/components/dragScrolling';
 
 import {
   NavigationMenu,
@@ -56,6 +57,7 @@ const Page = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+   const { containerRef, dragHandlers } = useDragScroll();
 
   const startDragging = (e: React.MouseEvent) => {
     if (!scrollContainerRef.current) return;
@@ -133,6 +135,7 @@ const Page = () => {
       requestAnimationFrame(animate);
     }
   };
+  
     return (
         <div className=' h-screen bg-black'>
             <Navbar/>
@@ -170,14 +173,10 @@ const Page = () => {
             </div>
 
 
-        <div
-        ref={scrollContainerRef}
-        className="flex space-x-4 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing"
-        onMouseDown={startDragging}
-        onMouseLeave={stopDragging}
-        onMouseUp={stopDragging}
-        onMouseMove={drag}
-      >
+            <div 
+              ref={containerRef}
+              className="flex space-x-6 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing select-none ml-5"
+              {...dragHandlers}>
         <h1>Upcoming NFL Matches</h1>
             {[1,2,3,4,5,6].map((match) =>(
                 <div key={match}>
