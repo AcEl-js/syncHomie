@@ -5,6 +5,7 @@ import "./style.css"
 import TrendingMovies from '@/components/TrendingMovies';
 import { Button } from "@/components/ui/button"
 import FeedItems from './feedItems';
+import Entries from './entries';
 import Navbar from '@/components/Navbar';
 
 type TimeRange = 'All Time' | 'Last 24h' | '7 Days' | '30 Days';
@@ -126,7 +127,7 @@ const Page = () => {
     const totalBookmarks = categories.reduce((sum, cat) => sum + cat.entries, 0);
     return (
       <div>
-          <Navbar/>
+        <Navbar/>
         <div className="min-h-screen bg-black text-white p-8 mt-16">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
@@ -138,16 +139,16 @@ const Page = () => {
 
         {/* Stats Card */}
         <div className="rounded-xl backdrop-blur-sm p-8 mb-8  relative">
-            <img src="/other/Background.svg" alt="" />
-            <div className="text-center absolute sm:text-xl" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-                <div className="sm:text-6xl text-3xl font-bold mb-2">{totalBookmarks}</div>
-                <div className="text-gray-400 uppercase tracking-wider">Total Bookmarks</div>
-            </div>
-        </div>
+          <img src="/other/Background.svg" alt="" />
+          <div className="text-center absolute sm:text-xl" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+              <div className="sm:text-6xl text-3xl font-bold mb-2">{totalBookmarks}</div>
+              <div className="text-gray-400 uppercase tracking-wider">Total Bookmarks</div>
+          </div>
+      </div>
 
 
         {/* Time Range Tabs */}
-        <div className='w-full max-w-[500px] flex flex-col justify-center items-center'>
+        <div className=' max-w-[500px] flex flex-col justify-self-center'>
         <div className="flex justify-center gap-2 mb-8">
           {timeRanges.map((range) => (
             <button
@@ -163,32 +164,12 @@ const Page = () => {
             </button>
           ))}
         </div>
-
-        <div className="grid grid-cols-5 w-full justify-center gap-3 ">
-          {categories.map((category) => (
-            <div
-              key={category.name}
-              className=" rounded-lg p-4 text-center  cursor-pointer"
-            >
-              <div className= {`text-sm w-[75px] h-[25px] flex justify-center items-center rounded-sm ${category.color}`}>{category.name}</div>
-              <div className="mt-1 font-bold flex items-center gap-2 ">
-                <h1 className={`${category.text}`}>{category.entries}</h1>
-                <span className="text-xs">Entries</span>
-              </div>
-              <div className="mt-2 h-1 rounded-full bg-gray-700">
-                <div
-                  className={`h-full rounded-full ${category.color}`}
-                  
-                />
-              </div>
-            </div>
-          ))}
-        <div className=' w-full h-2 x-4 bg-fuchsia-300 col-span-5 '></div>
         </div>
 
 
+        <div className='flex justify-center w-full'>
+          <Entries/>
         </div>
-
         {/* Categories */}
         
       </div>
@@ -251,6 +232,7 @@ const Page = () => {
     </div>
     </div>
       </div>
+       
 
     );
 }

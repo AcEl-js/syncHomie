@@ -20,8 +20,8 @@ const Entries = () => {
       const totalBookmarks = categories.reduce((sum, cat) => sum + cat.entries, 0);
       
     return (
-        <div className='max-w-[500px]'>
-            <div className="grid grid-cols-5 w-full justify-center gap-3 ">
+        <div className='max-w-[500px] '>
+            <div className="grid grid-cols-5 w-full justify-center gap-3 pr-4">
           {categories.map((category) => (
             <div
               key={category.name}
@@ -35,13 +35,16 @@ const Entries = () => {
              
             </div>
           ))}
-        <div className=' w-full h-2 mx-4  flex col-span-5 rounded-full'>
+        <div className=' w-full h-2 mx-4  flex col-span-5 rounded-full justify-center items-center'>
             {categories.map((categorie,index)=>(
                 <div key={index} 
-                className={`  h-3 ${categorie.color}`}
+                className={`relative  rounded-full h-3 ${categorie.color}  `}
                 style={{
-                    width: `${(categorie.entries / totalBookmarks) * 100}%`,
-                  }}/>
+                    width: `${(Number(categorie.entries) / totalBookmarks) * 100 + 1}%`,
+                    zIndex: `${5-index}`,
+                    right: `${index*8}px`,
+                  }}
+                  />
                 
             ))}
         </div>
