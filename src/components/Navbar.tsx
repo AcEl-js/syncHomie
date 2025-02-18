@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           {/* Left side with logo and nav items */}
           <div className="flex items-center h-5/6">
-            <img src="logo.png" alt="SyncHomie" className="h-10" />
+            <img src="./logo.svg" alt="SyncHomie" className="h-10" />
             
             {/* Navigation items - hidden on mobile */}
             <div className="hidden sm:flex ml-8 sm:space-x-5 lg:space-x-14 text-gray-300">
