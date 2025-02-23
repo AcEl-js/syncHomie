@@ -74,9 +74,9 @@ function App() {
   return (
    <div>
     <Navbar/>
-    <div className="min-h-screen bg-black text-white flex flex-col justify-center items-center mt-16">
+    <div className="min-h-screen  bg-black text-white flex flex-col justify-center items-center mt-16">
       {/* Header */}
-      <div className=" p-4 lg:w-[1000px] ">
+      <div className=" p-4 lg:w-[1000px] xl:w-[1354px]">
         <div className="container mx-auto flex mt-11">
           <div className="flex items-center gap-4">
             <ArrowLeft className="w-6 h-6" />
@@ -129,11 +129,11 @@ function App() {
             </div>
         <div className="flex justify-between items-center mb-12">
           <div className="text-center">
-            <div className="w-24 h-24 bg-gray-800 rounded-full mx-auto mb-4 overflow-hidden">
+            <div className="w-28 h-28 flex justify-center items-center bg-gray-800 rounded-full mx-auto mb-4 overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1622818425825-1dcb4791d48c?w=400"
+                src="/sport/png.png"
                 alt="Derrick Lewis"
-                className="w-full h-full object-cover"
+                className=" object-cover  w-24 h-24 border-gray-500 rounded-full"
               />
             </div>
             <h3 className="font-semibold">Derrick Lewis</h3>
@@ -147,11 +147,11 @@ function App() {
           </div>
 
           <div className="text-center">
-            <div className="w-24 h-24 bg-gray-800 rounded-full mx-auto mb-4 overflow-hidden">
+          <div className="w-28 h-28 flex justify-center items-center bg-gray-800 rounded-full mx-auto mb-4 overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1628779238951-be2c9f2a59f4?w=400"
-                alt="Jhonata Diniz"
-                className="w-full h-full object-cover"
+                src="/sport/png.png"
+                alt="Derrick Lewis"
+                className=" object-cover  w-24 h-24 border-gray-500 rounded-full"
               />
             </div>
             <h3 className="font-semibold">Jhonata Diniz</h3>
