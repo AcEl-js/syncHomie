@@ -113,11 +113,11 @@ function App() {
       </div>
 
       {/* Match Details */}
-      <div className="container mx-auto p-4">
+      <div className="container p-4 mx-10 flex justify-center flex-col">
      
 
         {/* Score Section */}
-        <div className='flex justify-center w-full items-center flex-col mt-6'>
+        <div className='flex justify-center w-full items-center flex-col mt-10 '>
               <div className='font-bold text-base flex gap-2'>
                 <span className='text-[#78A6B8] font-bold'> NFL</span>
                 <h1 className='text-[#657182] '> (Match day 11)</h1>
@@ -127,7 +127,7 @@ function App() {
                 <h1 className='text-lg font-bold'>Watch highlights now</h1>
               </div>
             </div>
-        <div className="flex justify-between items-center mb-12">
+        <div className="flex justify-between items-center mb-12 mx-6 xl:w-[1154px] lg:w-[854px] gap-20 self-center  ">
           <div className="text-center">
             <div className="w-28 h-28 flex justify-center items-center bg-gray-800 rounded-full mx-auto mb-4 overflow-hidden">
               <img 
