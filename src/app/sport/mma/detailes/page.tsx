@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowLeft, MapPin, Calendar, Radius as Stadium, Trophy } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import CommentSys from '@/components/CommentSys';
+import FighterComparisonPage from './fighters';
 
 interface MatchDetails {
   time: string;
@@ -173,6 +174,7 @@ function App() {
       </div>
     <CommentSys/>
     </div> 
+    <FighterComparisonPage/>
    </div>
   );
 }
