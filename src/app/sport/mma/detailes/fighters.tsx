@@ -52,7 +52,7 @@ const FighterComparisonPage = () => {
   };
 
   return (
-    <div className=" text-white h-screen flex flex-col ">
+    <div className=" text-white h-screen flex flex-col mx-10 ">
       {/* Event header */}
       <div className=" p-4 lg:w-[1000px] xl:w-[1354px]">
         <div className="container mx-auto flex mt-11">
@@ -77,10 +77,26 @@ const FighterComparisonPage = () => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-900 py-2">
+      <div className="rounded-lg">
         <div className="text-center text-lg font-bold bg-[#363636] h-11 flex items-center justify-center">Heavyweight</div>
         
-        {/* Timer row */}
+       
+       
+        
+        {/* Fighter names row */}
+        <div className="flex justify-between px-4  bg-[#191919] py-4">
+          <div className="flex items-center">
+            <div>
+              <div className="font-bold">Derrick Lewis</div>
+              <div className="text-sm text-gray-400">8-0-0</div>
+            </div>
+            <img 
+                src="/sport/png.png"
+                alt="Derrick Lewis"
+                className=" object-cover  w-16 h-16 border-gray-500 rounded-full"
+              />          </div>
+
+           {/* Timer row */}
         <div className="flex justify-center items-center bg-[#191919]">
           <div className="flex flex-col items-center mx-6">
             <div className="text-sm text-gray-400">ESPN+</div>
@@ -98,32 +114,21 @@ const FighterComparisonPage = () => {
             </div>
           </div>
         </div>
-        
-        {/* Fighter names row */}
-        <div className="flex justify-between px-4 mt-2 bg-[#191919]">
-          <div className="flex items-center">
-            <div>
-              <div className="font-bold">Derrick Lewis</div>
-              <div className="text-sm text-gray-400">8-0-0</div>
-            </div>
-            <img src="/api/placeholder/32/32" alt="Fighter 1" className="ml-2 rounded-full" />
-          </div>
           
           <div className="flex items-center">
-            <img src="/api/placeholder/32/32" alt="Fighter 2" className="mr-2 rounded-full" />
-            <div className="text-right">
+          <img 
+                src="/sport/png.png"
+                alt="Derrick Lewis"
+                className=" object-cover w-16 h-16 border-gray-500 rounded-full"
+              />            <div className="text-right">
               <div className="font-bold">Jhonata Diniz</div>
               <div className="text-sm text-gray-400">8-0-0</div>
             </div>
           </div>
         </div>
         
-        {/* Betting odds */}
-        <div className="flex justify-between px-16 mt-2 mb-1">
-          <div className="bg-pink-600 text-white px-2 py-1 rounded text-xs">+280</div>
-          <div className="bg-pink-600 text-white px-2 py-1 rounded text-xs">+280</div>
-        </div>
-      </div>
+       
+      
       
       {/* Header tabs */}
       <div className="flex w-full border-b border-gray-700">
@@ -166,6 +171,7 @@ const FighterComparisonPage = () => {
             className="mb-2"
           />
           <div className="bg-white w-20 h-3 rounded-sm"></div>
+        </div>
         </div>
       </div>
     </div>
