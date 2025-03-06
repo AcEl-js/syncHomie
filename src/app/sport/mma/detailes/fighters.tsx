@@ -126,8 +126,21 @@ const FighterComparisonPage = () => {
             </div>
           </div>
         </div>
+                
         
-       
+        <div className="text-center text-lg font-bold bg-[#363636] h-11 flex items-center justify-around">
+        
+                      <div className="w-[68px] h-[30px] justify-center items-center text-[10px] text-black  flex bg-[#F29098] rounded-[8px] border border-[#E63946]">
+                          <h1 className="bg-white rounded-[8px] h-[30px] w-[42.22px] border-y border-r border-[#E63946] flex justify-center items-center ">92.86%</h1>
+                          <h1 className="text-center text-wrap text-[#1D3557] leading-3 ">Vote 39</h1>
+                      </div>
+
+                      <div className="w-[68px] h-[30px] justify-center items-center text-[10px] text-black  flex bg-[#F29098] rounded-[8px] border border-[#E63946]">
+                          <h1 className="bg-white rounded-[8px] h-[30px] w-[42.22px] border-y border-r border-[#E63946] flex justify-center items-center  ">92.86%</h1>
+                          <h1 className=" text-wrap text-[#1D3557]  leading-3 ">Vote 39</h1>
+                      </div>
+                     
+        </div>
       
       
       {/* Header tabs */}
