@@ -64,7 +64,7 @@ const FighterComparisonPage = () => {
         {/* Left fighter */}
         <div className="w-1/4 flex flex-col items-center justify-center">
           <img 
-            src="/api/placeholder/150/280" 
+           src="/other/fighter.png"  
             alt="Fighter 1" 
             className="mb-2"
           />
@@ -85,7 +85,7 @@ const FighterComparisonPage = () => {
         {/* Right fighter */}
         <div className="w-1/4 flex flex-col items-center justify-center">
           <img 
-            src="/api/placeholder/150/280" 
+            src="/other/fighter.png" 
             alt="Fighter 2" 
             className="mb-2"
           />
