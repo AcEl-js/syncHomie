@@ -39,7 +39,7 @@ const Heavyweight = () => {
   };
     return (
         <div>
-             <div className="text-center text-lg font-bold bg-[#363636] h-11 flex items-center justify-center">Heavyweight</div>
+             <div className="text-center text-lg font-bold bg-[#363636] h-11 flex items-center justify-center rounded-l-lg">Heavyweight</div>
         
        
        

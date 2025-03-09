@@ -46,7 +46,7 @@ const FighterComparisonPage = () => {
           </div>
         </div>
       </div>
-      <div className="rounded-lg">
+      <div className="rounded-lg bg-[#363636] lg:mx-10 xl:mx-16">
              
       <Heavyweight/>
       {/* Header tabs */}
@@ -68,11 +68,10 @@ const FighterComparisonPage = () => {
             alt="Fighter 1" 
             className="mb-2"
           />
-          <div className="bg-green-700 w-20 h-3 rounded-sm"></div>
         </div>
 
         {/* Stats comparison */}
-        <div className="w-1/2 flex flex-col justify-center">
+        <div className="w-1/2 flex flex-col justify-center my-5">
           {stats.map((stat, index) => (
             <div key={index} className="flex py-1">
               <div className="w-1/3 text-right pr-4">{stat.fighter1}</div>
@@ -89,11 +88,10 @@ const FighterComparisonPage = () => {
             alt="Fighter 2" 
             className="mb-2"
           />
-          <div className="bg-white w-20 h-3 rounded-sm"></div>
         </div>
         </div>
-      </div>
       <Heavyweight/>
+      </div>
 
     </div>
   );
