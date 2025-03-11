@@ -34,7 +34,7 @@ export function MediaCard({
 
   return (
     <Card className="bg-[#571B3F26] rounded-lg p-2 sm:p-4 space-y-2 sm:space-y-4 w-full ">
-      <div className="flex flex-col gap-2 sm:gap-4 lg:flex-row md:flex-row">
+      <div className="flex flex-row gap-2 sm:gap-4 lg:flex-row md:flex-row">
         <Image
           src={imageSrc}
           alt={`${title} Poster`}
