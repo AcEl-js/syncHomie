@@ -25,13 +25,13 @@ const TriviaTitles = ({ triviaTitle = [], isDiscover }: TriviaTitlesProps) => { 
       {triviaTitle.map((item) => (
         <div 
           key={item.id} 
-          className={`flex-none w-[231px] rounded-xl  flex flex-col  justify-center items-center ${colors[item.id % colors.length]}`}
+          className={`flex-none w-[231px] rounded-lg  flex flex-col  justify-center items-center ${colors[item.id % colors.length]}`}
         >
           <div className='relative'>
             <img className="rounded-xl mt-3" src={item.image} alt="" />
             { isDiscover && 
                 <div>
-                <div className=' flex items-center px-2 h-10 gap-2 absolute bottom-3 left-5 cursor-pointer rounded-xl bg-[#A3A3A326] '>
+                <div className=' flex items-center  h-10 gap-2 absolute bottom-3 left-5 cursor-pointer rounded-full px-4 bg-[#A3A3A323] '>
                     <img src="/play.svg" alt="" />
                     <span className=' text-white'>2:50</span>
                 </div>

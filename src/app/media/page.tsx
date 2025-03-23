@@ -332,7 +332,7 @@ const App = () => {
           {[1, 2, 3].map((i) => (
             <div key={i} className="relative aspect-[3/2] overflow-hidden rounded-lg">
               <img
-                src="https://s3-alpha-sig.figma.com/img/3fc8/7243/333eceac0409db8fcd7bdfe9e1df4204?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Ph6GQtKyMyLp7QzATE2U1CIxKK31qt-aCPIKd18hOosLiTKJiDcl44RwF6QNhxbRtP0R~1qTGPX4pgaR-Dfx8VwEv7M47vnAY~9LVbgbapaJDLmRn2KKj1outaHCqaSvY2C4D~CbahlJ4-5f~HHxQ0lIGGVFgEohZxhDGPo7B0KvBCribSionxSUVF6guStV9xn~iQyaCU11Hh29Dc51m70MYRAUBB4AldpCvzp-NBJ56q9s34JCYPhhtgQOJboMWvW~dkvmnEpLYykg~iO7Yl78kumM4vOge7DZ1DjA7p1MhZTa~v1aHrjyeG-vG6urU0580lQI-WWXi0m22J5mIQ__"
+                src="https://s3-alpha-sig.figma.com/img/3fc8/7243/333eceac0409db8fcd7bdfe9e1df4204?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=G2LNjxyezgxi7auBc~ZSbS-pXuMdsHR8Z~BA3flX0Mu0WzHWe-hteb04mjJcVpL0MDikXmBEdLbNGr7~LHDpxwueT4QwYe9yo8TWsKG~xZz75BAWZdCJezEoqPveE2vWrBd-Cbya8HAZRAxEhx7b83PDjlvlJWlmD6t5xD6yHeE8kHQ6fzjKrPUF0fVzYtH~CtFgTmyWaG6E6sr~fTCQ3njYIr2FokCiChldbxJFelxZjP8taaMuItYk0O5PO8Rm8MvapSbNo1S~Ch~qflgLJiK8plF6wvTOv~h9MxpB2HHxnjJrA6UojT2tYipxc9QfR1a0SJwU1J7SmzikvprARw__"
                 alt="Media gallery image"
                 className="object-cover hover:opacity-75 transition-opacity cursor-pointer"
               />

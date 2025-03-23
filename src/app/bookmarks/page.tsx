@@ -8,6 +8,7 @@ import "./style.css"
 
 import { Button } from "@/components/ui/button"
 import { Import, Menu } from 'lucide-react'
+import { useDragScroll } from '@/components/dragScrolling';
 
 import { useState } from "react"
 
@@ -47,14 +48,18 @@ const mediaItems = [
 
 export default function StreamingDashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const { containerRef, dragHandlers } = useDragScroll();
   return (
     <div className="bg-black w-full  text-white mt-[55px]">
       <Navbar />
       
       <nav className="py-2 sm:py-4 border-b border-zinc-800 bg-black fixed top-[72px] z-40 w-screen">
-        <div className="w-full mx-auto flex flex-wrap items-center justify-between px-4">
+        <div className="w-full mx-auto flex  items-center justify-between px-4">
           {/* Existing nav items */}
-          <div className="flex items-center flex-wrap space-x-2 sm:space-x-4">
+          <div 
+           ref={containerRef}
+           className="flex space-x-6 overflow-x-auto  hide-scrollbar cursor-grab active:cursor-grabbing select-none "
+           {...dragHandlers}>
             {navItems.map((item) => (
               <NavButton
                 key={item.label}
@@ -67,6 +72,16 @@ export default function StreamingDashboard() {
                 {item.label}
               </NavButton>
             ))}
+          </div>
+           {/* Mobile menu button */}
+           <div className="lg:hidden ">
+            <Button
+              variant="ghost"
+              className="text-white"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
           </div>
           {/* Desktop buttons */}
           <div className="hidden lg:flex items-center flex-wrap space-x-2 sm:space-x-4">
@@ -103,16 +118,7 @@ export default function StreamingDashboard() {
             </Button>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="lg:hidden ">
-            <Button
-              variant="ghost"
-              className="text-white"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-          </div>
+         
 
           {/* Mobile dropdown menu */}
           {isMenuOpen && (

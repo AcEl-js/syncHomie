@@ -13,7 +13,7 @@ export function NavButton({ children, count, color, icon: Icon, ...props }: NavB
       {color && <div className={`h-4 w-4 bg-[${color}] rounded-full mr-2`} />}
       {Icon && <Icon className="mr-2 h-4 w-4" />}
       {children}
-      {count !== undefined && <span className="text-zinc-400 hidden lg:inline ml-2">({count})</span>}
+      {count !== undefined && <span className="text-zinc-400  lg:inline ml-2">({count})</span>}
     </Button>
   )
 }
