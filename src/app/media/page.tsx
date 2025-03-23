@@ -228,7 +228,7 @@ const App = () => {
                     <div key={index} className='flex items-center flex-col'>
 
                       <div className='text-gray-500 overflow-hidden border-2 border-[#E318F5] w-11 h-11 rounded-full flex justify-center flex-col '>
-                        <img src="https://s3-alpha-sig.figma.com/img/e48b/0cb2/7a06bddc2dfe414eb8cbf0b8bbcbb44b?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Rvj3RAJVV3wQ0lyDnk4kk53ap9dmaPnGbxuueDXPkq7E0OpT9aEHU1ldu2hXM71jAJ-ZyROfQNA7cXHbd4qXuzXRWnXsCXuNJmbur~moOU-udiETJyY7uGVejdrYxNRnzIu6zWD3OcY8wendZYt6Mxius4q8EVURaL7cvrxMl9qtFe7C20ezY8qmLLnYJ7JWmc81sPlQW-nQoZCN22ypdC2wrs1QGuddpIwBzyOyKMvl8fzSnsKHMalUlXUhInghNT4Q9xa03jZN8-J778bQDMyWksUZgQq6YyQPjmr7HIjrydK5qbU2WDi6NpPHKpQK3nWr0V8mW1vOaSWqNp93pw__" alt="" />
+                        <img src="/other/man1.jpeg" alt="" />
                       </div>
                       ?
                     </div>
@@ -301,25 +301,25 @@ const App = () => {
             <TabsList className="bg-transparent border-b text border-neutral-800 w-full justify-center h-auto p-0 gap-6">
               <TabsTrigger
                 value="popular"
-                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-white data-[state=active]:text-black text-neutral-400 h-auto bg-transparent"
+                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent   text-neutral-400 h-auto"
               >
                 Most Popular
               </TabsTrigger>
               <TabsTrigger
                 value="videos"
-                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-white data-[state=active]:text-white text-neutral-400 h-auto bg-transparent"
+                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent   text-neutral-400 h-auto"
               >
                 Videos
               </TabsTrigger>
               <TabsTrigger
                 value="backdrops"
-                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-white data-[state=active]:text-white text-neutral-400 h-auto bg-transparent"
+                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent   text-neutral-400 h-auto"
               >
                 Backdrops
               </TabsTrigger>
               <TabsTrigger
                 value="posters"
-                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-white data-[state=active]:text-white text-neutral-400 h-auto bg-transparent"
+                className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent   text-neutral-400 h-auto"
               >
                 Posters
               </TabsTrigger>
