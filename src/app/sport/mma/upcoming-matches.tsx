@@ -26,8 +26,8 @@ export default function MatchCard() {
         </div>
 
         <div className="flex justify-between relative bottom-8 gap-20">
-            <img className="w-[100px] h-[150px] " src="https://s3-alpha-sig.figma.com/img/9d2b/729d/4f4a4548d168e5028c3c65ba1d0e9738?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=B4AaKmCAj0okj7J-T5WPLD6mvHuCI4sYBNTbD6DRmdQWdF9pSqbpX8l3TK8KlEFOyDEGKcScO9swBPDVREVIKk9OqasZyOan2S2K7cgbFn79KW7~1wR4KLxgVPm207R-UmIj7y0Jap6wJJFpwrp8e9h2qzQFQJg~oSzkcSZO1N1WvTxnQagqDVzRrJIaAuboSkMMS72ARtV6Z-nS4I2MDCdZhOzJZtOecch2kXuWQfQWz-hlAAvWIdIMcuucrz~K4mZemEXMPA0aMhFbF25QDm8ZwZbRraIcZcfnLrHYxujoBpWQzSfTUI6wWX51XlILyx2GMpPnFfIzsx-rr4kv9g__" alt="" />
-            <img className="w-[100px] h-[150px] " src="https://s3-alpha-sig.figma.com/img/14bc/0966/9750ae0f1e96bde99b243b0e7d424e3a?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Gsozm4s6B-2f2RdxyyyYBp~oIH~1qxlTI0Fu6HQkvN~LZJlDaKUg7B5if~NZt8bupuYU3nHrYriXLW7KsttROM5XLzaim1zY5YXSaLto8GjIevKjtSqWGOge7QOE~1jJu4rzuXYcu~klG8~uYRBH7ZFQzwTeS0gLQN77eKdcumqNrZDxQrDjFx0YVAelTXDHYg~U1hbbYhTScyq8Sg6TnMUI84sDp6Ipdpl1HZTLXmyhYXix0vGjd3IR5AniUpkQ6jrlUgoHzRhlUwYe05yn3Dq6FUVlV3NT~Um0iWmkmao1hKfByOQ784dA-capfHSYsOVKADGzbDRtkojnNT-qeg__" alt="" />
+            <img className="w-[100px] h-[150px] " src="/other/fighter2.png" alt="" />
+            <img className="w-[100px] h-[150px] " src="/other/fighter1.png" alt="" />
         </div>
 
         <div className="flex text-white justify-around relative bottom-5">

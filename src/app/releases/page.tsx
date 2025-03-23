@@ -18,12 +18,12 @@ type Category = {
 
 const comments:Comment[] =[
   {
-    avatar :"https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&h=100&fit=crop",
+    avatar :"/other/man2.jpeg",
     username:"Trivia",
     subtitles:"You Recently Watched: The Good Place",
     time:"3h",
     content:"Test yourself with some trivia! Fun exercise with benefits to your brain!",
-    image:"https://images.unsplash.com/photo-1516534775068-ba3e7458af70?w=1200&h=600&fit=crop",
+    image:"/other/cover.png",
   },
   {
     avatar :"https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?w=100&h=100&fit=crop",
@@ -33,14 +33,14 @@ const comments:Comment[] =[
     content:"Test yourself with some trivia! Fun exercise with benefits to your brain!",
     image:"https://images.unsplash.com/photo-1584905066893-7d5c142ba4e1?w=1200&h=600&fit=crop",
   }, {
-    avatar :"d",
+    avatar :"/other/defaultprofil.svg",
     username:"Recommendation",
     subtitles:"Because you watched The Good Place",
     time:"3h",
     content:"Test yourself with some trivia! Fun exercise with benefits to your brain!",
-    image:"https://images.unsplash.com/photo-1516534775068-ba3e7458af70?w=1200&h=600&fit=crop",
+    image:"/other/cover.png",
   }, {
-    avatar :"d",
+    avatar :"/other/defaultprofil.svg",
     username:"Champions League",
     subtitles:"Barcelona vs Man City",
     time:"8h",
@@ -52,7 +52,7 @@ const comments:Comment[] =[
     subtitles:"Modern Family",
     time:"12h",
     content:"‘Modern Family’ Star Eric Stonestreet Says ABC Rejecting Mitch-Cameron Spinoff ‘Felt a Little Hurtful’: ‘It Would Have Been a Slam Dunk’ Eric Stonestreet said it felt hurtful when ABC rejected a planned ",
-    image:"https://s3-alpha-sig.figma.com/img/dc63/3045/d2efcf8699f2d75ebbf151ed3a3447fe?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=TpPFbCdrnbl5vCj4QJu3zrBLCVWreva~icDEdE~76et27MiRI~Pqe12vRiaQ0BqDdBrXANo3pRJlR54XnER5RVm-g34YGzvPSHChjoS3OOTvc7w1QzgI~WLi-KIOcuFkbcGLCOXT~04oJrHmkYRvX5snfq2s2OYj0GC-mslbVHh~wxwD0SiPDT8-E2x6EBnQId-CHOCZL7Otwi2g3f2mfL0dwcwdl-huPdLabQU8CJEbwdAxvB8Hm7Dc5CKpGuEKyAwTnd-DSYYbvBapk~Hqt1ZSSlbESex0J-sp7dCMLaya83bPF0dcVIsBCZl1ZA3AJC3huyQy4P9cN-dtI8mk~Q__",
+    image:"/other/cover.png",
   }
 ]
 

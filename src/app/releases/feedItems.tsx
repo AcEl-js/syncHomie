@@ -23,7 +23,7 @@ const FeedItems = ({avatar,username,subtitles,time,content,image}:Comment) => {
     return (
         <div className=" rounded-lg p-4 mb-4">
         <div className="flex items-center mb-4">
-          <img src={avatar} alt={username} className="w-10 h-10 rounded-full mr-3" />
+          <img src={avatar} alt={username} className="w-10 h-10 rounded-full object-cover mr-3" />
           <div className='flex gap-3 items-center text-[#8899A6] '>
             <h3 className="text-white font-semibold">{username}</h3>
             <h2>{subtitles}</h2>
