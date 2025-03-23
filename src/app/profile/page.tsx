@@ -16,12 +16,12 @@ interface Comment{
 
 const comments:Comment[] =[
   {
-    avatar : "https://s3-alpha-sig.figma.com/img/a739/67f8/f69d187d0a6ec0faad96a84e44555a5c?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=S-tPfszs-nMjVTdo70cuhzRRbyFpd1atOoE0ra37JbH9p0gXrAylo6YPmzHsswcz1XZhSmuFafzpDdlxVl3XePkVq-~WUSTM58shCg~nlt8mLjKruUHXUiK5PBy-yPTUvza1~w1U~TdXZ7BToFz1CO1MEeIAA1lEFTRtZrsDXbH75ZIgHkwNikmjiDiLCiHjoOLSF8hJ4JCY6Ogh4RBCQexrxdz0lrnpFOLswCGXQtpx4-mirwtSM0mw5Z1A09qS2SITnetLvDOR4NUaHPyS6-snAM~EbgQ7xFfGMfG~VRVDZERa93TG0bfa9O2Kdh8YsnJHdt4A5pB8f79AUaVWAA__",
+    avatar : "/other/man2.jpeg",
     username:"SevyrX",
     subtitles:"Posted a review",
     time:"3h",
     content:"Absolute blast of a show! I’m buzzin’ for some mre episodes from this team <3",
-    image:"https://images.unsplash.com/photo-1516534775068-ba3e7458af70?w=1200&h=600&fit=crop",
+    image:"/other/cover.png",
   },]
 
   
@@ -74,7 +74,7 @@ function App() {
         <div className="flex gap-6 lg:w-[800px]">
           {/* Left Column */}
           <div className="w-1/4 lg:relative bottom-16 left-2 ">
-            <img  className="rounded-full w-36 h-36 object-cover border-4 border-[#17202A]  mb-4" src="https://s3-alpha-sig.figma.com/img/a739/67f8/f69d187d0a6ec0faad96a84e44555a5c?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=S-tPfszs-nMjVTdo70cuhzRRbyFpd1atOoE0ra37JbH9p0gXrAylo6YPmzHsswcz1XZhSmuFafzpDdlxVl3XePkVq-~WUSTM58shCg~nlt8mLjKruUHXUiK5PBy-yPTUvza1~w1U~TdXZ7BToFz1CO1MEeIAA1lEFTRtZrsDXbH75ZIgHkwNikmjiDiLCiHjoOLSF8hJ4JCY6Ogh4RBCQexrxdz0lrnpFOLswCGXQtpx4-mirwtSM0mw5Z1A09qS2SITnetLvDOR4NUaHPyS6-snAM~EbgQ7xFfGMfG~VRVDZERa93TG0bfa9O2Kdh8YsnJHdt4A5pB8f79AUaVWAA__" alt="Profile" />
+            <img  className="rounded-full w-36 h-36 object-cover border-4 border-[#17202A]  mb-4" src="/other/man2.jpeg" alt="Profile" />
             <h2 className="text-xl font-semibold mb-1">SevyrX</h2>
             <p className="text-sm text-[#8899A6]">Joined November 2024</p>
             <div className="text-sm text-gray-400 flex gap-2">
