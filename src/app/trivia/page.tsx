@@ -56,32 +56,32 @@ const App = () => {
     const triviaItems: TriviaTitle[] = [
         {
         id: 1,
-        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        image: '/movies/lastofus.svg',
         title: 'Browse Trivia',
         subtitle: 'Godzilla x Kong: The New Empire'
       }, {
         id: 2,
-        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        image: '/movies/lastofus.svg',
         title: 'Browse Trivia',
         subtitle: 'Godzilla x Kong: The New Empire'
       } ,{
         id: 3,
-        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        image: '/movies/lastofus.svg',
         title: 'Browse Trivia',
         subtitle: 'Godzilla x Kong: The New Empire'
       } ,{
         id: 4,
-        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        image: '/movies/lastofus.svg',
         title: 'Browse Trivia',
         subtitle: 'Godzilla x Kong: The New Empire'
       }, {
         id: 5,
-        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        image: '/movies/lastofus.svg',
         title: 'Browse Trivia',
         subtitle: 'Godzilla x Kong: The New Empire'
       }, {
         id: 6,
-        image: 'https://s3-alpha-sig.figma.com/img/7fed/5278/405abee1ddc516475923b7c67e384120?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h2WvpS9R72m3GwDrQ8GsxJtJPjuCtsrlrx7SWkHEuAUMXVXETkxXDncho14UuFC~~ARN~NeC~NBq18~LFxi-Wc9EsfHODj6nq0Yx-i~bYS7WbBxDXc43yTmWezZh24d~6M6cCtwJYUIRUrMm20eEkh6sXewlOMdaJI27UzllK8Fd3OOWRBoqLiBS6HWUomxW~OL489j171Y6CJ59b1qyGuTPyY7aE~ogjKgZ5DFk95IYs3iTzAGNX1bD5EcbJtFd0CEpZh9yuNOesQ5zLD7IrkyVNim~JeSkI3uvxSuZ-wWYNUAFl63H-pBABIcC9-ZQyu5SFu1z4tCXb1Ei9zvMKA__',
+        image: '/movies/lastofus.svg',
         title: 'Browse Trivia',
         subtitle: 'Godzilla x Kong: The New Empire'
       }];
@@ -93,7 +93,7 @@ const App = () => {
             subtitle: "Multiple Choice",
             level:"LEVEL 1",
             IQ: "20Q",
-            image: "https://s3-alpha-sig.figma.com/img/d146/0cf1/cbd75a737fea9589da6e684e051f5ca6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uTV-Ch0WNyic00aDDvtLkLFQ9lCfh2yzMnVQPumJtxsbm~PSRAeNanxQwVl1v9WGDikLam-SHcPkk0h~TtewT7TNabQJ5PSF3pD17bxw35pCJ7eJtv71OxVygX9I1HH0qP0jcFhkavmUlafkWs3Ya87y2Au4z2KdEmUwQmzh2VSeeE-rw9PXJP0j1S-aItDRMTUO6EBOW3~QkZad37yHtzaJEdUPlzFYhFQNVPIWSYhLZr4E~lg8zxi5ZisgYqzTxOyUIcqy7ovdlLtr3-TWtJGvVyVakIg1nIVwGXr69g0xDVEDVddGZjrp8pWmkaZhxIbXb2moXdq4tJD27J2-QA__",
+            image: "/movies/triviaimg.jpeg",
             description: "# of plays Submitted by Taken by x friends",
             likes: 3,
             dislikes: 1,
@@ -103,7 +103,7 @@ const App = () => {
             subtitle: "Multiple Choice",
             level:"Nosedive",
             IQ: "30Q",
-            image: "https://s3-alpha-sig.figma.com/img/d501/b874/1b793ccf15f88e34dc40f1df29c3293b?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=TJgO62-e7jowg~OJOI1CnJXAFn3IlB532YAo68YCOj7WGjlU44DakwGqFL2gDVKglVwb~DLpmg685VrRV18FBxrdub6K6ot0Uou3NAzktR5xWVLZfOaU2TtRd7vKFMYcsheBpKdxcI3mtGjJFH4uBRe6vIF7PXQc5fJwNR2AzxdfCg1qLD6fj7OkmRAbduS4elyIkN7D3mQyTAF3qrNgJvMlY83of5PiFq1d88h7FWK6JU1vRgvHjswWfZ8I9SACxnM2hVUxOCn5Bi6UrlNd-xF44XDRNnEfPDsGpz419fU878zeUZvzL0FUs3BkLiBjeD~76wnR1HQpW3mkorVGNQ__",
+            image: "/movies/triviaimg.png",
             description: "# of plays Submitted by Taken by x friends",
             likes: 13,
             dislikes: 5,
@@ -113,7 +113,7 @@ const App = () => {
             subtitle: "Match",
             level:"LEVEL 3",
             IQ: "6Q",
-            image: "https://s3-alpha-sig.figma.com/img/d146/0cf1/cbd75a737fea9589da6e684e051f5ca6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uTV-Ch0WNyic00aDDvtLkLFQ9lCfh2yzMnVQPumJtxsbm~PSRAeNanxQwVl1v9WGDikLam-SHcPkk0h~TtewT7TNabQJ5PSF3pD17bxw35pCJ7eJtv71OxVygX9I1HH0qP0jcFhkavmUlafkWs3Ya87y2Au4z2KdEmUwQmzh2VSeeE-rw9PXJP0j1S-aItDRMTUO6EBOW3~QkZad37yHtzaJEdUPlzFYhFQNVPIWSYhLZr4E~lg8zxi5ZisgYqzTxOyUIcqy7ovdlLtr3-TWtJGvVyVakIg1nIVwGXr69g0xDVEDVddGZjrp8pWmkaZhxIbXb2moXdq4tJD27J2-QA__",
+            image: "/movies/triviaimg.jpeg",
             description: "# of plays Submitted by Taken by x friends",
             likes: 22,
             dislikes: 0,
@@ -123,7 +123,7 @@ const App = () => {
             subtitle: "Match",
             level:"LEVEL 3",
             IQ: "6Q",
-            image: "https://s3-alpha-sig.figma.com/img/d146/0cf1/cbd75a737fea9589da6e684e051f5ca6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uTV-Ch0WNyic00aDDvtLkLFQ9lCfh2yzMnVQPumJtxsbm~PSRAeNanxQwVl1v9WGDikLam-SHcPkk0h~TtewT7TNabQJ5PSF3pD17bxw35pCJ7eJtv71OxVygX9I1HH0qP0jcFhkavmUlafkWs3Ya87y2Au4z2KdEmUwQmzh2VSeeE-rw9PXJP0j1S-aItDRMTUO6EBOW3~QkZad37yHtzaJEdUPlzFYhFQNVPIWSYhLZr4E~lg8zxi5ZisgYqzTxOyUIcqy7ovdlLtr3-TWtJGvVyVakIg1nIVwGXr69g0xDVEDVddGZjrp8pWmkaZhxIbXb2moXdq4tJD27J2-QA__",
+            image: "/movies/triviaimg.jpeg",
             description: "# of plays Submitted by Taken by x friends",
             likes: 22,
             dislikes: 0,
@@ -133,7 +133,7 @@ const App = () => {
             subtitle: "Multiple Choice",
             level:"Nosedive",
             IQ: "30Q",
-            image: "https://s3-alpha-sig.figma.com/img/d501/b874/1b793ccf15f88e34dc40f1df29c3293b?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=TJgO62-e7jowg~OJOI1CnJXAFn3IlB532YAo68YCOj7WGjlU44DakwGqFL2gDVKglVwb~DLpmg685VrRV18FBxrdub6K6ot0Uou3NAzktR5xWVLZfOaU2TtRd7vKFMYcsheBpKdxcI3mtGjJFH4uBRe6vIF7PXQc5fJwNR2AzxdfCg1qLD6fj7OkmRAbduS4elyIkN7D3mQyTAF3qrNgJvMlY83of5PiFq1d88h7FWK6JU1vRgvHjswWfZ8I9SACxnM2hVUxOCn5Bi6UrlNd-xF44XDRNnEfPDsGpz419fU878zeUZvzL0FUs3BkLiBjeD~76wnR1HQpW3mkorVGNQ__",
+            image: "/movies/triviaimg.png",
             description: "# of plays Submitted by Taken by x friends",
             likes: 13,
             dislikes: 5,
@@ -143,7 +143,7 @@ const App = () => {
             subtitle: "Match",
             level:"LEVEL 3",
             IQ: "6Q",
-            image: "https://s3-alpha-sig.figma.com/img/d146/0cf1/cbd75a737fea9589da6e684e051f5ca6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uTV-Ch0WNyic00aDDvtLkLFQ9lCfh2yzMnVQPumJtxsbm~PSRAeNanxQwVl1v9WGDikLam-SHcPkk0h~TtewT7TNabQJ5PSF3pD17bxw35pCJ7eJtv71OxVygX9I1HH0qP0jcFhkavmUlafkWs3Ya87y2Au4z2KdEmUwQmzh2VSeeE-rw9PXJP0j1S-aItDRMTUO6EBOW3~QkZad37yHtzaJEdUPlzFYhFQNVPIWSYhLZr4E~lg8zxi5ZisgYqzTxOyUIcqy7ovdlLtr3-TWtJGvVyVakIg1nIVwGXr69g0xDVEDVddGZjrp8pWmkaZhxIbXb2moXdq4tJD27J2-QA__",
+            image: "/movies/triviaimg.jpeg",
             description: "# of plays Submitted by Taken by x friends",
             likes: 22,
             dislikes: 0,
@@ -153,7 +153,7 @@ const App = () => {
             subtitle: "Match",
             level:"LEVEL 3",
             IQ: "6Q",
-            image: "https://s3-alpha-sig.figma.com/img/d146/0cf1/cbd75a737fea9589da6e684e051f5ca6?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uTV-Ch0WNyic00aDDvtLkLFQ9lCfh2yzMnVQPumJtxsbm~PSRAeNanxQwVl1v9WGDikLam-SHcPkk0h~TtewT7TNabQJ5PSF3pD17bxw35pCJ7eJtv71OxVygX9I1HH0qP0jcFhkavmUlafkWs3Ya87y2Au4z2KdEmUwQmzh2VSeeE-rw9PXJP0j1S-aItDRMTUO6EBOW3~QkZad37yHtzaJEdUPlzFYhFQNVPIWSYhLZr4E~lg8zxi5ZisgYqzTxOyUIcqy7ovdlLtr3-TWtJGvVyVakIg1nIVwGXr69g0xDVEDVddGZjrp8pWmkaZhxIbXb2moXdq4tJD27J2-QA__",
+            image: "/movies/triviaimg.jpeg",
             description: "# of plays Submitted by Taken by x friends",
             likes: 22,
             dislikes: 0,
@@ -163,7 +163,7 @@ const App = () => {
             subtitle: "Multiple Choice",
             level:"Nosedive",
             IQ: "30Q",
-            image: "https://s3-alpha-sig.figma.com/img/d501/b874/1b793ccf15f88e34dc40f1df29c3293b?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=TJgO62-e7jowg~OJOI1CnJXAFn3IlB532YAo68YCOj7WGjlU44DakwGqFL2gDVKglVwb~DLpmg685VrRV18FBxrdub6K6ot0Uou3NAzktR5xWVLZfOaU2TtRd7vKFMYcsheBpKdxcI3mtGjJFH4uBRe6vIF7PXQc5fJwNR2AzxdfCg1qLD6fj7OkmRAbduS4elyIkN7D3mQyTAF3qrNgJvMlY83of5PiFq1d88h7FWK6JU1vRgvHjswWfZ8I9SACxnM2hVUxOCn5Bi6UrlNd-xF44XDRNnEfPDsGpz419fU878zeUZvzL0FUs3BkLiBjeD~76wnR1HQpW3mkorVGNQ__",
+            image: "/movies/triviaimg.png",
             description: "# of plays Submitted by Taken by x friends",
             likes: 13,
             dislikes: 5,

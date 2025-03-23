@@ -33,8 +33,8 @@ export default function GameCard({triviaQuiz}:GameCardProps) {
                     <span>20Q</span>
                 </div>
         
-                <div className="relative aspect-square w-full overflow-hidden rounded-lg">
-                    <div className="absolute inset-0 bg-blue-500/30" />
+                <div className="relative aspect-square  overflow-hidden rounded-lg h-[154px] w-[154px] ">
+                    <div className="absolute inset-0 bg-[#1873be9b] " />
                     <img
                     src={trivia.image}
                     className="h-full w-full object-cover border-2 rounded-lg border-white"
