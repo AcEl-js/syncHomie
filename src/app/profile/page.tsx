@@ -4,6 +4,7 @@ import Entries from '../releases/entries';
 import Navbar from '@/components/Navbar';
 import FeedItems from '../releases/feedItems';
 import { Switch } from "@/components/ui/switch"
+import "../discover/style.css"
 
 interface Comment{
   avatar?: string;
@@ -141,16 +142,17 @@ function App() {
             <button className="px-4 py-2 text-gray-400 hover:text-white">Trivia Scores</button>
           </div>
         </div>
+          <div className='w-[598px] mt-4 flex justify-center items-center self-center '>
+            {comments.map((comment,index)=>(
+              <FeedItems key={index} {...comment}/>
+            ))}
+        </div>
 
         </div>
   
         
 
-        <div className='w-[598px] mt-4 flex justify-center items-center justify-self-center'>
-            {comments.map((comment,index)=>(
-              <FeedItems key={index} {...comment}/>
-            ))}
-        </div>
+      
         </div>
     </div>
       

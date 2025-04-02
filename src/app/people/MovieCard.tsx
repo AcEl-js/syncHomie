@@ -16,7 +16,8 @@ imageUrl: string;
 
 export function MovieCard({ movie, index }: MovieCardProps) {
   return (
-    <div className="h-[234px] w-[464px] relative gap-2 flex lg:flex-row bg-[#1a1a1a] rounded-lg overflow-hidden group">
+    <div className="h-[234px] w-[1000px] relative gap-2 flex  bg-[#1a1a1a] rounded-lg overflow-visible ">
+      <div className='relative  flex'>
       {/* Index number */}
       <div className="  mt-4 gap-2 text-white w-8 h-8 flex items-center justify-center z-10">
         <h2 className=' text-2xl'> {index + 1}</h2>
@@ -57,6 +58,7 @@ export function MovieCard({ movie, index }: MovieCardProps) {
 
        
       </div>
+    </div>
     </div>
   );
 }

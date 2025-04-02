@@ -397,7 +397,7 @@ export default function CommentSys() {
   }
 
   return (
-    <div className="min-h-screen  text-gray-100">
+    <div className="min-h-screen  text-gray-100  bg-gray-900 rounded-md py-4">
                 <h1 className=' text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Comment</h1>
 
     <div className="max-w-3xl mx-auto py-8 px-4">

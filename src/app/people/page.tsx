@@ -8,15 +8,16 @@ import { Button } from "@/components/ui/button"
 import { ThumbsUp, ThumbsDown, Pencil } from 'lucide-react'
 
 import Navbar from '@/components/Navbar';
-import { MovieCard } from './MovieCard';
+import  MovieCard  from '@/components/MovieCard';
 import CommentSys from '@/components/CommentSys';
+import { useDragScroll } from '@/components/dragScrolling';
 
 interface Movie {
   id: number;
   title: string;
   rating: number;
-  boxOffice: string;
-  imageUrl: string;
+  image: string;
+  genre: string;
 }
 
 interface Show {
@@ -33,6 +34,7 @@ interface Show {
 function App() {
     const [upvotes, setUpvotes] = useState(57)
     const [downvotes, setDownvotes] = useState(43)
+    const { containerRef, dragHandlers } = useDragScroll();
     
     const reactions = [
       { name: 'Funny', emoji: '😂' },
@@ -40,48 +42,52 @@ function App() {
       { name: 'Infuriating', emoji: '😠' },
       { name: 'Sad', emoji: '😢' }
     ]
+
+   
   const movies: Movie[] = [
     {
       id: 1,
       title: "Kung Fu Panda 4",
       rating: 6.6,
-      boxOffice: "$58M",
-      imageUrl: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&q=80&w=250&h=350"
+      image: "/movies/panda.png",
+      genre: "Comedy/Romance"
+
     },
     {
       id: 2,
       title: "Dune: Part Two",
       rating: 8.9,
-      boxOffice: "$46M",
-      imageUrl: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=250&h=350"
+      image: "/movies/dunc.png",
+      genre: "Sci-Fi/Action"
     },
     {
       id: 3,
       title: "Imaginary",
       rating: 4.8,
-      boxOffice: "$9.9M",
-      imageUrl: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=250&h=350"
+      image: "/movies/imaginary.png",
+      genre: "Comedy/Romance"
+
     },
     {
       id: 4,
       title: "Kung Fu Panda 4",
       rating: 7.8,
-      boxOffice: "$99M",
-      imageUrl: "/movies/panda.png"
+      image: "/movies/panda.png",
+      genre: "Sci-Fi/Action"
     },
     {
       id: 5,
       title: "Dune: Part Two",
       rating: 4.4,
-      boxOffice: "$19.5M",
-      imageUrl: "/movies/dunc.png"
+      image: "/movies/dunc.png",
+      genre: "Comedy/Romance"
     },
     {
       id: 6,
       title: "Imaginary",
       rating: 8.1,
-      boxOffice: "$22M",
-      imageUrl: "/movies/imaginary.png"
+      image: "/movies/imaginary.png",
+      genre: "Comedy/Romance"
     },
   ];
 
@@ -111,7 +117,7 @@ function App() {
   return (
     <div>
         <Navbar/>
-         <div className="min-h-screen bg-black text-white p-8  mt-12">
+         <div className="min-h-screen bg-black text-white  p-8 max-sm:p-2  mt-12">
       {/* Actor Profile Header */}
       <header className="p-6 border-b border-gray-800">
         <div className="flex items-center gap-4">
@@ -119,9 +125,9 @@ function App() {
           <span className="text-gray-400">Actors</span>
         </div>
       </header>
-      <div className="flex gap-6 mb-12 mt-4">
+      <div className="flex max-sm:flex-col gap-6 mb-12 mt-4 ">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0V4Lh6pGemaiN-qCSuf6j1TjYPN4YT1yUA&s"
+          src="/other/man2.jpeg"
           alt="Actor profile"
           className="w-48 h-72 object-cover rounded-lg"
         />
@@ -132,14 +138,14 @@ function App() {
               <span className="text-green-500">57%</span>
               <Heart className="text-gray-400 cursor-pointer flex justify-self-start hover:text-red-500 transition-colors" />
             </div>
-            <p className="text-gray-400 mt-4 max-w-2xl">
+            <p className="text-gray-400 mt-4 max-w-2xl ">
               Charlie was born in New York City and raised in Middletown, Rhode Island. His parents are both music teachers - his mother, Mary (Peckham), is a piano teacher and his father, Dr. Thomas Charles Day, was a professor of music at Salve Regina University in Newport, Rhode Island. Charlie plays both piano and guitar. He has Italian (from his paternal grandfather), Irish, and English ancestry.
             </p>
           </div>
         {/* rate section */}
           <div className="w-full max-w-2xl p-4 space-y-4 rounded-lg text-white">
       <div className=" xl:flex  gap-4 items-center ">
-        <div className="flex items-center gap-4 p-2 rounded-sm   bg-[#1a1f2b]">
+        <div className="flex items-center gap-4 p-2 rounded-sm  w-[364px] justify-around  bg-[#1a1f2b]">
           <span className="text-gray-300 text-nowrap">Rate this Actor</span>
           <div className="flex items-center gap-2 ">
             <Button 
@@ -156,7 +162,8 @@ function App() {
               className="text-gray-300 hover:text-white hover:bg-gray-700"
             >
               <ThumbsDown className="w-5 h-5 mr-1" />
-              {downvotes}%
+             {downvotes}%
+              
             </Button>
           </div>
           
@@ -167,7 +174,7 @@ function App() {
             key={reaction.name}
             variant="secondary"
             size="sm"
-            className="bg-[#2a2f3b] hover:bg-[#3a3f4b] text-gray-300"
+            className="bg-[#2a2f3b] hover:bg-[#3a3f4b] text-gray-300 flex "
           >
             {reaction.emoji} {reaction.name}
           </Button>
@@ -191,9 +198,11 @@ function App() {
       <div className='mb-20'>
       
         <h2 className="text-xl font-semibold mb-6"><span className='text-[#F5C518]'>•</span> Known For</h2>
-        <div className="grid lg:grid-cols-2 xl:grid-cols-3 grid-cols- gap-6">
-          {movies.map((movie, index) => (
-           <MovieCard key={movie.id} movie={movie} index={index} />
+        <div ref={containerRef}
+              className="flex space-x-6 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing select-none ml-5"
+              {...dragHandlers}>
+            {movies.map((movie, index) => (
+            <MovieCard key={index} {...movie} />
           ))}
         </div>
       </div>
@@ -227,7 +236,7 @@ function App() {
         }`}
       />
       <div
-        className={`flex gap-4 p-4 text-center rounded-md min-h-24 ${
+        className={`flex gap-4 p-4 text-center rounded-md min-h-24 max-sm:hidden ${
           index % 2 === 0
             ? 'border-l-8 border-[#83BAAB] bg-[#83baab61]'
             : 'border-l-8 border-[#C85684] bg-[#C856842A]'
