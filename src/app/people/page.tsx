@@ -95,7 +95,7 @@ function App() {
     {
       date: "October, 28th",
       time: "20h00",
-      duration: "(CET+1)",
+      duration: "1/20/2024",
       title: "Venom: The Last Dance",
       poster: "/placeholder.svg?height=80&width=60",
       genre: "Action - Adventure - Fantasy",
@@ -105,7 +105,7 @@ function App() {
     {
       date: "October, 28th",
       time: "20h00",
-      duration: "(CET+1)",
+      duration: "2/2/2024",
       title: "Venom: The Last Dance",
       poster: "/placeholder.svg?height=80&width=60",
       genre: "Action - Adventure - Fantasy",
@@ -143,7 +143,7 @@ function App() {
             </p>
           </div>
         {/* rate section */}
-          <div className="w-full max-w-2xl p-4 space-y-4 rounded-lg text-white">
+          <div className="w-full max-w-2xl md:p-4 py-4 space-y-4 rounded-lg text-white max-sm:overflow-scroll">
       <div className=" xl:flex  gap-4 items-center ">
         <div className="flex items-center gap-4 p-2 rounded-sm  w-[364px] justify-around  bg-[#1a1f2b]">
           <span className="text-gray-300 text-nowrap">Rate this Actor</span>
@@ -220,7 +220,7 @@ function App() {
       <h2 className="text-xl font-semibold mb-6"><span className='text-[#F5C518]'>•</span> Credits</h2>
     ) : null}
     <div className="flex rounded-lg overflow-hidden flex-row flex-1 hover:bg-zinc-800 transition">
-      <div className="min-w-[60px] text-sm text-gray-400 flex flex-col px-3 justify-center items-center">
+      <div className="min-w-[60px] mx-4 text-sm text-gray-400 flex flex-col px-3 justify-center items-center">
         <div>{show.time}</div>
         <div>{show.duration}</div>
       </div>
