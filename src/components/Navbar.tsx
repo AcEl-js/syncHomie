@@ -102,7 +102,7 @@ const Navbar = () => {
   }
 
   // Check if a link is active
-  const isActive = (href) => {
+  const isActive = (href:string) => {
     if (href === "/" && pathname === "/") {
       return true
     }
