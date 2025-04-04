@@ -219,7 +219,7 @@ const Page = () => {
           </div>
         </div>
 
-        <div className='flex justify-center bg-white'>
+        <div className='flex flex-col'>
           {comments.map((comment,index)=>(
             <FeedItems key={index} {...comment}/>
           ))}

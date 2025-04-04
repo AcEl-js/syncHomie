@@ -169,7 +169,7 @@ const App = () => {
 
        <EnhancedFilter />
 
-      <div className='bg-black pt-5 pb-11'>
+      <div className='bg-black pt-5 '>
         <TriviaTitles isDiscover={true} triviaTitle={triviaItems}/>
       </div>
     </div>
