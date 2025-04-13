@@ -150,13 +150,13 @@ const Page = () => {
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <div className="grid gap-2 p-4 w-40 bg-black text-white">
-                          <Link href="/sport/mma" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
+                          <Link href="#" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
                             MMA
                           </Link>
-                          <Link href="/sport/nfl" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
+                          <Link href="#" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
                             NFL
                           </Link>
-                          <Link href="/sport/nba" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
+                          <Link href="#" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
                             NBA
                           </Link>
                         </div>

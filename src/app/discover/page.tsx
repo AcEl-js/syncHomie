@@ -51,13 +51,13 @@ const triviaItems: TriviaTitle[] = [
 
 const navItems = [
   { label: "All", count: 36, isActive: true },
-  { label: "TV Shows", count: 10, color: "#C85684" },
-  { label: "Movies", count: 3, color: "#4E253F" },
-  { label: "Anime", count: 12, color: "#EDC884" },
-  { label: "Drama", count: 42, color: "#83BAAB" },
-  { label: "Sports", count: 502, color: "#EC8164" },
+  { label: "TV Shows", count: 10, color: "bg-[#C85684]" },
+  { label: "Movies", count: 3, color: "bg-[#4E253F]" },
+  { label: "Anime", count: 12, color: "bg-[#EDC884]" },
+  { label: "Drama", count: 42, color: "bg-[#83BAAB]" },
+  { label: "Sports", count: 502, color: "bg-[#EC8164]" },
   // Updated People color to be more visible
-  { label: "People", count: 502, color: "#5C75FF" }, // Brighter blue shade
+  { label: "People", count: 502, color: "bg-[#3C4EB0]" }, // Brighter blue shade
 ]
 
 const App = () => {
@@ -72,7 +72,7 @@ const App = () => {
      
       
       {/* Category Nav */}
-      <nav className="p-4 border-b border-zinc-800 bg-black fixed w-screen top-[72px] z-40">
+      <nav className="p-4 md:pt-3 border-b border-zinc-800 bg-black fixed w-screen top-[72px] z-40">
         <div className="max-w-7xl mx-auto flex items-center">
           <div className="items-center gap-3 mr-14 hidden md:flex">
             <button 
@@ -98,7 +98,7 @@ const App = () => {
           
           <div
             ref={containerRef}
-            className="flex space-x-6 overflow-x-auto hide-scrollbar cursor-grab active:cursor-grabbing select-none"
+            className="flex space-x-6 overflow-x-auto hide-scrollbar cursor-grab active:cursor-grabbing pt-1 select-none"
             {...dragHandlers}
           >
             {navItems.map((item) => (

@@ -332,7 +332,7 @@ const App = () => {
           {[1, 2, 3].map((i) => (
             <div key={i} className="relative aspect-[3/2] overflow-hidden rounded-lg">
               <img
-                src="https://s3-alpha-sig.figma.com/img/3fc8/7243/333eceac0409db8fcd7bdfe9e1df4204?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=G2LNjxyezgxi7auBc~ZSbS-pXuMdsHR8Z~BA3flX0Mu0WzHWe-hteb04mjJcVpL0MDikXmBEdLbNGr7~LHDpxwueT4QwYe9yo8TWsKG~xZz75BAWZdCJezEoqPveE2vWrBd-Cbya8HAZRAxEhx7b83PDjlvlJWlmD6t5xD6yHeE8kHQ6fzjKrPUF0fVzYtH~CtFgTmyWaG6E6sr~fTCQ3njYIr2FokCiChldbxJFelxZjP8taaMuItYk0O5PO8Rm8MvapSbNo1S~Ch~qflgLJiK8plF6wvTOv~h9MxpB2HHxnjJrA6UojT2tYipxc9QfR1a0SJwU1J7SmzikvprARw__"
+                src="/other/cover.png"
                 alt="Media gallery image"
                 className="object-cover hover:opacity-75 transition-opacity cursor-pointer"
               />

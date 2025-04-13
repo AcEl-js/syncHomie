@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Features from '../components/Features';
 import Reviews from '../components/Reviews';
-import TrendingMovies from '@/components/TrendingMovies';
 import Moviescatego from '@/components/Moviescatego';
 import Footer from '@/components/footer';
 
