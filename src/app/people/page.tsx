@@ -207,8 +207,10 @@ function App() {
         </div>
       </div>
 
-
+      <div className='flex justify-center'>
+        
       <CommentSys/>
+      </div>
 
       {/* credits */}
       {shows.map((show, index) => (

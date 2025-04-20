@@ -114,7 +114,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 z-50 w-screen transition-all duration-300 ${isScrolled ? "py-2" : "p-4"}`}
+      className={`fixed top-0 z-50 w-screen transition-all duration-300 ${isScrolled ? "py-1 " : "p-4"}`}
       style={{
         background: "linear-gradient(180deg, rgba(13,13,21,1) 0%, rgba(23,25,35,1) 100%)",
         boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
@@ -125,7 +125,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           {/* Left side with logo */}
           <div className="flex items-center">
-            <img src="./logo.svg" alt="SyncHomie" className="h-10" />
+            <img src="./logo.svg" alt="SyncHomie" className={` ${isScrolled ? "h-8" : "h-10"}`} />
           </div>
 
           {/* Center navigation items - hidden on mobile */}
@@ -138,7 +138,7 @@ const Navbar = () => {
                   href={item.href}
                   className={`text-gray-300 hover:text-white flex flex-col items-center group relative py-2`}
                 >
-                  <div className={`transition-opacity duration-300 ${isScrolled ? "opacity-0" : "opacity-100"}`}>
+                  <div className={`transition-opacity duration-300 ${isScrolled ? "hidden" : "opacity-100"}`}>
                     {item.icon}
                   </div>
                   <span className={`text-xs mt-1 transition-all duration-300 ${active ? "text-white font-bold" : ""}`}>

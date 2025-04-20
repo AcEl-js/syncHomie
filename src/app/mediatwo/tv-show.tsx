@@ -1,6 +1,4 @@
-
 "use client"
-
 
 import { useRef, useState } from "react"
 import Image from "next/image"
@@ -8,6 +6,9 @@ import { Bell, MessageSquare, FileText, Share2, Star, ChevronDown } from "lucide
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import UserScore from "./user-score"
+import { Switch } from "@/components/ui/switch"
+
 
 interface Emotion{
     name:string;
@@ -172,8 +173,13 @@ export default function TvShowDetails() {
           <div className="flex flex-col md:flex-row justify-between">
             <div>
               <h1 className="text-2xl md:text-3xl font-bold">
-                It&apos;s Always Sunny in Philadelphia <span className="text-gray-400">(2005)</span>
+                It&apos;s Always Sunny in Philadelphia <span className="text-gray-400 pr-4">(2005)</span>
+                <Switch /> 
+                <span className="text-base text-zinc-600 font-bold pl-2">Spoiler Off</span>
               </h1>
+              <div className="flex items-center justify-between">
+           
+          </div>
               <div className="flex items-center gap-2 text-sm text-gray-300 mt-1">
                 <span className="bg-gray-700 px-2 py-0.5 rounded">TV-MA</span>
                 <span>Comedy</span>
@@ -219,14 +225,16 @@ export default function TvShowDetails() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 mt-6">
-            <div className="bg-zinc-900 rounded-full h-16 w-16 flex items-center justify-center border-2 border-green-500">
-              <span className="text-xl font-bold">83</span>
+          {/* NEW ADDITION: You've Watched Progress Bar */}
+         
+            <div className="flex items-center gap-2 mt-3">
+              <span className="text-yellow-400 font-medium">You've Watched</span>
+              <span className="text-sm text-gray-300">0 Seasons 0 Episodes</span>
             </div>
-            <div className="text-sm">
-              <div>User</div>
-              <div>Score</div>
-            </div>
+          
+
+          <div className="flex items-center gap-4 mt-2">
+            <UserScore emotion={emotions.find(e => e.name === emotion)?.emoji}  />
             <div className="ml-4">
             <div className="bg-gray-800 px-4 py-2 rounded-full flex items-center min-w-48">
               {(rating === null || isEditingRating) && !showEmotions ? (
@@ -321,7 +329,7 @@ export default function TvShowDetails() {
             </Button>
           </div>
 
-          <div className="mt-6 flex items-center justify-between">
+          <div className="mt-6 flex items-center gap-4">
             <div className="flex items-center gap-2">
               <TooltipProvider>
                 <Tooltip>
@@ -367,7 +375,7 @@ export default function TvShowDetails() {
               <div className="text-sm text-gray-300">
                 Keywords:{" "}
                 <span className="text-gray-400">
-                  sitcom, sibling relationship, parent child relationship, crude humor, slacker...
+                  sitcom, sibling relationship, parent child relationship, crude humor, slacker
                 </span>
               </div>
             </div>

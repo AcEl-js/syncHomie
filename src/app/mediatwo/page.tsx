@@ -100,7 +100,7 @@ const shows: Show[] = [
           
            
             <TvShowDetails/>
-            <h1 className='text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Series Cast</h1>
+            <h1 className='text-2xl font-semibold lg:ml-28 text-gray-200 m-8 ml-4'><span className='text-[#F5C518] '>•</span> Series Cast</h1>
             <SeriesCast/>
 
             <div className="text-white">
@@ -108,7 +108,7 @@ const shows: Show[] = [
         {/* Show Details Section */}
         <div className=" rounded-lg overflow-hidden">
           <div className="p-6">
-            <div className="text-sm text-gray-400 mb-2">
+            <div className="lg:text-2xl text-base text-gray-400 mb-2">
               Latest Release: Season 16 Episode 8 <span className="ml-4">Air Date: October 10th 2024</span>
             </div>
 
@@ -165,12 +165,15 @@ const shows: Show[] = [
     </div>
             
       <Reviews reviews={reviews} title='• User Reviews' />
+      <div className=" flex justify-center">
+
      <CommentSys/>
+      </div>
 
-            <h1 className=' text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Media </h1>
+            <h1 className=' text-2xl font-semibold text-gray-200 m-8 ml-4'><span className='text-[#F5C518] '>•</span> Media </h1>
 
 
-    <div className="w-full bg-black  text-white">
+    <div className="w-full text-white">
     <div className="max-w-7xl mx-auto px-4 py-6">
     <div className="flex items-center gap-4 mb-6 justify-between">
        

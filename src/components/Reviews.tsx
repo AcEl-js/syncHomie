@@ -1,28 +1,45 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
 import ReviewCard from './ReviewCard';
+import WriteReviewCard from './WriteReviewCard';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
 
- interface ReviewComment{
-  name:string;
-  content:string;
-  subtitle:string;
- }
- interface ReviewsProps{
-  reviews:ReviewComment[]
-  title:string
+interface ReviewComment {
+  name: string;
+  content: string;
+  subtitle: string;
+}
 
- }
+interface ReviewsProps {
+  reviews: ReviewComment[];
+  title: string;
+}
+interface Review {
+  id: number
+  name: string
+  content: string
+  subtitle: string
+  reaction?: string
+}
 
-
-const Reviews: React.FC<ReviewsProps>  = ({reviews, title}) => {
-  
-
+const Reviews: React.FC<ReviewsProps> = ({ reviews: initialReviews, title }) => {
+  const [reviews, setReviews] = useState<ReviewComment[]>(initialReviews);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const handleSubmitReview = (content: string, reaction?: string) => {
+    const newReview: Review = {
+      id: Date.now(), // Use timestamp as unique ID
+      name: "Your Name", // This could be dynamic based on user
+      content: "New Reviewer",
+      subtitle: content,
+      reaction: reaction,
+    }
+
+    setReviews([...reviews, newReview])
+  }
 
   const startDragging = (e: React.MouseEvent) => {
     if (!scrollContainerRef.current) return;
@@ -62,7 +79,7 @@ const Reviews: React.FC<ReviewsProps>  = ({reviews, title}) => {
     return () => {
       window.removeEventListener('resize', checkScrollable);
     };
-  }, []);
+  }, [reviews]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current && !isAnimating) {
@@ -101,25 +118,27 @@ const Reviews: React.FC<ReviewsProps>  = ({reviews, title}) => {
     }
   };
 
+  const handleReviewSubmit = (newReview: ReviewComment) => {
+    setReviews([...reviews, newReview]);
+  };
+
   return (
     <div className='py-16 px-4'>
       <div className="mb-16">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-semibold text-gray-200 mb-8 ml-4">{title} </h2>
+          <h2 className="text-2xl font-semibold text-gray-200 mb-8 ml-4">{title}</h2>
           {isScrollable && (
             <div className="flex gap-2">
               <button
-                    onClick={() => scroll('left')}
-                    
-                  >
-                    <CircleArrowLeft className="text-[#79797989]"/>
-                  </button>
-                  <button
-                    onClick={() => scroll('right')}
-                    
-                  >
-                    <CircleArrowRight className="  text-[#797979]"/>
-                  </button>
+                onClick={() => scroll('left')}
+              >
+                <CircleArrowLeft className="text-[#79797989]"/>
+              </button>
+              <button
+                onClick={() => scroll('right')}
+              >
+                <CircleArrowRight className="text-[#797979]"/>
+              </button>
             </div>
           )}
         </div>
@@ -131,6 +150,12 @@ const Reviews: React.FC<ReviewsProps>  = ({reviews, title}) => {
           onMouseUp={stopDragging}
           onMouseMove={drag}
         >
+          {/* Write a Review Card as the first item */}
+          <div className="review-card flex-shrink-0">
+          <WriteReviewCard onSubmit={handleSubmitReview} />
+          </div>
+          
+          {/* Existing reviews */}
           {reviews.map((review, index) => (
             <div 
               key={index} 
@@ -139,7 +164,6 @@ const Reviews: React.FC<ReviewsProps>  = ({reviews, title}) => {
               <ReviewCard {...review} />
             </div>
           ))}
-          
         </div>
       </div>
     </div>
