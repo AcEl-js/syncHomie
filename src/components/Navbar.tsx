@@ -116,9 +116,10 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 z-50 w-screen transition-all duration-300 ${isScrolled ? "py-1 " : "p-4"}`}
       style={{
-        background: "linear-gradient(180deg, rgba(13,13,21,1) 0%, rgba(23,25,35,1) 100%)",
-        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-      }}
+        background: "linear-gradient(180deg, rgba(13,13,21,0.6) 0%, rgba(23,25,35,0.6) 100%)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)", // for Safari
+        border: "1px solid rgba(255, 255, 255, 0.1)", }}
     >
       <div className="max-w-7xl mx-auto">
         {/* Main navbar content */}

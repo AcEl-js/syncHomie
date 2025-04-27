@@ -14,6 +14,10 @@ import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/footer";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Bell, Eye, Plus } from "lucide-react"
+import { Progress } from "@/components/ui/progress"
+import { Textarea } from "@/components/ui/textarea"
+import { Badge } from "@/components/ui/badge"
 
 interface Show {
     title: string
@@ -100,6 +104,140 @@ const shows: Show[] = [
           
            
             <TvShowDetails/>
+            <div className="grid grid-cols-1 min-[900px]:grid-cols-[1fr_2fr_1fr] lg:justify-self-center xl:w-[1250px]  py-8 gap-6 p-4 rounded-lg mb-8 ">
+          {/* Your Rating */}
+          <div className="space-y-4 ">
+            <h2 className="text-xl font-semibold">Your Rating</h2>
+            <div className="flex items-center gap-3">
+              <div className="relative w-16 h-16">
+                <div className="absolute inset-0 rounded-full border-4 border-green-500"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-lg font-bold">
+                    4/5
+                  </span>
+                </div>
+              </div>
+              <div className="text-sm">
+                <div>User</div>
+                <div>Score</div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+            
+              <div className="flex">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <svg
+                    key={star}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-gray-500"
+                  >
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <Button variant="outline" className="flex text-black items-center gap-2 w-full justify-center">
+                <Plus size={16} />
+                <span>Add to Watchlist</span>
+                <Eye size={16} />
+              </Button>
+
+              <div className="flex items-center gap-2 mt-2 justify-between">
+                <span className="text-sm">Add to Custom List</span>
+                <Bell size={16} className="text-yellow-500" />
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <div className="text-sm mb-2"> Seen 16/20 episodes 1 hour remaining</div>
+              <Progress value={75} className="h-2 bg-gray-700 [&>div]:bg-yellow-500" />
+            </div>
+          </div>
+
+          {/* Your Review */}
+          <div>
+            <h2 className="text-xl font-semibold mb-4">Your Review</h2>
+            <Textarea placeholder="Write your review here..." className="bg-gray-800 border-gray-700 h-40" />
+            <div className="flex justify-between mt-2">
+              <div className="flex items-center gap-2">
+                <span className="text-sm">Most Interesting</span>
+                <span className="text-sm">Most Rage Inducing</span>
+              </div>
+              <Button variant="secondary" className="bg-gray-700">
+                Submit
+              </Button>
+            </div>
+          </div>
+
+          {/* Actors and Watch On */}
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-xl font-semibold mb-4">Actors Seen before</h2>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Image
+                    src="/other/actor2.webp"
+                    width={50}
+                    height={50}
+                    alt="Rob McElhenney"
+                    className="rounded-md"
+                  />
+                  <span>Rob McElhenney</span>
+                  <span className="ml-auto">4</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Image
+                    src="/other/actor3.webp"
+                    width={50}
+                    height={50}
+                    alt="Tim Bryant"
+                    className="rounded-md"
+                  />
+                  <span>Tim Bryant</span>
+                  <span className="ml-auto">1</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-semibold mb-4">Watch on</h2>
+              <div className="flex flex-wrap gap-2">
+                <Image
+                  src="/icons/netflix.png"
+                  width={40}
+                  height={40}
+                  alt="Netflix"
+                  className="rounded-md"
+                />
+                <Image
+                  src="/icons/hbo.jpeg"
+                  width={40}
+                  height={40}
+                  alt="HBO Max"
+                  className="rounded-md"
+                />
+                <Image
+                  src="/icons/hulu.svg"
+                  width={40}
+                  height={40}
+                  alt="FX"
+                  className="rounded-md"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
             <h1 className='text-2xl font-semibold lg:ml-28 text-gray-200 m-8 ml-4'><span className='text-[#F5C518] '>•</span> Series Cast</h1>
             <SeriesCast/>
 
@@ -165,9 +303,10 @@ const shows: Show[] = [
     </div>
             
       <Reviews reviews={reviews} title='• User Reviews' />
-      <div className=" flex justify-center">
-
+      <div className=" flex justify-center #comment">
+      <section id="comments">
      <CommentSys/>
+     </section>
       </div>
 
             <h1 className=' text-2xl font-semibold text-gray-200 m-8 ml-4'><span className='text-[#F5C518] '>•</span> Media </h1>

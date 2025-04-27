@@ -129,7 +129,7 @@ export default function SeriesCast() {
           {castMembers.map((member, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-[220px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-amber-400/20 transition-shadow duration-300 mr-4"
+              className="flex-shrink-0 w-[220px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-amber-400/20 transition-shadow duration-300 relative mr-4"
             >
               <div className="relative h-64 w-full">
                 <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
@@ -139,6 +139,11 @@ export default function SeriesCast() {
                 <p className="text-gray-300">{member.character}</p>
                 <p className="text-gray-400 text-sm mt-2">{member.episodes} Episodes</p>
               </div>
+                  { index<=1 &&
+                  <div className="absolute right-2 bottom-1 rounded-lg h-8 w-8 flex justify-center items-center bg-amber-400">{index*2+1} </div>
+
+                  }
+              
             </div>
           ))}
         </div>

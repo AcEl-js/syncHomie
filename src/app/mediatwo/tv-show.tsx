@@ -169,7 +169,7 @@ export default function TvShowDetails() {
         </div>
 
         {/* Content */}
-        <div className="md:w-3/4 p-4">
+        <div className="md:w-3/4  p-4">
           <div className="flex flex-col md:flex-row justify-between">
             <div>
               <h1 className="text-2xl md:text-3xl font-bold">
@@ -183,6 +183,14 @@ export default function TvShowDetails() {
               <div className="flex items-center gap-2 text-sm text-gray-300 mt-1">
                 <span className="bg-gray-700 px-2 py-0.5 rounded">TV-MA</span>
                 <span>Comedy</span>
+                <div>
+              <div className="text-sm text-gray-300 mr-4">
+                Keywords:{" "}
+                <span className="text-gray-400">
+                  sitcom, sibling relationship, parent child relationship, crude humor, slacker
+                </span>
+              </div>
+            </div>
               </div>
               <div className="flex items-center gap-4 mt-2 text-sm text-gray-300">
                 <span>70 hours</span>
@@ -233,8 +241,17 @@ export default function TvShowDetails() {
             </div>
           
 
-          <div className="flex items-center gap-4 mt-2">
+          <div className="flex items-center gap-4 mt-2 ">
             <UserScore emotion={emotions.find(e => e.name === emotion)?.emoji}  />
+            <div className="bg-[#f6c700] max-md:hidden rounded-sm pr-2 font-bold flex text-black gap-2 items-center">
+            <img className="h-9" src="/icons/imdb.png" alt="IMDb" />
+            <h1>56%</h1>
+          </div>
+
+          <div className="relative font-bold max-md:hidden">
+            <img className="h-11" src="/icons/Rotten_tomatoes.svg" alt="Rotten Tomatoes" />
+            <h1 className="absolute top-4 left-2 text-sm text-black">86%</h1>
+          </div>
             <div className="ml-4">
             <div className="bg-gray-800 px-4 py-2 rounded-full flex items-center min-w-48">
               {(rating === null || isEditingRating) && !showEmotions ? (
@@ -331,6 +348,7 @@ export default function TvShowDetails() {
 
           <div className="mt-6 flex items-center gap-4">
             <div className="flex items-center gap-2">
+            <a href="#comments">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -339,11 +357,14 @@ export default function TvShowDetails() {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
+                 
                     <p>Comments</p>
+                  
+                   
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-
+              </a>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -369,15 +390,6 @@ export default function TvShowDetails() {
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-            </div>
-
-            <div>
-              <div className="text-sm text-gray-300">
-                Keywords:{" "}
-                <span className="text-gray-400">
-                  sitcom, sibling relationship, parent child relationship, crude humor, slacker
-                </span>
-              </div>
             </div>
           </div>
         </div>
