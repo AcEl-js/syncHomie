@@ -113,7 +113,7 @@ export default function SeriesCast() {
 
   return (
     <div className=" text-white  py-8 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="py-8 mx-auto max-w-7xl">
         <div
           ref={scrollContainerRef}
           className="flex overflow-x-auto pb-6 scrollbar-hide cursor-grab"
@@ -132,7 +132,8 @@ export default function SeriesCast() {
               className="flex-shrink-0 w-[220px] bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-amber-400/20 transition-shadow duration-300 relative mr-4"
             >
               <div className="relative h-64 w-full">
-                <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
+                <Image src={member.image || "/placeholder.svg"} alt={member.name} fill         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+ className="object-cover" />
               </div>
               <div className="p-4">
                 <h2 className="font-bold text-lg text-amber-400">{member.name}</h2>

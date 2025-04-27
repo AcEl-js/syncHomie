@@ -175,7 +175,7 @@ const shows: Show[] = [
               <h2 className="text-xl font-semibold mb-4">Actors Seen before</h2>
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <Image
+                  <img
                     src="/other/actor2.webp"
                     width={50}
                     height={50}
@@ -186,7 +186,7 @@ const shows: Show[] = [
                   <span className="ml-auto">4</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Image
+                  <img
                     src="/other/actor3.webp"
                     width={50}
                     height={50}
@@ -202,21 +202,21 @@ const shows: Show[] = [
             <div>
               <h2 className="text-xl font-semibold mb-4">Watch on</h2>
               <div className="flex flex-wrap gap-2">
-                <Image
+                <img
                   src="/icons/netflix.png"
                   width={40}
                   height={40}
                   alt="Netflix"
                   className="rounded-md"
                 />
-                <Image
+                <img
                   src="/icons/hbo.jpeg"
                   width={40}
                   height={40}
                   alt="HBO Max"
                   className="rounded-md"
                 />
-                <Image
+                <img
                   src="/icons/hulu.svg"
                   width={40}
                   height={40}
@@ -248,6 +248,8 @@ const shows: Show[] = [
                   width={192}
                   height={288}
                   className="rounded-md w-full h-auto"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
                 />
               </div>
 

@@ -143,6 +143,8 @@ export default function TvShowDetails() {
               src="/movies/always.png"
               alt="It's Always Sunny in Philadelphia Poster"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
               className="object-cover rounded-md"
               priority
             />
@@ -249,7 +251,7 @@ export default function TvShowDetails() {
           </div>
 
           <div className="relative font-bold max-md:hidden">
-            <img className="h-11" src="/icons/Rotten_tomatoes.svg" alt="Rotten Tomatoes" />
+            <img className="h-11" src="/icons/Rotten_tomatoes.png" alt="Rotten Tomatoes" />
             <h1 className="absolute top-4 left-2 text-sm text-black">86%</h1>
           </div>
             <div className="ml-4">
