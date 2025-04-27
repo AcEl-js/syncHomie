@@ -251,7 +251,7 @@ export default function TvShowDetails() {
           </div>
 
           <div className="relative font-bold max-md:hidden">
-            <img className="h-11" src="/icons/Rotten_tomatoes.png" alt="Rotten Tomatoes" />
+            <img className="h-11" src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Rotten_Tomatoes.svg" alt="Rotten Tomatoes" />
             <h1 className="absolute top-4 left-2 text-sm text-black">86%</h1>
           </div>
             <div className="ml-4">
