@@ -10,7 +10,7 @@ import CommentSys from "@/components/CommentSys";
 import SeriesCast from "./series-cast";
 import { useDragScroll } from '@/components/dragScrolling';
 import { useState } from "react";
-import { Star } from "lucide-react";
+import { MessageSquare, Share2, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/footer";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -19,6 +19,7 @@ import { Progress } from "@/components/ui/progress"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import StarRating from "./rating";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip";
 
 interface Show {
     title: string
@@ -99,13 +100,14 @@ const shows: Show[] = [
   return (
     <div className=" min-w-full">
         <Navbar/>
-        <div className=" sm:mt-24 mt-44 mx-auto bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E5498821] to-[#A33B3B00]   rounded-lg overflow-hidden shadow-xl text-white">
+        <div className=" sm:mt-24  mx-auto bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E5498821] to-[#A33B3B00]   rounded-lg overflow-hidden shadow-xl text-white">
         
 
           
            
             <TvShowDetails/>
-            <div className="grid grid-cols-1 min-[900px]:grid-cols-[1fr_2fr_1fr] lg:justify-self-center xl:w-[1250px]  py-8 gap-6 p-4 rounded-lg mb-8 ">
+            <div className="w-full flex justify-center">
+            <div className="grid grid-cols-1 min-[900px]:grid-cols-[1fr_2fr_1fr] lg:justify-self-center xl:w-[1250px]  justify-self-center py-8 gap-6 p-4 rounded-lg mb-8 ">
           {/* Your Rating */}
           <div className="space-y-4 ">
             <h2 className="text-xl font-semibold">Your Rating</h2>
@@ -199,7 +201,8 @@ const shows: Show[] = [
               </div>
             </div>
 
-            <div>
+            <div className="grid grid-cols-2 items-end">
+              <div>
               <h2 className="text-xl font-semibold mb-4">Watch on</h2>
               <div className="flex flex-wrap gap-2">
                 <img
@@ -225,8 +228,47 @@ const shows: Show[] = [
                 />
               </div>
             </div>
+            <div>
+            <div className="flex  gap-2  justify-center">
+            <a href="#comments">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="ghost" size="icon" className="bg-purple-500/10 text-purple-500">
+                      <MessageSquare className="h-5 w-5" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                 
+                    <p>Comments</p>
+                  
+                   
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              </a>
+             
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="ghost" size="icon" className="bg-purple-500/10 text-purple-500">
+                      <Share2 className="h-5 w-5" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Share</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            </div>
+            </div>
+
+            
           </div>
         </div>
+            </div>
+            
             <h1 className='text-2xl font-semibold lg:ml-28 text-gray-200 m-8 ml-4'><span className='text-[#F5C518] '>•</span> Series Cast</h1>
             <SeriesCast/>
 
@@ -248,7 +290,6 @@ const shows: Show[] = [
                   width={192}
                   height={288}
                   className="rounded-md w-full h-auto"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 
                 />
               </div>

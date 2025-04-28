@@ -149,25 +149,7 @@ export default function TvShowDetails() {
               priority
             />
           </div>
-          <div className="mt-4 rounded-md p-2">
-            <div className="text-sm font-semibold mb-2">Available on:</div>
-            <div className='flex gap-2 watch-item2'>
-                <div className=' transition-transform duration-300 hover:scale-110  hover:brightness-110 cursor-pointer'>
-                    <img 
-                    src="./icons/netflix.png" 
-                    alt="Netflix" 
-                    className="h-11 rounded-full" 
-                    />
-                    </div>
-                    <div className=' transition-transform duration-300 hover:scale-110  hover:brightness-110 cursor-pointer'>
-                    <img 
-                    src="./icons/hbo.jpeg" 
-                    alt="HBO" 
-                    className="h-11 rounded-full transition-transform duration-300 hover:scale-125 hover:brightness-110 cursor-pointer" 
-                    />
-                </div>
-            </div>
-          </div>
+          
         </div>
 
         {/* Content */}
@@ -349,50 +331,7 @@ export default function TvShowDetails() {
           </div>
 
           <div className="mt-6 flex items-center gap-4">
-            <div className="flex items-center gap-2">
-            <a href="#comments">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="bg-purple-500/10 text-purple-500">
-                      <MessageSquare className="h-5 w-5" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                 
-                    <p>Comments</p>
-                  
-                   
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              </a>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="bg-purple-500/10 text-purple-500">
-                      <FileText className="h-5 w-5" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Reviews</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="bg-purple-500/10 text-purple-500">
-                      <Share2 className="h-5 w-5" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Share</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
+          
           </div>
         </div>
       </div>
