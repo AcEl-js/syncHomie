@@ -10,7 +10,7 @@ import CommentSys from "@/components/CommentSys";
 import SeriesCast from "./series-cast";
 import { useDragScroll } from '@/components/dragScrolling';
 import { useState } from "react";
-import { MessageSquare, Share2, Star } from "lucide-react";
+import { MessageSquare, Share2, Star, Tv } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/footer";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -20,15 +20,62 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import StarRating from "./rating";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip";
+import Sidebar from "./Sidebar";
+import EpisodeProgressTracker from "./episode-tracker";
 
 interface Show {
     title: string
     rating: number
     image: string
+}
+
+// Sample cast data for the new design
+const castMembers = [
+  {
+    name: "Charlie Day",
+    character: "Charlie Kelly",
+    image: "/other/actor1.webp"
+  },
+  {
+    name: "Glenn Howerton",
+    character: "Dennis Reynolds",
+    image: "/other/actor2.webp"
+  },
+  {
+    name: "Rob McElhenney",
+    character: "Mac",
+    image: "/other/actor3.webp"
+  },
+  {
+    name: "Kaitlin Olson",
+    character: "Dee Reynolds",
+    image: "/other/actor4.webp"
+  },
+  {
+    name: "Danny DeVito",
+    character: "Frank Reynolds",
+    image: "/other/actor5.webp"
+  },
+  {
+    name: "Mary Elizabeth Ellis",
+    character: "The Waitress",
+    image: "/other/actor1.webp"
+  },
+  {
+    name: "Artemis Pebdani",
+    character: "Artemis",
+    image: "/other/actor2.webp"
+  },
+  {
+    name: "Lynne Marie Stewart",
+    character: "Charlie's Mom",
+    image: "/other/actor3.webp"
   }
+];
 
 export default function App() {
     const [showEpisodeList, setShowEpisodeList] = useState(false)
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
     
 const shows: Show[] = [
@@ -94,66 +141,36 @@ const shows: Show[] = [
         }
       ];
     const { containerRef, dragHandlers } = useDragScroll();
+    
       
 
   
   return (
-    <div className=" min-w-full">
-        <Navbar/>
-        <div className=" sm:mt-24  mx-auto bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E5498821] to-[#A33B3B00]   rounded-lg overflow-hidden shadow-xl text-white">
-        
-
-          
-           
+    <div className="min-w-full">
+     
+      <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+        {/* Main content with proper margin to account for sidebar */}
+        <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16" : "ml-64"} relative z-10`}>
+          <div className=" mx-aufto  bg-gradient-to-br from-gray-900 via-black to-gray-800 bg-fixed rounded-lg overflow-hidden shadow-xl text-white">
+            
             <TvShowDetails/>
-            <div className="w-full flex justify-center">
-            <div className="grid grid-cols-1 min-[900px]:grid-cols-[1fr_2fr_1fr] lg:justify-self-center xl:w-[1250px]  justify-self-center py-8 gap-6 p-4 rounded-lg mb-8 ">
+            <div className="flex justify-center">
+            <div className="grid w-full grid-cols-1 min-[900px]:grid-cols-[1fr_2fr_1fr] lg:justify-self-center   justify-self-center py-8 gap-6 p-4 rounded-lg mb-8 ">
           {/* Your Rating */}
           <div className="space-y-4 ">
-            <h2 className="text-xl font-semibold">Your Rating</h2>
-            <div className="flex items-center gap-3">
-              <div className="relative w-16 h-16">
-                <div className="absolute inset-0 rounded-full border-4 border-green-500"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-lg font-bold">
-                    4/5
-                  </span>
-                </div>
-              </div>
-              <div className="text-sm">
-                <div>User</div>
-                <div>Score</div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-            
-              <div className="flex">
-                
-              <div>
-                
-                <StarRating rating={3.5} />
-              </div>
-              </div>
-            </div>
+           
+              
+           
 
             <div>
-              <Button variant="outline" className="flex text-black items-center gap-2 w-full justify-center">
-                <Plus size={16} />
-                <span>Add to Watchlist</span>
-                <Eye size={16} />
-              </Button>
-
-              <div className="flex items-center gap-2 mt-2 justify-between">
-                <span className="text-sm">Add to Custom List</span>
-                <Bell size={16} className="text-yellow-500" />
-              </div>
+              
+              <EpisodeProgressTracker/>
             </div>
 
             <div className="mt-4">
-              <div className="text-sm mb-2"> Seen 16/20 episodes 1 hour remaining</div>
-              <Progress value={75} className="h-2 bg-gray-700 [&>div]:bg-yellow-500" />
-            </div>
+
+          </div>
+
           </div>
 
           {/* Your Review */}
@@ -161,10 +178,7 @@ const shows: Show[] = [
             <h2 className="text-xl font-semibold mb-4">Your Review</h2>
             <Textarea placeholder="Write your review here..." className="bg-gray-800 border-gray-700 h-40" />
             <div className="flex justify-between mt-2">
-              <div className="flex items-center gap-2">
-                <span className="text-sm">Most Interesting</span>
-                <span className="text-sm">Most Rage Inducing</span>
-              </div>
+            
               <Button variant="secondary" className="bg-gray-700">
                 Submit
               </Button>
@@ -174,32 +188,65 @@ const shows: Show[] = [
           {/* Actors and Watch On */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-xl font-semibold mb-4">Actors Seen before</h2>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <img
-                    src="/other/actor2.webp"
-                    width={50}
-                    height={50}
-                    alt="Rob McElhenney"
-                    className="rounded-md"
-                  />
-                  <span>Rob McElhenney</span>
-                  <span className="ml-auto">4</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <img
-                    src="/other/actor3.webp"
+        <h2 className="text-xl font-semibold mb-4">Actors Seen Before</h2>
+        <div className="space-y-3">
+          {/* Rob McElhenney */}
+          <div className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg">
+            <img
+               src="/other/actor3.webp"
                     width={50}
                     height={50}
                     alt="Tim Bryant"
                     className="rounded-md"
-                  />
-                  <span>Tim Bryant</span>
-                  <span className="ml-auto">1</span>
+            />
+            <div className="flex-1">
+              <div className="font-medium">Rob McElhenney</div>
+              <div className="flex items-center gap-4 mt-2">
+                <div className="flex items-center gap-1 text-sm text-gray-300">
+                  <Tv className="w-4 h-4 text-orange-500" />
+                  <span>4</span>
+                </div>
+                <div className="flex items-center gap-1 text-sm text-gray-300">
+                  <Eye className="w-4 h-4 text-blue-500" />
+                  <span>Yes</span>
+                </div>
+                <div className="flex items-center gap-1 text-sm text-gray-300">
+                  <Star className="w-4 h-4 text-yellow-500" />
+                  <span>8.5</span>
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Tim Bryant */}
+          <div className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg">
+            <img
+              src="/other/actor2.webp"
+                    width={50}
+                    height={50}
+                    alt="Tim Bryant"
+                    className="rounded-md"
+            />
+            <div className="flex-1">
+              <div className="font-medium">Tim Bryant</div>
+              <div className="flex items-center gap-4 mt-2">
+                <div className="flex items-center gap-1 text-sm text-gray-300">
+                  <Tv className="w-4 h-4 text-orange-500" />
+                  <span>1</span>
+                </div>
+                <div className="flex items-center gap-1 text-sm text-gray-300">
+                  <Eye className="w-4 h-4 text-blue-500" />
+                  <span>No</span>
+                </div>
+                <div className="flex items-center gap-1 text-sm text-gray-300">
+                  <Star className="w-4 h-4 text-yellow-500" />
+                  <span>—</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
             <div className="grid grid-cols-2 items-end">
               <div>
@@ -269,11 +316,41 @@ const shows: Show[] = [
         </div>
             </div>
             
-            <h1 className='text-2xl font-semibold lg:ml-28 text-gray-200 m-8 ml-4'><span className='text-[#F5C518] '>•</span> Series Cast</h1>
-            <SeriesCast/>
+            {/* Updated Cast Section */}
+          <div className="w-full px-4 mb-8">
+              <h1 className='text-2xl font-semibold text-gray-200 mb-8'>
+                <span className='text-[#F5C518]'>•</span> Cast
+              </h1>
+              
+              {/* New Cast Grid Design */}
+              <div className=" mx-auto">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+                  {castMembers.map((member, index) => (
+                    <div key={index} className="group cursor-pointer">
+                      <div className="relative overflow-hidden rounded-lg aspect-[3/4] mb-3">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+                      </div>
+                      <div className="text-center space-y-1">
+                        <h3 className="text-sm font-medium text-white truncate group-hover:text-[#F5C518] transition-colors">
+                          {member.name}
+                        </h3>
+                        <p className="text-xs text-gray-400 truncate">
+                          {member.character}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             <div className="text-white">
-      <div className="container mx-auto px-4 py-8">
+      <div className=" mx-auto px-4 py-8">
         {/* Show Details Section */}
         <div className=" rounded-lg overflow-hidden">
           <div className="p-6">
@@ -312,14 +389,36 @@ const shows: Show[] = [
                   until he can no longer contain his rage.
                 </p>
 
-                <Button
-                  variant="outline"
-                  className="bg-zinc-800 hover:bg-zinc-700 border-zinc-700"
-                  onClick={() => setShowEpisodeList(!showEpisodeList)}
-                >
-                  <span className="mr-2">📋</span> View Episode List
-                </Button>
+                {/* Episode Progress Bar */}
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-4">
+                      <span className="text-sm text-gray-300">Progress: 5 | 8 | 12</span>
+                      <span className="text-sm text-gray-400">Next Episode on 04/18/2026</span>
+                    </div>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div className="bg-[#F5C518] h-2 rounded-full relative" style={{width: '62.5%'}}>
+                      <div className="absolute right-0 top-0 h-full w-1 bg-gray-400 rounded-r-full"></div>
+                    </div>
+                  </div>
+                  <div className="flex justify-between text-xs text-gray-400 mt-1">
+                    <span>Current: Episode 5</span>
+                    <span>Released: 8/12</span>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            {/* View Episode List Button - Moved down */}
+            <div className="mt-6">
+              <Button
+                variant="outline"
+                className="bg-zinc-800 hover:bg-zinc-700 border-zinc-700"
+                onClick={() => setShowEpisodeList(!showEpisodeList)}
+              >
+                <span className="mr-2">📋</span> View Episode List
+              </Button>
             </div>
           </div>
         </div>
@@ -336,7 +435,7 @@ const shows: Show[] = [
             
       <Reviews reviews={reviews} title='• User Reviews' />
       <div className=" flex justify-center #comment">
-      <section id="comments">
+      <section className="w-full mx-4" id="comments">
      <CommentSys/>
      </section>
       </div>
@@ -427,8 +526,8 @@ const shows: Show[] = [
     </div>
 
     <Footer/>
-            </div>
+          </div>
         </div>
-    
+    </div>
   )
 }

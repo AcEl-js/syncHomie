@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import UserScore from "./user-score"
 import { Switch } from "@/components/ui/switch"
+import MediaPageWatchList from "./MediaPageWatchList "
 
 
 interface Emotion{
@@ -134,7 +135,7 @@ export default function TvShowDetails() {
   
 
   return (
-    <div className="max-w-7xl mx-auto text-white rounded-lg overflow-hidden shadow-xl">
+    <div className=" mx-auto text-white rounded-lg overflow-hidden shadow-xl">
       <div className="flex flex-col md:flex-row">
         {/* Poster */}
         <div className="md:w-1/4 p-4">
@@ -187,15 +188,9 @@ export default function TvShowDetails() {
 
             <div className="mt-4 md:mt-0">
               <div className="flex items-center gap-2">
-                <Button variant="outline" className="flex items-center gap-2">
-                  <span className="text-black">Add to Watchlist</span>
-                  <div className="w-6 h-6 flex items-center justify-center">
-                    <svg viewBox="0 0 24 24" fill="black" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                      <circle cx="12" cy="12" r="3" />
-                    </svg>
-                  </div>
-                </Button>
+                
+                  <MediaPageWatchList/>
+                  
               </div>
               <div className="flex items-center gap-2 mt-2">
                 <Button variant="ghost" size="sm" className="text-xs">

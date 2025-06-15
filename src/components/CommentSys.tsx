@@ -391,13 +391,13 @@ export default function CommentSys() {
   }
 
   if (isLoading) {
-    return <div className="min-h-screen w-[98vh] m-11 bg-gray-900 text-gray-100 flex items-center justify-center  rounded-lg">
+    return <div className="min-h-screen flex justify-center items-center text-center text-gray-100 w-full px-5  bg-white/10 backdrop-blur-md rounded-md py-4">
       Loading comments...
     </div>;
   }
 
   return (
-    <div className="min-h-screen text-gray-100 w-[95vw]  bg-gray-900 rounded-md py-4">
+    <div className="min-h-screen text-gray-100 w-full px-5  bg-white/10 backdrop-blur-md rounded-md py-4">
                 <h1 className=' text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Comment</h1>
 
     <div className=" mx-auto py-8 px-4">
