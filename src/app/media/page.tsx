@@ -1,4 +1,4 @@
-'use clinet'
+'use client'
 import Sidebar from '@/components/Sidebar';
 import React, { useState } from 'react';
 import EpisodeList from './eposode-lists';

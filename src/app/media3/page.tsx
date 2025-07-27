@@ -152,7 +152,7 @@ const shows: Show[] = [
               <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
 
         {/* Main content with proper margin to account for sidebar */}
-        <div className=" sm:mt-24  mx-auto bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E5498821] to-[#A33B3B00]   rounded-lg overflow-hidden shadow-xl text-white">
+        <div className=" mx-auto bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E5498821] to-[#A33B3B00]   rounded-lg overflow-hidden shadow-xl text-white">
           <div className=" mx-aufto  bg-gradient-to-br from-gray-900 via-black to-gray-800 bg-fixed rounded-lg overflow-hidden shadow-xl text-white">
             
             <TvShowDetails/>
