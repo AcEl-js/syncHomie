@@ -3,7 +3,7 @@ import { Progress } from "@/components/ui/progress"
 import Sidebar from "@/components/Sidebar"
 import { MediaCard } from "./MediaCard"
 import {NavButton } from "./NavButton"
-import {MiniSidebar} from "./Sidebar"
+import {MiniSidebar} from "./MiniSidebar"
 import "./style.css"
 
 import { Button } from "@/components/ui/button"
