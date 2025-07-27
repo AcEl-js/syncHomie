@@ -6,7 +6,7 @@ import TrendingMovies from '@/components/TrendingMovies';
 import { Button } from "@/components/ui/button"
 import FeedItems from './feedItems';
 import Entries from './entries';
-import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
 
 type TimeRange = 'All Time' | 'Last 24h' | '7 Days' | '30 Days';
 type Category = {
@@ -124,11 +124,12 @@ const Page = () => {
       { name: 'Sport', entries: 108, text: 'text-[#CC6675]', color: 'bg-[#CC6675]' },
     ];
   
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
     const totalBookmarks = categories.reduce((sum, cat) => sum + cat.entries, 0);
     return (
       <div>
-        <Navbar/>
-        <div className="min-h-screen bg-black text-white p-8 mt-16">
+         <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+        <div className="min-h-screen bg-black text-white p-8 ">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className=" text-5xl font-extrabold mb-12 text-center flex justify-center items-center gap-4">

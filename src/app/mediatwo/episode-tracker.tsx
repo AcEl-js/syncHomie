@@ -10,11 +10,12 @@ const EpisodeProgressTracker = () => {
   const [hoverRating, setHoverRating] = useState(0);
   const totalEpisodes = 20;
   const watchedEpisodes = 16;
-  const [watchStatus, setWatchStatus] = useState(null);
+  const [watchStatus, setWatchStatus] = useState("watching"); // Can be: "watching", "completed", "dropped", "on-hold", "plan-to-watch"
   const [showDropdown, setShowDropdown] = useState(false);
   const [showEpisodeTracker, setShowEpisodeTracker] = useState(false);
   const [currentSeason, setCurrentSeason] = useState(1);
   const [currentEpisode, setCurrentEpisode] = useState(1);
+  const [showEpisodeTooltip, setShowEpisodeTooltip] = useState(false);
 
   
   useEffect(() => {
@@ -24,20 +25,91 @@ const EpisodeProgressTracker = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const getEpisodeStatus = (episodeIndex:number) => {
+  const getEpisodeStatus = (episodeIndex: number) => {
+    if (watchStatus === "completed") {
+      return 'completed';
+    }
+    
+    if (watchStatus === "dropped") {
+      if (episodeIndex < watchedEpisodes) return 'watched-dropped';
+      return 'dropped';
+    }
+    
+    if (watchStatus === "on-hold") {
+      if (episodeIndex < watchedEpisodes) return 'watched';
+      if (episodeIndex === watchedEpisodes) return 'on-hold';
+      return 'unwatched';
+    }
+    
+    // Default "watching" or "plan-to-watch" behavior
     if (episodeIndex < watchedEpisodes) return 'watched';
-    if (episodeIndex === watchedEpisodes) return 'current';
+    if (episodeIndex === watchedEpisodes && watchStatus === "watching") return 'current';
     return 'unwatched';
   };
 
-  const getEpisodeColor = (status:string) => {
+  const getEpisodeColor = (status: string) => {
     switch (status) {
-      case 'watched': return 'bg-green-500';
+      case 'watched': return 'bg-blue-500'; // Changed from green to blue
+      case 'watched-dropped': return 'bg-blue-400 opacity-60'; // Greyed out blue for dropped shows
       case 'current': return 'bg-yellow-500';
+      case 'completed': return 'bg-emerald-500'; // Different shade for completed
+      case 'dropped': return 'bg-red-500'; // Red for dropped episodes
+      case 'on-hold': return 'bg-amber-500'; // Amber for on-hold
       default: return 'bg-gray-600';
     }
   };
 
+  const getProgressText = () => {
+    switch (watchStatus) {
+      case "completed":
+        return `Completed ${totalEpisodes}/${totalEpisodes} episodes`;
+      case "dropped":
+        return `Dropped at ${watchedEpisodes}/${totalEpisodes} episodes`;
+      case "on-hold":
+        return `On hold at ${watchedEpisodes}/${totalEpisodes} episodes`;
+      default:
+        return `Seen ${watchedEpisodes}/${totalEpisodes} episodes • 1 hour remaining`;
+    }
+  };
+
+  const getProgressPercentage = () => {
+    if (watchStatus === "completed") return 100;
+    return Math.round((watchedEpisodes / totalEpisodes) * 100);
+  };
+
+  // Callback to receive watch status from MediaPageWatchList
+  const handleWatchStatusChange = (status: string) => {
+    setWatchStatus(status);
+  };
+ 
+  const [episodeRatings, setEpisodeRatings] = useState<{[key: number]: number}>({
+    1: 4, 2: 4, 3: 5, 4: 4, 5: 5, 6: 3, 7: 4, 8: 5, 9: 4, 10: 4,
+    11: 5, 12: 4, 13: 3, 14: 4, 15: 5, 16: 4
+  });
+
+  const getRatedEpisodesCount = () => {
+    return Object.keys(episodeRatings).length;
+  };
+
+  const getEpisodeAverage = () => {
+    const ratings = Object.values(episodeRatings);
+    if (ratings.length === 0) return 0;
+    const sum = ratings.reduce((acc, rating) => acc + rating, 0);
+    return (sum / ratings.length).toFixed(1);
+  };
+
+  // Sample friend activity data - showing only one
+  const friendActivity = [
+    {
+      id: 1,
+      name: "Alex Chen",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
+      watchDate: "2 days ago",
+      rating: 5,
+      review: "Absolutely incredible episode! The character development was phenomenal and the plot twists kept me on the edge of my seat."
+    }
+  ];
+  
   return (
     <div className="text-white rounded-lg ">
       {/* Header */}
@@ -46,12 +118,32 @@ const EpisodeProgressTracker = () => {
       {/* Rating Circle */}
       <div className="flex  mb-4 justify-center items-center">
         <div className="relative w-16 h-16">
-          <div className="w-16 h-16 rounded-full border-4 border-green-500 flex items-center justify-center">
+          <div className="w-16 h-16 rounded-full border-4 border-blue-500 flex items-center justify-center">
             <span className="text-xl font-bold">{userRating}/5</span>
           </div>
         </div>
         <div className="ml-4">
         </div>
+        
+        {/* Episode Average */}
+        <div className="mr-4 text-center">
+          <div 
+            className="relative"
+            onMouseEnter={() => setShowEpisodeTooltip(true)}
+            onMouseLeave={() => setShowEpisodeTooltip(false)}
+          >
+            <div className="text-lg font-semibold text-blue-400 cursor-help">
+              Ep. Avg: {getEpisodeAverage()}/5
+            </div>
+            {showEpisodeTooltip && (
+              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-100 transition-opacity whitespace-nowrap z-20 border border-gray-700">
+                Average from {getRatedEpisodesCount()} episodes individually rated
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+              </div>
+            )}
+          </div>
+        </div>
+        
         <div className="flex mb-6 ">
         {[1, 2, 3, 4, 5].map((star) => (
           <button
@@ -95,18 +187,15 @@ const EpisodeProgressTracker = () => {
       
             <div>
               
-              <MediaPageWatchList/>
+              <MediaPageWatchList onStatusChange={handleWatchStatusChange} />
 
-              <div className="flex items-center gap-2 mt-2 justify-between">
-                <span className="text-sm">Add to Custom List</span>
-                <Bell size={16} className="text-yellow-500" />
-              </div>
+             
             </div>
 
       {/* Episode Progress */}
       <div className="mb-4">
         <div className="text-sm mb-3 text-gray-300">
-          Seen {watchedEpisodes}/{totalEpisodes} episodes • 1 hour remaining
+          {getProgressText()}
         </div>
         
         {/* Single Line Episode Tracker */}
@@ -130,7 +219,8 @@ const EpisodeProgressTracker = () => {
                     index === totalEpisodes - 1 ? 'rounded-r-full' : ''
                   }`}
                   style={{
-                    width: status === 'watched' ? '100%' : status === 'current' ? '60%' : '100%',
+                    width: status === 'watched' || status === 'completed' || status === 'dropped' || status === 'watched-dropped' ? '100%' : 
+                           status === 'current' ? '60%' : '100%',
                     backgroundColor: status === 'unwatched' ? 'rgb(75, 85, 99)' : undefined
                   }}
                 />
@@ -138,7 +228,11 @@ const EpisodeProgressTracker = () => {
                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
                   Episode {index + 1}
                   {status === 'watched' && ' ✓'}
+                  {status === 'watched-dropped' && ' ✓ (dropped)'}
                   {status === 'current' && ' (watching)'}
+                  {status === 'completed' && ' ✓ (completed)'}
+                  {status === 'dropped' && ' (dropped)'}
+                  {status === 'on-hold' && ' (on hold)'}
                 </div>
               </div>
             );
@@ -147,11 +241,29 @@ const EpisodeProgressTracker = () => {
         
         {/* Progress Summary */}
         <div className="mt-2 flex justify-between text-xs text-gray-400">
-          <span>Progress: {watchedEpisodes}/{totalEpisodes}</span>
-          <span>{Math.round((watchedEpisodes / totalEpisodes) * 100)}%</span>
+          <span>Progress: {watchStatus === "completed" ? totalEpisodes : watchedEpisodes}/{totalEpisodes}</span>
+          <span>{getProgressPercentage()}%</span>
         </div>
+
+        {/* Status Indicator */}
+        {watchStatus !== "watching" && (
+          <div className="mt-2 text-xs">
+            <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+              watchStatus === "completed" ? "bg-emerald-900/50 text-emerald-300" :
+              watchStatus === "dropped" ? "bg-red-900/50 text-red-300" :
+              watchStatus === "on-hold" ? "bg-amber-900/50 text-amber-300" :
+              "bg-gray-900/50 text-gray-300"
+            }`}>
+              {watchStatus === "completed" && "✓ Completed"}
+              {watchStatus === "dropped" && "✗ Dropped"}
+              {watchStatus === "on-hold" && "⏸ On Hold"}
+              {watchStatus === "plan-to-watch" && "📅 Plan to Watch"}
+            </span>
+          </div>
+        )}
       </div>
 
+      
       <style jsx>{`
         @keyframes fillIn {
           from {
@@ -171,7 +283,7 @@ const EpisodeProgressTracker = () => {
           }
           to {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(1);
           }
         }
         

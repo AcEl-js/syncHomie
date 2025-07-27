@@ -1,7 +1,8 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import { ArrowLeft } from 'lucide-react';
 import Entries from '../releases/entries';
-import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
 import FeedItems from '../releases/feedItems';
 import { Switch } from "@/components/ui/switch"
 import "../discover/style.css"
@@ -43,10 +44,11 @@ function App() {
         { genre: 'Fantasy', score: 12 },
         { genre: 'Adventure', score: 12 }
       ];
+      const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   return (
     <div className='bg-black'>
-      <Navbar/>
-      <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FEC97B21] to-[#A33B3B00]flex flex-col items-center text-white min-h-screen p-4 mt-16 ">
+       <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+      <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FEC97B21] to-[#A33B3B00]flex flex-col items-center text-white min-h-screen p-4  ">
         
         
 

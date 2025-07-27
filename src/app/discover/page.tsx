@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import TriviaTitles from '../trivia/triviaTitles';
-import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
 import { NavButton } from '../bookmarks/NavButton';
 import { ArrowLeft, Search, SlidersHorizontal } from 'lucide-react';
 import { useDragScroll } from '@/components/dragScrolling';
@@ -61,18 +61,20 @@ const navItems = [
 ]
 
 const App = () => {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const { containerRef, dragHandlers } = useDragScroll();
   const [showEnhancedFilter, setShowEnhancedFilter] = useState(false);
   
   return (
     <div className='text-white bg-black'>
-      <Navbar/>
+      <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+   
       
       {/* Enhanced filter section */}
      
       
       {/* Category Nav */}
-      <nav className="p-4 md:pt-3 border-b border-zinc-800 bg-black fixed w-screen top-[72px] z-40">
+      <nav className="p-4 md:pt-3 border-b border-zinc-800 bg-black fixed w-screen top-[0px] z-40">
         <div className="max-w-7xl mx-auto flex items-center">
           <div className="items-center gap-3 mr-14 hidden md:flex">
             <button 

@@ -1,5 +1,5 @@
 "use client"
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Sidebar";
 import TvShowDetails from "./tv-show";
 import Image from "next/image"
 import "./style.css"

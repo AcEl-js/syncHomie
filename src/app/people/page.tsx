@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { ThumbsUp, ThumbsDown, Pencil } from 'lucide-react'
 
-import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
 import  MovieCard  from '@/components/MovieCard';
 import CommentSys from '@/components/CommentSys';
 import { useDragScroll } from '@/components/dragScrolling';
@@ -114,10 +114,11 @@ function App() {
     },
    
   ]
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   return (
     <div>
-        <Navbar/>
-         <div className="min-h-screen bg-black text-white  p-8 max-sm:p-2  mt-12">
+        <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+         <div className="min-h-screen bg-black text-white  p-8 max-sm:p-2  ">
       {/* Actor Profile Header */}
       <header className="p-6 border-b border-gray-800">
         <div className="flex items-center gap-4">

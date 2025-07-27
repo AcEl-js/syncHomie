@@ -24,7 +24,7 @@ export default function EpisodeList() {
         "The guys hire Dee's friend as a promoter for the bar and get more than they bargained for when they discover what's next.",
       rating: "8.9/10",
       votes: "4.8k",
-      status: "Add to list",
+      status: "watched",
     },
     {
       id: 3,
@@ -33,7 +33,7 @@ export default function EpisodeList() {
         "The guys hire Dee's friend as a promoter for the bar and get more than they bargained for when they discover what's next.",
       rating: "8.9/10",
       votes: "4.8k",
-      status: "Add to list",
+      status: "watched",
     },
     {
       id: 4,
@@ -42,7 +42,7 @@ export default function EpisodeList() {
         "The guys hire Dee's friend as a promoter for the bar and get more than they bargained for when they discover what's next.",
       rating: "8.9/10",
       votes: "4.8k",
-      status: "Add to list",
+      status: "watched",
     },
   ]
 

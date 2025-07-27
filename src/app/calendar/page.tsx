@@ -1,9 +1,11 @@
+'use client'
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Import } from 'lucide-react'
 import "./style.css"
 
-import Navbar from "@/components/Navbar"
+import Sidebar from "@/components/Sidebar"
 import { Button } from "@/components/ui/button"
+import { useState } from "react"
 
 interface Show {
   date:string
@@ -69,11 +71,13 @@ export default function StreamingCalendar() {
       platforms: ["./icons/hbo.jpeg","./icons/hulu.jpeg"]
     }
   ]
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   return (
-    <div className="w-full min-h-screen bg-black text-white mt-[65px]">
-       <Navbar />
-       <nav className=" p-4 border-b border-zinc-800 bg-black fixed w-screen top-[72px] z-40">
+    <div className="w-full min-h-screen bg-black text-white lg:ml-24">
+        <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+   
+       <nav className=" p-4 border-b border-zinc-800 bg-black fixed w-screen top-[0px] z-40">
        <div className=" flex flex-row gap-3 p-2 text-center items-center ">
         <h3 className="text-lg">Calendar</h3>
         <span className="text-zinc-400">185 Upcoming Releases</span>
@@ -110,7 +114,7 @@ export default function StreamingCalendar() {
         </div>
       </nav>
 
-      <div className="h-[calc(100vh-200px)] w-full pt-5  lg:ml-8 mt-[180px]">
+      <div className="h-[calc(100vh-200px)] w-full pt-5  lg:ml-8 mt-[100px]">
         <div className="space-y-6">
           <div className="mb-4 bg-black pb-3">
             

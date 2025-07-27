@@ -1,5 +1,6 @@
-import React from 'react';
-import Navbar from '../components/Navbar';
+'use client'
+import React, { useState } from 'react';
+import Sidebar from '../components/Sidebar';
 import Hero from '../components/Hero';
 import Features from '../components/Features';
 import Reviews from '../components/Reviews';
@@ -38,10 +39,14 @@ function App() {
         subtitle: "It's Always Sunny in Philadelphia"
       }
     ];
+
+     const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+     
+    
   return (
     
     <div className="min-h-screen w-screen ">
-      <Navbar />
+         <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
        <div className='first-part w-screen'>
       <Hero />
       <Features />

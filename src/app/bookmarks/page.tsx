@@ -1,9 +1,9 @@
 "use client"
 import { Progress } from "@/components/ui/progress"
-import Navbar from "@/components/Navbar"
+import Sidebar from "@/components/Sidebar"
 import { MediaCard } from "./MediaCard"
 import {NavButton } from "./NavButton"
-import {Sidebar} from "./Sidebar"
+import {MiniSidebar} from "./Sidebar"
 import "./style.css"
 
 import { Button } from "@/components/ui/button"
@@ -49,11 +49,13 @@ const mediaItems = [
 export default function StreamingDashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
     const { containerRef, dragHandlers } = useDragScroll();
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   return (
-    <div className="bg-black w-full  text-white mt-[55px]">
-      <Navbar />
+    <div className="bg-black w-full  text-white ">
+      <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+   
       
-      <nav className="py-2 sm:py-4 border-b border-zinc-800 bg-black fixed top-[72px] z-40 w-screen">
+      <nav className="py-2 sm:py-4 border-b border-zinc-800 bg-black fixed top-[0px] z-40 w-screen">
         <div className="w-full mx-auto flex  items-center justify-between px-4">
           {/* Existing nav items */}
           <div 
@@ -187,7 +189,7 @@ export default function StreamingDashboard() {
 
       <div className="flex flex-col sm:flex-row mt-[140px]">
         <div className="hidden sm:block">
-          <Sidebar />
+          <MiniSidebar />
         </div>
 
         {/* Main Content */}

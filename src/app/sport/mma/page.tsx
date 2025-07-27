@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from 'react';
 import MatchCard from './upcoming-matches';
-import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import MatchDay from '../matchDay';
@@ -136,11 +136,12 @@ const Page = () => {
     }
   };
   
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
     return (
         <div className=' h-screen bg-black'>
-            <Navbar/>
+            <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
 
-            <div className="w-full bg-black text-white mt-16 pt-3">
+            <div className="w-full bg-black text-white pt-3">
               <nav className="  px-4 py-3 mb-5">
                 <NavigationMenu>
                   <NavigationMenuList>

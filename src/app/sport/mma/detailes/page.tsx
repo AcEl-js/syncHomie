@@ -1,6 +1,7 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import { ArrowLeft, MapPin, Calendar, Radius as Stadium, Trophy } from 'lucide-react';
-import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
 import CommentSys from '@/components/CommentSys';
 import FighterComparisonPage from './fighters';
 
@@ -71,11 +72,12 @@ function App() {
   const handleWatch = () => {
     alert('Streaming service selected');
   };
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   return (
    <div>
-    <Navbar/>
-    <div className="min-h-screen  bg-black text-white flex flex-col justify-center items-center mt-16">
+   <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+    <div className="min-h-screen  bg-black text-white flex flex-col justify-center items-center">
       {/* Header */}
       <div className=" p-4 lg:w-[1000px] xl:w-[1354px]">
         <div className="container mx-auto flex mt-11">

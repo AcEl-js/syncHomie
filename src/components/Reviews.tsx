@@ -123,8 +123,8 @@ const Reviews: React.FC<ReviewsProps> = ({ reviews: initialReviews, title }) => 
   };
 
   return (
-    <div className='py-16 px-4'>
-      <div className="mb-16">
+    <div className='py-4 px-4'>
+      <div className="mb-4">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-semibold text-gray-200 mb-8 ml-4">{title}</h2>
           {isScrollable && (

@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Sidebar';
 import React from 'react';
 import EpisodeList from './eposode-lists';
 import "./style.css"
@@ -293,7 +293,7 @@ const App = () => {
             <h1 className=' text-2xl font-semibold text-gray-200 mb-8 ml-4'><span className='text-[#F5C518] '>•</span> Media </h1>
 
 
-            <div className="w-full text-white">
+            <div className="w-full bg-black  text-white">
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex items-center gap-4 mb-6 justify-between">
        

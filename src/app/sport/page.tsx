@@ -1,9 +1,10 @@
 "use client"
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Sidebar';
 import React, { useEffect, useRef, useState } from 'react';
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Link from "next/link"
 import MatchDay from './matchDay';
+import Sidebar from '@/components/Sidebar';
 
 const sports = [
   { name: "MMA", icon: "mma.svg" },
@@ -103,9 +104,10 @@ const Page = () => {
         requestAnimationFrame(animate);
       }
     };
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
     return (
         <div>
-            <Navbar/>
+           <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
             <div className="min-h-screen bg-black text-white">
             {/* Hero Section */}
             <div className="relative h-[300px] w-full">

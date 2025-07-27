@@ -4,9 +4,25 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 
 const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsCollapsed: (v: boolean) => void }) => {
-  
-  
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+  }, [pathname])
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isMobileMenuOpen && !(event.target as Element).closest('.sidebar-container') && !(event.target as Element).closest('.mobile-menu-button')) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isMobileMenuOpen])
 
   // Navigation items data
   const navItems = [
@@ -106,7 +122,8 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
       href: "/mediatwo",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16">
-          <path fill="currentColor" d="M6.5 5.82v4.36c0 .25.274.403.487.273l3.259-1.992a.54.54 0 0 0 0-.922l-3.26-1.991a.32.32 0 0 0-.486.273M4.5 3A2.5 2.5 0 0 0 2 5.5v5A2.5 2.5 0 0 0 4.5 13h7a2.5 2.5 0 0 0 2.5-2.5v-5A2.5 2.5 0 0 0 11.5 3zM3 5.5A1.5 1.5 0 0 1 4.5 4h7A1.5 1.5 0 0 1 13 5.5v5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 10.5z"/></svg>
+          <path fill="currentColor" d="M6.5 5.82v4.36c0 .25.274.403.487.273l3.259-1.992a.54.54 0 0 0 0-.922l-3.26-1.991a.32.32 0 0 0-.486.273M4.5 3A2.5 2.5 0 0 0 2 5.5v5A2.5 2.5 0 0 0 4.5 13h7a2.5 2.5 0 0 0 2.5-2.5v-5A2.5 2.5 0 0 0 11.5 3zM3 5.5A1.5 1.5 0 0 1 4.5 4h7A1.5 1.5 0 0 1 13 5.5v5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 10.5z"/>
+        </svg>
       ),
     },
   ]
@@ -124,28 +141,93 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
 
   return (
     <>
-      {/* Sidebar */}
-     <div
-  className={`fixed left-0 top-0 h-screen text-white z-50 transition-all duration-300 border-r border-gray-800 flex flex-col ${
-    isCollapsed ? "w-16" : "w-64"
-  }`}
+      {/* Mobile Menu Button - Only visible on mobile */}
+      <button
+        onClick={() => {
+          setIsMobileMenuOpen(!isMobileMenuOpen);
+          setIsCollapsed(!isCollapsed)
+        }}
+        
+        className="mobile-menu-button fixed top-4 left-4 z-[60] lg:hidden bg-gray-900 text-white p-3 rounded-lg border border-gray-700 hover:bg-gray-800 transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`transition-transform duration-300 ${isMobileMenuOpen ? "rotate-90" : ""}`}
+        >
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
 
+      {/* Mobile Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" />
+      )}
+
+      {/* Sidebar */}
+      <div
+        className={`sidebar-container fixed left-0 top-0 h-screen text-white z-50 transition-all duration-300 border-r border-gray-800 flex flex-col
+          ${
+            // Desktop behavior
+            window.innerWidth >= 1024 
+              ? (isCollapsed ? "w-16" : "w-64")
+              // Mobile behavior
+              : (isMobileMenuOpen ? "w-64" : "-translate-x-full")
+          }
+          lg:translate-x-0
+        `}
         style={{
-        background: "linear-gradient(180deg, rgba(13,13,21,0.6) 0%, rgba(23,25,35,0.6) 100%)",
-        backdropFilter: "blur(10px)",
-        WebkitBackdropFilter: "blur(10px)", // for Safari
-        border: "1px solid rgba(255, 255, 255, 0.1)", }}
+          background: "linear-gradient(180deg, rgba(13,13,21,0.6) 0%, rgba(23,25,35,0.6) 100%)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+        }}
       >
         {/* Header with logo and toggle */}
         <div className="flex items-center justify-between p-4 border-b border-gray-800">
-          {!isCollapsed && (
+          {/* Mobile close button */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-gray-400 hover:text-white transition-colors p-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          
+          {/* Logo */}
+          {(!isCollapsed || isMobileMenuOpen) && (
             <div className="flex items-center">
               <img src="./logo.svg" alt="SyncHomie" className="h-8" />
             </div>
           )}
+          
+          {/* Desktop collapse toggle */}
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="text-gray-400 hover:text-white transition-colors p-1"
+            className="hidden lg:block text-gray-400 hover:text-white transition-colors p-1"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +247,7 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
         </div>
 
         {/* Search Bar */}
-        {!isCollapsed && (
+        {(!isCollapsed || isMobileMenuOpen) && (
           <div className="p-4">
             <div className="relative">
               <input
@@ -193,9 +275,7 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
         )}
 
         {/* Navigation Items */}
-        <nav
-         className="flex-1 px-2 py-4"
-         >
+        <nav className="flex-1 px-2 py-4">
           <div className="space-y-1">
             {navItems.map((item) => {
               const active = isActive(item.href)
@@ -204,22 +284,22 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
                   key={item.href}
                   href={item.href}
                   className="group block"
-                  title={isCollapsed ? item.title : ""}
+                  title={(isCollapsed && !isMobileMenuOpen) ? item.title : ""}
+                  onClick={() => setIsMobileMenuOpen(false)} // Close mobile menu on link click
                 >
                   <div
                     className={`flex items-center px-3 py-3 rounded-lg transition-all duration-200 relative
                       ${
                         active
-                          ? "bg-blu-600 text-white"
+                          ? "bg-blue-600 text-white"
                           : "text-gray-300 hover:bg-gray-900 hover:text-white"
                       }
                     `}
                   >
                     <div className="flex-shrink-0 relative">
                       {item.icon}
-                      
                     </div>
-                    {!isCollapsed && (
+                    {(!isCollapsed || isMobileMenuOpen) && (
                       <span className="ml-3 text-sm font-medium">{item.title}</span>
                     )}
                     {/* Active indicator */}
@@ -234,15 +314,15 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
         </nav>
 
         {/* Bottom section with Join button */}
-  <div className="p-4 border-t border-gray-800 w-auto self-stretch flex-col items-end mt-auto">
-
+        <div className="p-4 border-t border-gray-800 w-auto self-stretch flex-col items-end mt-auto">
           <Link href="/login">
             <button
-              className={`w-full bg-red-600 text-center  hover:bg-red-700 text-white font-bold rounded-lg transition-all duration-200 hover:scale-105 ${
-                isCollapsed ? "grid justify-center items-center p-3  pl-3" : "px-4 py-3"
+              className={`w-full bg-red-600 text-center hover:bg-red-700 text-white font-bold rounded-lg transition-all duration-200 hover:scale-105 ${
+                (isCollapsed && !isMobileMenuOpen) ? "grid justify-center items-center p-3 pl-3" : "px-4 py-3"
               }`}
+              onClick={() => setIsMobileMenuOpen(false)} // Close mobile menu on button click
             >
-              {isCollapsed ? (
+              {(isCollapsed && !isMobileMenuOpen) ? (
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z" />
                 </svg>
@@ -258,8 +338,6 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
           </Link>
         </div>
       </div>
-
-      
     </>
   )
 }

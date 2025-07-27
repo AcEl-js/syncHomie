@@ -18,11 +18,12 @@ import {
 } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger  } from "@/components/ui/dropdown-menu"
 import {Checkbox} from "@/components/ui/checkbox"
-import Navbar from "@/components/Navbar"
+import Navbar from "@/components/Sidebar"
 import CommentCard from "@/components/CommentCard"
 import {useState,useRef,useEffect } from "react"
 import SubtitesSelector from "./SubtitlesSelector"
 import CommentSys from "@/components/CommentSys"
+import Sidebar from "@/components/Sidebar"
 
 
 const comments = [
@@ -131,10 +132,11 @@ export default function Page() {
         }
       };
   
+      const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   return (
     <div className="min-h-screen bg-black text-white">
-      <Navbar/>
-      <div className="container  px-4 py-6 pt-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FEC97B21] to-[#A33B3B00]">
+       <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+      <div className="container  px-4 py-6  bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FEC97B21] to-[#A33B3B00]">
         {/* Header */}
         <div className="mb-6 flex flex-col gap-4">
           <div className="flex items-center gap-2 text-sm text-gray-400">
