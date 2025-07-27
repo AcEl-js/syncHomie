@@ -1,5 +1,6 @@
-import Navbar from '@/components/Sidebar';
-import React from 'react';
+'use clinet'
+import Sidebar from '@/components/Sidebar';
+import React, { useState } from 'react';
 import EpisodeList from './eposode-lists';
 import "./style.css"
 import OverviewMenu from './OverviewMenu';
@@ -84,10 +85,11 @@ const App = () => {
         }
       ];
 
+      const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
       let array = new Array(4).fill(4)
     return (
         <div className='min-h-screen  bg-black text-white '>
-            <Navbar/>
+         <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
             {/* header */}
             <div className="mb-6 pl-5  px-4 py-6 pt-16 flex flex-col gap-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E5498821] to-[#A33B3B00] ">
             <div className="flex pt-4 items-center gap-2 text-sm text-gray-400">

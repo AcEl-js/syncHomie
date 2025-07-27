@@ -76,6 +76,7 @@ const castMembers = [
 export default function App() {
     const [showEpisodeList, setShowEpisodeList] = useState(false)
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+   
 
     
 const shows: Show[] = [
@@ -110,6 +111,7 @@ const shows: Show[] = [
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0V4Lh6pGemaiN-qCSuf6j1TjYPN4YT1yUA&s",
     },
   ]
+  
 
     const reviews = [
         {
@@ -147,7 +149,8 @@ const shows: Show[] = [
   
   return (
     <div className="min-w-full">
-     <Navbar/>
+              <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+
         {/* Main content with proper margin to account for sidebar */}
         <div className=" sm:mt-24  mx-auto bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#E5498821] to-[#A33B3B00]   rounded-lg overflow-hidden shadow-xl text-white">
           <div className=" mx-aufto  bg-gradient-to-br from-gray-900 via-black to-gray-800 bg-fixed rounded-lg overflow-hidden shadow-xl text-white">
