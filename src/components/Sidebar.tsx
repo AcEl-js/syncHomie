@@ -3,10 +3,14 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 
+
+
 const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsCollapsed: (v: boolean) => void }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const [windowWidth, setWindowWidth] = useState<number | null>(null)
 
+  
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false)
@@ -24,6 +28,16 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [isMobileMenuOpen])
 
+  useEffect(() => {
+  if (typeof window !== "undefined") {
+    const handleResize = () => setWindowWidth(window.innerWidth)
+
+    handleResize() // Set initial width
+    window.addEventListener("resize", handleResize)
+
+    return () => window.removeEventListener("resize", handleResize)
+  }
+}, [])
   // Navigation items data
   const navItems = [
      {
@@ -174,10 +188,11 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
         className={`sidebar-container fixed left-0 top-0 h-screen text-white z-50 transition-all duration-300 border-r border-gray-800 flex flex-col
           ${
             // Desktop behavior
-            window.innerWidth >= 1024 
-              ? (isCollapsed ? "w-16" : "w-64")
-              // Mobile behavior
-              : (isMobileMenuOpen ? "w-64" : "-translate-x-full")
+           (windowWidth !== null
+    ? windowWidth >= 1024
+      ? (isCollapsed ? "w-16" : "w-64")
+      : (isMobileMenuOpen ? "w-64" : "-translate-x-full")
+    : "")
           }
           lg:translate-x-0
         `}

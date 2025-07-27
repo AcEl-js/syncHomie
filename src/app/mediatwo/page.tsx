@@ -20,7 +20,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import StarRating from "./rating";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip";
-import Sidebar from "./Sidebar";
+import Sidebar from "@/components/Sidebar";
 import EpisodeProgressTracker from "./episode-tracker";
 import ReviewsSection from "./reviewsSection";
 
