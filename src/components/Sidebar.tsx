@@ -157,7 +157,10 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
     <>
       {/* Mobile Menu Button - Only visible on mobile */}
       <button
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        onClick={() => {
+          setIsMobileMenuOpen(!isMobileMenuOpen)
+           setIsCollapsed(!isCollapsed)
+        }}
         className="mobile-menu-button fixed top-4 left-4 z-[60] lg:hidden bg-gray-900 text-white p-3 rounded-lg border border-gray-700 hover:bg-gray-800 transition-colors"
       >
         <svg

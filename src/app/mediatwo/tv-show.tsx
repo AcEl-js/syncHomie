@@ -52,6 +52,12 @@ export default function TvShowDetails() {
      setIsEditingRating(true);
      setShowEmotions(false);
    };
+
+   // NEW: Function to handle emotion editing
+   const handleEditEmotion = () => {
+     setShowEmotions(true);
+     setIsEditingRating(false);
+   };
    
    // Calculate rating based on mouse position
    const calculateRating = (e:any) => {
@@ -200,43 +206,7 @@ export default function TvShowDetails() {
             <div className="flex items-center gap-2 mt-3">
               <span className="text-yellow-400 font-medium">You've Watched</span>
               <span className="text-sm text-gray-300">0 Seasons 0 Episodes</span>
-            </div>
-          
-
-          <div className="flex items-center gap-4 mt-2 ">
-            <UserScore emotion={emotions.find(e => e.name === emotion)?.emoji}  />
-            
-            {/* Match Score - AI Prediction */}
-            <div className="bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 rounded-xl px-4 py-3 font-bold flex text-white gap-3 items-center shadow-2xl max-md:hidden border border-purple-400/30 hover:shadow-purple-500/25 hover:shadow-xl transition-all duration-300 hover:scale-105">
-              {/* AI Brain Icon */}
-              <div className="relative flex-shrink-0">
-                <div className="absolute inset-0 bg-white/20 rounded-full blur-sm"></div>
-                 <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">{/* Icon from Iconoir by Luca Burgio - https://github.com/iconoir-icons/iconoir/blob/main/LICENSE */}<path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 14v4.4a.6.6 0 0 0 .6.6H10m9-5v4.4a.6.6 0 0 1-.6.6H14m0-14h4.4a.6.6 0 0 1 .6.6V10M4 10V5.6a.6.6 0 0 1 .6-.6H10m4 14v1a2 2 0 1 1-4 0v-1m-6-9h1a2 2 0 1 1 0 4H4m15-4h1a2 2 0 1 1 0 4h-1m-5-9V4a2 2 0 1 0-4 0v1" /></svg>
- 
-                {/* Enhanced pulsing indicators */}
-                <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
-                <div className="absolute -bottom-0.5 -left-0.5 w-2 h-2 bg-cyan-400 rounded-full animate-pulse animation-delay-500 shadow-lg shadow-cyan-400/50"></div>
-              </div>
-              
-              <div className="flex flex-col">
-                <span className="text-xs text-purple-100 leading-none font-medium tracking-wider uppercase opacity-90">Match</span>
-                <span className="text-xl leading-none font-black tracking-tight">87%</span>
-              </div>
-              
-              {/* Subtle shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-            </div>
-            
-            <div className="bg-[#f6c700] max-md:hidden rounded-sm pr-2 font-bold flex text-black gap-2 items-center">
-            <img className="h-9" src="/icons/imdb.png" alt="IMDb" />
-            <h1>56%</h1>
-          </div>
-
-          <div className="relative font-bold max-md:hidden">
-            <img className="h-11" src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Rotten_Tomatoes.svg" alt="Rotten Tomatoes" />
-            <h1 className="absolute top-4 left-2 text-sm text-black">86%</h1>
-          </div>
-            <div className="ml-4">
+               <div className="ml-4">
             <div className="bg-gray-800 px-4 py-2 rounded-full flex items-center min-w-48">
               {(rating === null || isEditingRating) && !showEmotions ? (
                 <>
@@ -294,9 +264,12 @@ export default function TvShowDetails() {
                       </span>
                     </button>
                     {emotion && (
-                      <span className="text-sm bg-gray-700 px-2 py-0.5 rounded-full">
-                        {emotions.find(e => e.name === emotion)?.emoji} {emotion}
-                      </span>
+                      <button 
+                        onClick={handleEditEmotion}
+                        className="text-sm bg-gray-700 px-2 py-0.5 rounded-full hover:bg-gray-600 transition-colors cursor-pointer group"
+                      >
+                        {emotions.find(e => e.name === emotion)?.emoji} <span className="group-hover:underline">{emotion}</span>
+                      </button>
                     )}
                   </div>
                 </>
@@ -304,6 +277,48 @@ export default function TvShowDetails() {
             </div>
 
             </div>
+            </div>
+          
+
+          <div className=" gap-4 mt-2 ">
+            
+            <div className="flex  items-center gap-4">
+              <UserScore emotion={emotions.find(e => e.name === emotion)?.emoji}  />
+                          
+                {/* Match Score - AI Prediction */}
+                <div className="bg-gradient-to-br h-10 from-purple-500 via-purple-600 to-indigo-700 px-1 rounded-sm py-1 font-bold flex text-white gap-3 items-center shadow-2xl max-md:hidden border border-purple-400/30 hover:shadow-purple-500/25 hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  {/* AI Brain Icon */}
+                  <div className="relative flex-shrink-0">
+                    <div className="absolute inset-0 bg-white/20 rounded-full blur-sm"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">{/* Icon from Iconoir by Luca Burgio - https://github.com/iconoir-icons/iconoir/blob/main/LICENSE */}<path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 14v4.4a.6.6 0 0 0 .6.6H10m9-5v4.4a.6.6 0 0 1-.6.6H14m0-14h4.4a.6.6 0 0 1 .6.6V10M4 10V5.6a.6.6 0 0 1 .6-.6H10m4 14v1a2 2 0 1 1-4 0v-1m-6-9h1a2 2 0 1 1 0 4H4m15-4h1a2 2 0 1 1 0 4h-1m-5-9V4a2 2 0 1 0-4 0v1" /></svg>
+    
+                    {/* Enhanced pulsing indicators */}
+                    <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
+                    <div className="absolute -bottom-0.5 -left-0.5 w-2 h-2 bg-cyan-400 rounded-full animate-pulse animation-delay-500 shadow-lg shadow-cyan-400/50"></div>
+                  </div>
+                  
+                  <div className="flex flex-col">
+                    <span className="text-xs text-purple-100 leading-none font-medium tracking-wider uppercase opacity-90">Match</span>
+                    <span className="text-xl leading-none font-black tracking-tight">87%</span>
+                  </div>
+                  
+                  {/* Subtle shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                </div>
+            </div>
+            <div className=" flex gap-3 items-center">
+            <div className="bg-[#f6c700] max-md:hidden rounded-sm pr-2 font-bold flex text-black gap-2 items-center">
+            <img className="h-9" src="/icons/imdb.png" alt="IMDb" />
+            <h1>56%</h1>
+
+            </div>
+              <div className="relative font-bold max-md:hidden">
+                <img className="h-11" src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Rotten_Tomatoes.svg" alt="Rotten Tomatoes" />
+                <h1 className="absolute top-4 left-2 text-sm text-black">86%</h1>
+              </div>
+          </div>
+
+           
           </div>
 
           <div className="mt-6">

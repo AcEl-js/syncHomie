@@ -19,6 +19,14 @@ type EpisodeRelease = {
   releaseDate: string;
   released: boolean;
 };
+
+// Type for custom lists
+type CustomList = {
+  id: string;
+  name: string;
+  count: number;
+};
+
 interface MediaPageWatchListProps {
   onStatusChange: (status: string) => void;
   // ... other props
@@ -33,6 +41,15 @@ const MediaPageWatchList: React.FC<MediaPageWatchListProps> = ({ onStatusChange 
   const [hoveredEpisode, setHoveredEpisode] = useState<{season: number, episode: number} | null>(null);
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const [showCustomListOptions, setShowCustomListOptions] = useState(false);
+  
+  // New states for creating custom lists
+  const [showCreateListInput, setShowCreateListInput] = useState(false);
+  const [newListName, setNewListName] = useState('');
+  const [customLists, setCustomLists] = useState<CustomList[]>([
+    { id: '1', name: 'Favorites', count: 12 },
+    { id: '2', name: 'Weekend Binge', count: 8 },
+    { id: '3', name: 'Anime Collection', count: 24 },
+  ]);
 
   const totalSeasons = 16;
   const episodesPerSeason = 12;
@@ -45,13 +62,6 @@ const MediaPageWatchList: React.FC<MediaPageWatchListProps> = ({ onStatusChange 
     { season: 1, episode: 12, releaseDate: "2025-07-29", released: false },
     { season: 2, episode: 1, releaseDate: "2025-08-05", released: false },
     { season: 2, episode: 2, releaseDate: "2025-08-12", released: false },
-  ];
-
-  // Mock custom lists - replace with your actual data
-  const customLists = [
-    { id: '1', name: 'Favorites', count: 12 },
-    { id: '2', name: 'Weekend Binge', count: 8 },
-    { id: '3', name: 'Anime Collection', count: 24 },
   ];
 
   const watchOptions: WatchOption[] = [
@@ -87,6 +97,29 @@ const MediaPageWatchList: React.FC<MediaPageWatchListProps> = ({ onStatusChange 
     // Handle adding to custom list - replace with your actual logic
     console.log(`Added to custom list: ${listId}`);
     setShowCustomListOptions(false);
+  };
+
+  // New function to handle creating a custom list
+  const handleCreateNewList = () => {
+    if (newListName.trim() === '') return;
+    
+    const newList: CustomList = {
+      id: Date.now().toString(), // Simple ID generation - use proper UUID in production
+      name: newListName.trim(),
+      count: 0
+    };
+    
+    setCustomLists(prev => [...prev, newList]);
+    setNewListName('');
+    setShowCreateListInput(false);
+    
+    // Optionally add the current item to the new list immediately
+    handleAddToCustomList(newList.id);
+  };
+
+  const handleCancelCreateList = () => {
+    setNewListName('');
+    setShowCreateListInput(false);
   };
 
   const calculateProgress = () => {
@@ -157,7 +190,7 @@ const MediaPageWatchList: React.FC<MediaPageWatchListProps> = ({ onStatusChange 
   };
 
   return (
-    <div className="space-y-4">
+  <div className="space-y-4">
       <div className="flex items-center gap-2 justify-between">
         <div className="relative flex-1">
           <Button
@@ -177,7 +210,7 @@ const MediaPageWatchList: React.FC<MediaPageWatchListProps> = ({ onStatusChange 
                   key={list.id}
                   onClick={() => handleAddToCustomList(list.id)}
                   variant="ghost"
-                  className="w-full justify-between py-3 px-4 hover:bg-[#cc8b8b0c] hover:text-white first:rounded-t-xl last:rounded-b-xl text-sm"
+                  className="w-full justify-between py-3 px-4 hover:bg-[#cc8b8b0c] hover:text-white first:rounded-t-xl text-sm border-b border-gray-700/50 last:border-b-0"
                 >
                   <span>{list.name}</span>
                   <span className="text-xs text-gray-400">{list.count} items</span>
@@ -185,18 +218,52 @@ const MediaPageWatchList: React.FC<MediaPageWatchListProps> = ({ onStatusChange 
               ))}
               
               <div className="border-t border-gray-700">
-               {/*  <Button
-                  onClick={() => {
-                    // Handle create new list - replace with your actual logic
-                    console.log('Create new custom list');
-                    setShowCustomListOptions(false);
-                  }}
-                  variant="ghost"
-                  className="w-full justify-start py-3 px-4 hover:bg-[#cc8b8b0c] hover:text-white rounded-b-xl text-sm text-gray-400"
-                >
-                  <Plus size={14} className="mr-2" />
-                  Create New List
-                </Button> */}
+                {!showCreateListInput ? (
+                  <Button
+                    onClick={() => setShowCreateListInput(true)}
+                    variant="ghost"
+                    className="w-full justify-start py-3 px-4 hover:bg-[#cc8b8b0c] hover:text-white rounded-b-xl text-sm text-gray-400"
+                  >
+                    <Plus size={14} className="mr-2" />
+                    Create New List
+                  </Button>
+                ) : (
+                  <div className="p-4 space-y-3">
+                    <input
+                      type="text"
+                      value={newListName}
+                      onChange={(e) => setNewListName(e.target.value)}
+                      placeholder="Enter list name..."
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                      autoFocus
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          handleCreateNewList();
+                        } else if (e.key === 'Escape') {
+                          handleCancelCreateList();
+                        }
+                      }}
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={handleCreateNewList}
+                        size="sm"
+                        className="flex-1 bg-gradient-to-r from-[#CC8B8B] to-[#A33B3B] hover:from-[#D19C9C] hover:to-[#B44C4C] text-white text-xs py-2"
+                        disabled={newListName.trim() === ''}
+                      >
+                        Create
+                      </Button>
+                      <Button
+                        onClick={handleCancelCreateList}
+                        variant="outline"
+                        size="sm"
+                        className="flex-1 bg-gray-700 border-gray-600 hover:bg-gray-600 text-gray-300 text-xs py-2"
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -215,6 +282,7 @@ const MediaPageWatchList: React.FC<MediaPageWatchListProps> = ({ onStatusChange 
           {notificationsEnabled ? <Bell size={16} /> : <BellOff size={16} />}
         </Button>
       </div>
+      
       <div className="relative pb-3">
         {!watchStatus ? (
             <Button
@@ -446,11 +514,30 @@ const MediaPageWatchList: React.FC<MediaPageWatchListProps> = ({ onStatusChange 
               </div>
             )}
           </div>
+
+          {/* Confirm Button */}
+          <div className="mt-4 flex justify-end gap-3">
+            <Button
+              onClick={() => setShowEpisodeTracker(false)}
+              variant="outline"
+              size="sm"
+              className="px-4 py-2 bg-gray-700 border-gray-600 hover:bg-gray-600 text-gray-300"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                // Add your logic here to save the progress
+                setShowEpisodeTracker(false);
+              }}
+              size="sm"
+              className="px-4 py-2 bg-gradient-to-r from-[#CC8B8B] to-[#A33B3B] hover:from-[#D19C9C] hover:to-[#B44C4C] text-white font-medium"
+            >
+              Update Progress
+            </Button>
+          </div>
         </div>
       )}
-
-      {/* Custom List and Notifications Section */}
-      
 
       <style jsx>{`
         .slider::-webkit-slider-thumb {

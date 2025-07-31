@@ -3,14 +3,15 @@ import { Button } from '@/components/ui/button';
 import { Bell, Eye, Plus } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import MediaPageWatchList from './MediaPageWatchList ';
+// import MediaPageWatchList from './MediaPageWatchList ';
 
 const EpisodeProgressTracker = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
-  const [userRating, setUserRating] = useState(4);
+  const [userRating, setUserRating] = useState(4.5); // Now supports half stars
   const [hoverRating, setHoverRating] = useState(0);
   const totalEpisodes = 20;
   const watchedEpisodes = 16;
-  const [watchStatus, setWatchStatus] = useState("watching"); // Can be: "watching", "completed", "dropped", "on-hold", "plan-to-watch"
+  const [watchStatus, setWatchStatus] = useState("watching");
   const [showDropdown, setShowDropdown] = useState(false);
   const [showEpisodeTracker, setShowEpisodeTracker] = useState(false);
   const [currentSeason, setCurrentSeason] = useState(1);
@@ -49,12 +50,12 @@ const EpisodeProgressTracker = () => {
 
   const getEpisodeColor = (status: string) => {
     switch (status) {
-      case 'watched': return 'bg-blue-500'; // Changed from green to blue
-      case 'watched-dropped': return 'bg-blue-400 opacity-60'; // Greyed out blue for dropped shows
+      case 'watched': return 'bg-blue-500';
+      case 'watched-dropped': return 'bg-blue-400 opacity-60';
       case 'current': return 'bg-yellow-500';
-      case 'completed': return 'bg-emerald-500'; // Different shade for completed
-      case 'dropped': return 'bg-red-500'; // Red for dropped episodes
-      case 'on-hold': return 'bg-amber-500'; // Amber for on-hold
+      case 'completed': return 'bg-emerald-500';
+      case 'dropped': return 'bg-red-500';
+      case 'on-hold': return 'bg-amber-500';
       default: return 'bg-gray-600';
     }
   };
@@ -83,8 +84,8 @@ const EpisodeProgressTracker = () => {
   };
  
   const [episodeRatings, setEpisodeRatings] = useState<{[key: number]: number}>({
-    1: 4, 2: 4, 3: 5, 4: 4, 5: 5, 6: 3, 7: 4, 8: 5, 9: 4, 10: 4,
-    11: 5, 12: 4, 13: 3, 14: 4, 15: 5, 16: 4
+    1: 4, 2: 4.5, 3: 5, 4: 4, 5: 5, 6: 3.5, 7: 4, 8: 5, 9: 4.5, 10: 4,
+    11: 5, 12: 4, 13: 3, 14: 4.5, 15: 5, 16: 4
   });
 
   const getRatedEpisodesCount = () => {
@@ -98,17 +99,84 @@ const EpisodeProgressTracker = () => {
     return (sum / ratings.length).toFixed(1);
   };
 
-  // Sample friend activity data - showing only one
-  const friendActivity = [
-    {
-      id: 1,
-      name: "Alex Chen",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
-      watchDate: "2 days ago",
-      rating: 5,
-      review: "Absolutely incredible episode! The character development was phenomenal and the plot twists kept me on the edge of my seat."
-    }
-  ];
+  // Helper function to determine star fill state
+  const getStarFillState = (starIndex: number, rating: number) => {
+    if (rating >= starIndex) return 'full';
+    if (rating >= starIndex - 0.5) return 'half';
+    return 'empty';
+  };
+
+  // Helper function to get rating text
+  const getRatingText = (rating: number) => {
+    if (rating === 0.5) return "Terrible - Avoid at all costs";
+    if (rating === 1) return "Very Poor - Major issues";
+    if (rating === 1.5) return "Poor - Not recommended";
+    if (rating === 2) return "Below Average - Has problems";
+    if (rating === 2.5) return "Fair - Some redeeming qualities";
+    if (rating === 3) return "Average - Decent watch";
+    if (rating === 3.5) return "Good - Worth your time";
+    if (rating === 4) return "Great - Highly recommended";
+    if (rating === 4.5) return "Excellent - Near perfect";
+    if (rating === 5) return "Perfect - Absolute masterpiece!";
+    return "";
+  };
+
+  // Handle star click for half-star ratings
+  const handleStarClick = (starIndex: number, event: React.MouseEvent) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const starWidth = rect.width;
+    const isLeftHalf = clickX < starWidth / 2;
+    
+    const newRating = isLeftHalf ? starIndex - 0.5 : starIndex;
+    setUserRating(newRating);
+  };
+
+  // Handle star hover for half-star ratings
+  const handleStarHover = (starIndex: number, event: React.MouseEvent) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const hoverX = event.clientX - rect.left;
+    const starWidth = rect.width;
+    const isLeftHalf = hoverX < starWidth / 2;
+    
+    const newHoverRating = isLeftHalf ? starIndex - 0.5 : starIndex;
+    setHoverRating(newHoverRating);
+  };
+
+  // Star component that handles half fills
+  const StarIcon = ({ fillState }: { fillState: 'full' | 'half' | 'empty' }) => {
+    return (
+      <div className="relative w-8 h-8">
+        {/* Background star (empty) */}
+        <svg
+          className="absolute inset-0 w-8 h-8 text-gray-600"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        
+        {/* Filled star (with clipping for half stars) */}
+        {fillState !== 'empty' && (
+          <div 
+            className="absolute inset-0 overflow-hidden"
+            style={{ 
+              clipPath: fillState === 'half' ? 'inset(0 50% 0 0)' : 'none'
+            }}
+          >
+            <svg
+              className="w-8 h-8 text-yellow-400 drop-shadow-lg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   
   return (
     <div className="text-white rounded-lg ">
@@ -116,7 +184,7 @@ const EpisodeProgressTracker = () => {
       <h2 className="text-2xl font-bold mb-6">Your Rating</h2>
       
       {/* Rating Circle */}
-      <div className="flex  mb-4 justify-center items-center">
+      <div className="flex mb-4 justify-center items-center">
         <div className="relative w-16 h-16">
           <div className="w-16 h-16 rounded-full border-4 border-blue-500 flex items-center justify-center">
             <span className="text-xl font-bold">{userRating}/5</span>
@@ -144,48 +212,33 @@ const EpisodeProgressTracker = () => {
           </div>
         </div>
         
-        <div className="flex mb-6 ">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <button
-            key={star}
-            className="p-1 hover:scale-110 transition-transform duration-200"
-            onClick={() => setUserRating(star)}
-            onMouseEnter={() => setHoverRating(star)}
-            onMouseLeave={() => setHoverRating(0)}
-          >
-            <svg
-              className={`w-8 h-8 transition-colors duration-200 ${
-                star <= (hoverRating || userRating) 
-                  ? 'text-yellow-400 drop-shadow-lg' 
-                  : 'text-gray-600 hover:text-gray-400'
-              }`}
-              fill="currentColor"
-              viewBox="0 0 20 20"
+        {/* Interactive Half-Star Rating */}
+        <div className="flex mb-6">
+          {[1, 2, 3, 4, 5].map((starIndex) => (
+            <button
+              key={starIndex}
+              className="p-1 hover:scale-110 transition-transform duration-200 cursor-pointer"
+              onClick={(e) => handleStarClick(starIndex, e)}
+              onMouseMove={(e) => handleStarHover(starIndex, e)}
+              onMouseLeave={() => setHoverRating(0)}
             >
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-          </button>
-        ))}
-      </div>
-      
+              <StarIcon 
+                fillState={getStarFillState(starIndex, hoverRating || userRating)}
+              />
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Interactive Star Rating */}
-      
       {/* Rating Feedback */}
       {hoverRating > 0 && (
         <div className="text-center mb-4 text-sm text-gray-300 animate-fade-in">
-          {hoverRating === 1 && "Poor - Not recommended"}
-          {hoverRating === 2 && "Fair - Has some issues"}
-          {hoverRating === 3 && "Good - Worth watching"}
-          {hoverRating === 4 && "Great - Highly recommended"}
-          {hoverRating === 5 && "Excellent - Must watch!"}
+          {getRatingText(hoverRating)}
         </div>
       )}
 
-      {/* Watchlist Button */}
-      
-            <div>
+      {/* Watchlist Button Placeholder */}
+      <div>
               
               <MediaPageWatchList onStatusChange={handleWatchStatusChange} />
 
@@ -202,7 +255,7 @@ const EpisodeProgressTracker = () => {
         <div className="flex space-x-1 h-3 rounded-full overflow-hidden bg-gray-800">
           {Array.from({ length: totalEpisodes }, (_, index) => {
             const status = getEpisodeStatus(index);
-            const delay = index * 30; // Stagger animation
+            const delay = index * 30;
             
             return (
               <div

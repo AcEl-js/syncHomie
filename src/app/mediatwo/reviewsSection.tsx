@@ -35,21 +35,33 @@ const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
 
   return (
     <div className="w-full">
-      {/* Tab Navigation */}
-      <div className="flex border-b border-gray-200 mb-6">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id as 'popular' | 'recent' | 'friends')}
-            className={`px-6 py-3 text-sm font-medium transition-colors duration-200 border-b-2 ${
-              activeTab === tab.id
-                ? 'text-blue-600 border-blue-600'
-                : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
+      {/* Enhanced Dark Tab Navigation */}
+      <div className="relative mb-8">
+        {/* Background container with dark theme */}
+        <div className=" rounded-xl p-2 shadow-2xl ">
+          <div className="flex relative w-11/12">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as 'popular' | 'recent' | 'friends')}
+                className={`relative flex-1 gap-4 mx-2 px-2 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ease-in-out transform ${
+                  activeTab === tab.id
+                    ? 'bg-gray-800 text-white shadow-lg scale-[1.02] border border-gray-700'
+                    : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800/50'
+                }`}
+              >
+                <span className="relative z-10">{tab.label}</span>
+                {/* Active indicator dot */}
+                {activeTab === tab.id && (
+                  <div className="absolute top-1 right-1 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+        
+        {/* Decorative line under tabs */}
+        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-20 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
       </div>
 
       {/* Reviews Component */}
@@ -60,10 +72,11 @@ const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
         />
       </div>
 
-      {/* View More Button */}
+      {/* Enhanced Dark View More Button */}
       <div className="flex justify-center">
-        <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
-          View More
+        <button className="group relative px-8 py-3 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-xl hover:from-gray-700 hover:to-gray-800 transition-all duration-300 font-semibold shadow-2xl hover:shadow-cyan-500/25 transform hover:scale-105 border border-gray-700">
+          <span className="relative z-10">View More</span>
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </button>
       </div>
     </div>

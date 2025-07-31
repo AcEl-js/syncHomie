@@ -35,7 +35,7 @@ export default function UserScore( {emotion}:ScoreInteface) {
   const strokeDashoffset = circumference - (score / 100) * circumference
 
   return (
-    <div className="flex items-center gap-3  p-4 rounded-lg w-fit">
+    <div className="flex items-center gap-3 rounded-lg w-fit">
       <div className="relative w-20 h-20 flex items-center justify-center">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
           {/* Background circle */}
