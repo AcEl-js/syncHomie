@@ -140,80 +140,83 @@ const Page = () => {
     return (
         <div className=' h-screen bg-black'>
             <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+            <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16 px-4" : "ml-64 px-4"} relative z-10`}>
 
-            <div className="w-full bg-black text-white pt-3">
-              <nav className="  px-4 py-3 mb-5">
-                <NavigationMenu>
-                  <NavigationMenuList>
-                    <NavigationMenuItem>
-                      <NavigationMenuTrigger className="bg-transparent text-lg text-[#C3C3C3] hover:bg-gray-800 hover:text-white">
-                        Sports
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <div className="grid gap-2 p-4 w-40 bg-black text-white">
-                          <Link href="#" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
-                            MMA
-                          </Link>
-                          <Link href="#" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
-                            NFL
-                          </Link>
-                          <Link href="#" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
-                            NBA
-                          </Link>
+              
+                    <div className="w-full bg-black text-white pt-3">
+                      <nav className="  px-4 py-3 mb-5">
+                        <NavigationMenu>
+                          <NavigationMenuList>
+                            <NavigationMenuItem>
+                              <NavigationMenuTrigger className="bg-transparent text-lg text-[#C3C3C3] hover:bg-gray-800 hover:text-white">
+                                Sports
+                              </NavigationMenuTrigger>
+                              <NavigationMenuContent>
+                                <div className="grid gap-2 p-4 w-40 bg-black text-white">
+                                  <Link href="#" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
+                                    MMA
+                                  </Link>
+                                  <Link href="#" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
+                                    NFL
+                                  </Link>
+                                  <Link href="#" className="block px-2 py-1.5 text-sm hover:bg-gray-800 rounded-md">
+                                    NBA
+                                  </Link>
+                                </div>
+                              </NavigationMenuContent>
+                            </NavigationMenuItem>
+                          </NavigationMenuList>
+                        </NavigationMenu>
+                        <div className="mt-2">
+                          <h1 className="text-2xl text-gray-300 ">
+                            Upcoming NFL Matches
+                          </h1>
                         </div>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                  </NavigationMenuList>
-                </NavigationMenu>
-                <div className="mt-2">
-                  <h1 className="text-2xl text-gray-300 ">
-                    Upcoming NFL Matches
-                  </h1>
-                </div>
-              </nav>
-            </div>
+                      </nav>
+                    </div>
 
 
-            <div 
-              ref={containerRef}
-              className="flex space-x-6 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing select-none ml-5"
-              {...dragHandlers}>
-        <h1>Upcoming NFL Matches</h1>
-            {[1,2,3,4,5,6].map((match) =>(
-                <div key={match}>
-                    <MatchCard/>
+                    <div 
+                      ref={containerRef}
+                      className="flex space-x-6 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing select-none ml-5"
+                      {...dragHandlers}>
+                <h1>Upcoming NFL Matches</h1>
+                    {[1,2,3,4,5,6].map((match) =>(
+                        <div key={match}>
+                            <MatchCard/>
+                        </div>
+                    ))}
                 </div>
-            ))}
-        </div>
-        <div className="bg-black p-4 md:p-6">
-      <h2 className="text-white mb-4 text-lg font-medium">Your 7 day guide: Where can I watch MMA live?</h2>
-      <div 
-      ref={scrollContainerRef}
-      className="grid grid-flow-col gap-4 space-x-4 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing"
-      onMouseDown={startDragging}
-      onMouseLeave={stopDragging}
-      onMouseUp={stopDragging}
-      onMouseMove={drag}>
-        {streamingServices.map((service) => (
-          <Card key={service.name} className=" w-[250px] h-[84px] bg-black border border-[#303740] rounded-3xl hover:bg-zinc-800 transition-colors flex items-center jutify-center cursor-pointer">
-            <CardContent className="p-4 flex items-center gap-3">
-              <Image
-                src={service.logo || "/placeholder.svg"}
-                alt={`${service.name} logo`}
-                width={50}
-                height={50}
-                className="rounded-sm"
-              />
-              <div className="min-w-0">
-                <h3 className="text-white text-lg font-medium truncate">{service.name}</h3>
-                <p className="text-[#C6C8CD] text-base">{service.matches} Matches</p>
+                <div className="bg-black p-4 md:p-6">
+              <h2 className="text-white mb-4 text-lg font-medium">Your 7 day guide: Where can I watch MMA live?</h2>
+              <div 
+              ref={scrollContainerRef}
+              className="grid grid-flow-col gap-4 space-x-4 overflow-x-auto pb-6 hide-scrollbar cursor-grab active:cursor-grabbing"
+              onMouseDown={startDragging}
+              onMouseLeave={stopDragging}
+              onMouseUp={stopDragging}
+              onMouseMove={drag}>
+                {streamingServices.map((service) => (
+                  <Card key={service.name} className=" w-[250px] h-[84px] bg-black border border-[#303740] rounded-3xl hover:bg-zinc-800 transition-colors flex items-center jutify-center cursor-pointer">
+                    <CardContent className="p-4 flex items-center gap-3">
+                      <Image
+                        src={service.logo || "/placeholder.svg"}
+                        alt={`${service.name} logo`}
+                        width={50}
+                        height={50}
+                        className="rounded-sm"
+                      />
+                      <div className="min-w-0">
+                        <h3 className="text-white text-lg font-medium truncate">{service.name}</h3>
+                        <p className="text-[#C6C8CD] text-base">{service.matches} Matches</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-       <MatchDay/>
-    </div>
+              <MatchDay/>
+            </div>
+            </div>
 
         </div>
     );

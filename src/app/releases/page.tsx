@@ -129,7 +129,7 @@ const Page = () => {
     return (
       <div>
          <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
-        <div className="min-h-screen bg-black text-white p-8 ">
+                <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16" : "ml-64"} relative z-10min-h-screen bg-black text-white p-8`}> 
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className=" text-5xl font-extrabold mb-12 text-center flex justify-center items-center gap-4">

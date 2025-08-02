@@ -64,16 +64,14 @@ const App = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const { containerRef, dragHandlers } = useDragScroll();
   const [showEnhancedFilter, setShowEnhancedFilter] = useState(false);
-  
+       
   return (
     <div className='text-white bg-black'>
       <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
    
-      
-      {/* Enhanced filter section */}
-     
-      
-      {/* Category Nav */}
+       <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16" : "ml-64"} relative z-10`}>
+
+
       <nav className="p-4 md:pt-3 border-b border-zinc-800 bg-black fixed w-screen top-[0px] z-40">
         <div className="max-w-7xl mx-auto flex items-center">
           <div className="items-center gap-3 mr-14 hidden md:flex">
@@ -174,6 +172,11 @@ const App = () => {
       <div className='bg-black pt-5 '>
         <TriviaTitles isDiscover={true} triviaTitle={triviaItems}/>
       </div>
+      </div>
+      {/* Enhanced filter section */}
+     
+      
+      {/* Category Nav */}
     </div>
   );
 }

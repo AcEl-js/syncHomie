@@ -108,7 +108,8 @@ const Page = () => {
     return (
         <div>
            <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
-            <div className="min-h-screen bg-black text-white">
+                 <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16" : "ml-64"} relative z-10 text-white bg-black`}>
+
             {/* Hero Section */}
             <div className="relative h-[300px] w-full">
                 <div

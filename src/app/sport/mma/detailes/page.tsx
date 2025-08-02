@@ -75,9 +75,9 @@ function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   return (
-   <div>
+   <div className='bg-black'>
    <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
-    <div className="min-h-screen  bg-black text-white flex flex-col justify-center items-center">
+     <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16 px-4" : "ml-64 px-4"} relative z-10min-h-screen  bg-black text-white flex flex-col justify-center items-center`}>
       {/* Header */}
       <div className=" p-4 lg:w-[1000px] xl:w-[1354px]">
         <div className="container mx-auto flex mt-11">
@@ -175,8 +175,8 @@ function App() {
         </div>
       </div>
     <CommentSys/>
-    </div> 
     <FighterComparisonPage/>
+    </div> 
    </div>
   );
 }

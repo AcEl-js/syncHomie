@@ -21,7 +21,7 @@ const FighterComparisonPage = () => {
  
 
   return (
-    <div className=" text-white h-screen flex flex-col mx-10 ">
+    <div className=" text-white h-screen flex flex-col mx-10 bg-black w-full">
       {/* Event header */}
       <div className=" p-4 lg:w-[1000px] xl:w-[1354px]">
         <div className="container mx-auto flex mt-11">

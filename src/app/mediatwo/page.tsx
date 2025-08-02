@@ -23,6 +23,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix
 import Sidebar from "@/components/Sidebar";
 import EpisodeProgressTracker from "./episode-tracker";
 import ReviewsSection from "./reviewsSection";
+import { TabsContent } from "@radix-ui/react-tabs";
 
 interface Show {
     title: string
@@ -322,99 +323,116 @@ const shows: Show[] = [
       </div>
 
       {/* Column 4 - Cast */}
-      <div className="space-y-6">
-        <div className="mb-6">
-          <h2 className="text-xl font-bold text-white mb-3">Cast</h2>
-          <div className="h-px bg-gradient-to-r from-orange-500 to-red-500"></div>
-        </div>
-        
-        {/* Actors Seen Before */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4 text-gray-300">Actors Seen Before</h3>
-         <div className=" space-y-3">
-    {castMembers.slice(0, 2).map((member, index) => (
-      <div key={index} className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors duration-200 hover:shadow-lg">
-        <img
-          src={member.image}
-          width={50}
-          height={50}
-          alt={member.name}
-          className="rounded-md flex-shrink-0"
-        />
-        <div className="flex-1 min-w-0">
-          <div className="font-medium text-sm lg:text-base truncate">{member.name}</div>
-          <div className="text-xs lg:text-sm text-gray-400 truncate mb-2">{member.character}</div>
-          <div className="flex items-center gap-2 lg:gap-4 mt-2 flex-wrap">
-            <div className="flex items-center gap-1 text-xs lg:text-sm text-gray-300">
-              <div className="tooltip-container">
-                <Tv className="w-3 h-3 lg:w-4 lg:h-4 text-orange-500" />
-                <span className="tooltip"># of Episodes</span>
+     <div className="space-y-6">
+  <div className="mb-6">
+    <h2 className="text-xl font-bold text-white mb-3">Cast & Media</h2>
+    <div className="h-px bg-gradient-to-r from-orange-500 to-red-500"></div>
+  </div>
+
+  <Tabs defaultValue="cast" className="w-full">
+    <TabsList className="bg-transparent border-b border-neutral-800 w-full justify-start h-auto p-0 gap-6 mb-6">
+      <TabsTrigger
+        value="cast"
+        className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent text-neutral-400 h-auto data-[state=active]:text-white data-[state=active]:border-orange-500"
+      >
+        Cast
+      </TabsTrigger>
+      <TabsTrigger
+        value="media"
+        className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent text-neutral-400 h-auto data-[state=active]:text-white data-[state=active]:border-orange-500"
+      >
+        Media
+      </TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="cast" className="space-y-6 mt-0">
+      {/* Actors Seen Before */}
+      <div>
+        <h3 className="text-lg font-semibold mb-4 text-gray-300">Actors Seen Before</h3>
+        <div className="space-y-3">
+          {castMembers.slice(0, 2).map((member, index) => (
+            <div key={index} className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors duration-200 hover:shadow-lg">
+              <img
+                src={member.image}
+                width={50}
+                height={50}
+                alt={member.name}
+                className="rounded-md flex-shrink-0"
+              />
+              <div className="flex-1 min-w-0">
+                <div className="font-medium text-sm lg:text-base truncate">{member.name}</div>
+                <div className="text-xs lg:text-sm text-gray-400 truncate mb-2">{member.character}</div>
+                <div className="flex items-center gap-2 lg:gap-4 mt-2 flex-wrap">
+                  <div className="flex items-center gap-1 text-xs lg:text-sm text-gray-300">
+                    <div className="tooltip-container">
+                      <Tv className="w-3 h-3 lg:w-4 lg:h-4 text-orange-500" />
+                      <span className="tooltip"># of Episodes</span>
+                    </div>
+                    <span>{Math.floor(Math.random() * 100) + 50}</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-xs lg:text-sm text-gray-300">
+                    <div className="tooltip-container">
+                      <Eye className="w-3 h-3 lg:w-4 lg:h-4 text-blue-500" />
+                      <span className="tooltip">Seen Before</span>
+                    </div>
+                    <span>{Math.random() > 0.5 ? 'Yes' : 'No'}</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-xs lg:text-sm text-gray-300">
+                    <div className="tooltip-container">
+                      <Star className="w-3 h-3 lg:w-4 lg:h-4 text-yellow-500" />
+                      <span className="tooltip">Your Rating</span>
+                    </div>
+                    <span>{Math.random() > 0.3 ? (Math.random() * 3 + 7).toFixed(1) : '—'}</span>
+                  </div>
+                </div>
               </div>
-              <span>{Math.floor(Math.random() * 100) + 50}</span>
             </div>
-            <div className="flex items-center gap-1 text-xs lg:text-sm text-gray-300">
-              <div className="tooltip-container">
-                <Eye className="w-3 h-3 lg:w-4 lg:h-4 text-blue-500" />
-                <span className="tooltip">Seen Before</span>
-              </div>
-              <span>{Math.random() > 0.5 ? 'Yes' : 'No'}</span>
-            </div>
-            <div className="flex items-center gap-1 text-xs lg:text-sm text-gray-300">
-              <div className="tooltip-container">
-                <Star className="w-3 h-3 lg:w-4 lg:h-4 text-yellow-500" />
-                <span className="tooltip">Your Rating</span>
-              </div>
-              <span>{Math.random() > 0.3 ? (Math.random() * 3 + 7).toFixed(1) : '—'}</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    ))}
-  </div>
+
+      {/* Watch On & Action Buttons */}
+      <div className="space-y-4">
+        <div>
+          <h3 className="text-lg font-semibold mb-4 text-gray-300">Watch on</h3>
+          <div className="flex flex-wrap gap-2">
+            <img
+              src="/icons/netflix.png"
+              width={40}
+              height={40}
+              alt="Netflix"
+              className="rounded-md"
+            />
+            <img
+              src="/icons/hbo.jpeg"
+              width={40}
+              height={40}
+              alt="HBO Max"
+              className="rounded-md"
+            />
+            <img
+              src="/icons/hulu.svg"
+              width={40}
+              height={40}
+              alt="Hulu"
+              className="rounded-md"
+            />
+          </div>
         </div>
 
-        {/* Watch On & Action Buttons */}
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-gray-300">Watch on</h3>
-            <div className="flex flex-wrap gap-2">
-              <img
-                src="/icons/netflix.png"
-                width={40}
-                height={40}
-                alt="Netflix"
-                className="rounded-md"
-              />
-              <img
-                src="/icons/hbo.jpeg"
-                width={40}
-                height={40}
-                alt="HBO Max"
-                className="rounded-md"
-              />
-              <img
-                src="/icons/hulu.svg"
-                width={40}
-                height={40}
-                alt="Hulu"
-                className="rounded-md"
-              />
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex gap-2 justify-center lg:justify-start">
-            <a href="#comments">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="bg-purple-500/10 text-purple-500 hover:bg-purple-500/20">
-                      <MessageSquare className="h-4 w-4 lg:h-5 lg:w-5" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Comments</p>
-                  </TooltipContent>
+        {/* Action Buttons */}
+        <div className="flex gap-2 justify-center lg:justify-start">
+          <a href="#comments">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" size="icon" className="bg-purple-500/10 text-purple-500 hover:bg-purple-500/20">
+                    <MessageSquare className="h-4 w-4 lg:h-5 lg:w-5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Comments</p>
+                </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
             </a>
@@ -431,9 +449,59 @@ const shows: Show[] = [
                 </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-          </div>
         </div>
       </div>
+    </TabsContent>
+
+    <TabsContent value="media" className="mt-0">
+     
+      
+      <div className="flex items-center gap-4 mb-6 justify-between">
+        <Tabs defaultValue="popular" className="w-full flex justify-between">
+          <TabsList className="bg-transparent border-b border-neutral-800 w-full justify-center h-auto p-0 gap-6">
+            <TabsTrigger
+              value="popular"
+              className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent text-neutral-400 h-auto data-[state=active]:text-white data-[state=active]:border-orange-500"
+            >
+              Most Popular
+            </TabsTrigger>
+            <TabsTrigger
+              value="videos"
+              className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent text-neutral-400 h-auto data-[state=active]:text-white data-[state=active]:border-orange-500"
+            >
+              Videos
+            </TabsTrigger>
+            <TabsTrigger
+              value="backdrops"
+              className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent text-neutral-400 h-auto data-[state=active]:text-white data-[state=active]:border-orange-500"
+            >
+              Backdrops
+            </TabsTrigger>
+            <TabsTrigger
+              value="posters"
+              className="text-sm px-0 py-2 rounded-none border-b-2 border-transparent text-neutral-400 h-auto data-[state=active]:text-white data-[state=active]:border-orange-500"
+            >
+              Posters
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+        <button className="text-sm text-neutral-400 hover:text-white transition-colors">Edit</button>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="relative aspect-[3/2] overflow-hidden rounded-lg">
+            <img
+              src="/other/cover.png"
+              alt="Media gallery image"
+              className="object-cover hover:opacity-75 transition-opacity cursor-pointer w-full h-full"
+            />
+          </div>
+        ))}
+      </div>
+    </TabsContent>
+  </Tabs>
+</div>
     </div>
   </div>
 
@@ -525,7 +593,7 @@ const shows: Show[] = [
       </div>
     ))}
   </div>
-</div>
+          </div>
 
   
 

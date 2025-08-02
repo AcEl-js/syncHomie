@@ -11,7 +11,7 @@ const sidebarItems = [
 
 export function MiniSidebar() {
   return (
-    <div className="fixed bg-[#13111B] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#CC8B8B10] to-[#A33B3B00] rounded-xl mt-24 ml-7 left-0 top-26 w-[218px] p-4 space-y-4">
+    <div className="fixed bg-[#13111B] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#CC8B8B10] to-[#A33B3B00] rounded-xl mt-24 ml-7 left-16 top-16 w-[218px] p-4 space-y-4">
       {sidebarItems.map((item) => (
         <Button
           key={item.label}

@@ -47,14 +47,15 @@ function App() {
     
     <div className="min-h-screen w-screen ">
          <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
-       <div className='first-part w-screen'>
+             <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16" : "ml-64"} relative z-10`}>
+
       <Hero />
       <Features />
-     </div>
-     
       <Reviews reviews={reviews} title='• Trending Reviews' />
       <Moviescatego />
       <Footer/>
+     </div>
+     
     </div>
   );
 }

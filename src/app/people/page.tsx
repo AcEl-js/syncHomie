@@ -118,7 +118,7 @@ function App() {
   return (
     <div>
         <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
-         <div className="min-h-screen bg-black text-white  p-8 max-sm:p-2  ">
+        <div className={`transition-all bg-black duration-300 text-white  ${sidebarCollapsed ? "ml-16 px-4" : "ml-64 px-4"} relative z-10`}>
       {/* Actor Profile Header */}
       <header className="p-6 border-b border-gray-800">
         <div className="flex items-center gap-4">

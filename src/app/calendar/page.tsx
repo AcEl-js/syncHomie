@@ -77,6 +77,9 @@ export default function StreamingCalendar() {
     <div className="w-full min-h-screen bg-black text-white lg:ml-24">
         <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
    
+            <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-1" : "ml-40"} relative z-10`}>
+
+
        <nav className=" p-4 border-b border-zinc-800 bg-black fixed w-screen top-[0px] z-40">
        <div className=" flex flex-row gap-3 p-2 text-center items-center ">
         <h3 className="text-lg">Calendar</h3>
@@ -176,6 +179,7 @@ export default function StreamingCalendar() {
           </div>
         </div>
       </div>
+       </div>
     </div>
   )
 }

@@ -173,7 +173,7 @@ export default function EpisodeList() {
       {/* Episode List */}
       <div className="space-y-4">
         {episodes.map((episode: Episode) => (
-          <div key={episode.id} className="flex flex-col sm:flex-row gap-4 rounded-lg overflow-hidden">
+          <div key={episode.id} className="flex flex-col sm:flex-row gap-4 rounded-lg overflow-hidden hover:bg-slate-900 pt-2 pl-2 cursor-pointer">
             {/* Thumbnail */}
             <div className="relative w-full sm:w-48 h-32 bg-gray-700 flex-shrink-0">
               <Button 
@@ -197,6 +197,7 @@ export default function EpisodeList() {
                     text-xs sm:text-sm
                     text-[#C3C3C3] 
                     bg-[#A3A3A3]/15 
+                    hover:text-black
                     shadow-[0_1px_2px_0_#FFFFFF0D_inset]
                     self-start
                   `}

@@ -53,7 +53,9 @@ export default function StreamingDashboard() {
   return (
     <div className="bg-black w-full  text-white ">
       <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
-   
+           <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16" : "ml-16"} relative z-10`}>
+
+
       
       <nav className="py-2 sm:py-4 border-b border-zinc-800 bg-black fixed top-[0px] z-40 w-screen">
         <div className="w-full mx-auto flex  items-center justify-between px-4">
@@ -206,6 +208,7 @@ export default function StreamingDashboard() {
 
 
       </div>
+</div>
     </div>   
   )
 }
