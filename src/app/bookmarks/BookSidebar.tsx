@@ -3,7 +3,7 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 
-const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsCollapsed: (v: boolean) => void }) => {
+const BookSidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsCollapsed: (v: boolean) => void }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeFilter, setActiveFilter] = useState("All")
   const pathname = usePathname()
@@ -397,4 +397,4 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean; setIsC
   )
 }
 
-export default Sidebar
+export default BookSidebar

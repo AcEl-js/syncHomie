@@ -1,6 +1,6 @@
 "use client"
 import { Progress } from "@/components/ui/progress"
-import Sidebar from "./sideBar"
+import BookSidebar from "./BookSidebar"
 import { MediaCard } from "./MediaCard"
 import {NavButton } from "./NavButton"
 import {MiniSidebar} from "./MiniSidebar"
@@ -52,7 +52,7 @@ export default function StreamingDashboard() {
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   return (
     <div className="bg-black w-full  text-white ">
-      <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+      <BookSidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
  <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16" : "ml-64"} relative z-10`}>
 
       
