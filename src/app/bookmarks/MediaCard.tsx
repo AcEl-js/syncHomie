@@ -34,13 +34,12 @@ export function MediaCard({
 
   return (
     <Card className="bg-[#571B3F26] rounded-lg p-2 sm:p-4 space-y-2 sm:space-y-4 w-full ">
-      <div className="flex flex-row gap-2 sm:gap-4 lg:flex-row md:flex-row">
-        <Image
+      <div className="flex flex-row gap-2 sm:gap-4 ">
+        <img
           src={imageSrc}
           alt={`${title} Poster`}
-          width={150}
-          height={200}
-          className="h-30 sm:w-full md:w-[150px] h-[200px] rounded-lg object-cover mx-auto sm:mx-0"
+         
+          className=" sm:w-full md:w-[150px] h-[200px] rounded-lg object-cover mx-auto sm:mx-0"
         />
         <div className="flex-1 space-y-1 sm:space-y-2">
           <div className="flex items-center gap-1 text-[#4caf50] mb-2">

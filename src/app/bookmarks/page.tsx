@@ -1,6 +1,6 @@
 "use client"
 import { Progress } from "@/components/ui/progress"
-import Sidebar from "@/components/Sidebar"
+import Sidebar from "./sideBar"
 import { MediaCard } from "./MediaCard"
 import {NavButton } from "./NavButton"
 import {MiniSidebar} from "./MiniSidebar"
@@ -53,8 +53,7 @@ export default function StreamingDashboard() {
   return (
     <div className="bg-black w-full  text-white ">
       <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
-           <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16" : "ml-16"} relative z-10`}>
-
+ <div className={`transition-all duration-300 ${sidebarCollapsed ? "ml-16" : "ml-64"} relative z-10`}>
 
       
       <nav className="py-2 sm:py-4 border-b border-zinc-800 bg-black fixed top-[0px] z-40 w-screen">
@@ -189,13 +188,13 @@ export default function StreamingDashboard() {
         </div>
       )}
 
-      <div className="flex flex-col sm:flex-row mt-[140px]">
-        <div className="hidden sm:block">
+      <div className="flex flex-col sm:flex-row mt-16">
+       {/*  <div className="hidden sm:block">
           <MiniSidebar />
-        </div>
+        </div> */}
 
         {/* Main Content */}
-        <main className="w-full sm:ml-[234px] p-2 sm:p-6 bg-black">
+        <main className="w-full sm:ml-10 p-2 sm:p-6 bg-black">
           <div className="w-full max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 gap-6 grid-cols-2-lg mt-11">
               {mediaItems.map((item, index) => (

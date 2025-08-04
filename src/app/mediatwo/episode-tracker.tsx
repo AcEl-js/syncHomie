@@ -181,7 +181,7 @@ const EpisodeProgressTracker = () => {
   return (
     <div className="text-white rounded-lg ">
       {/* Header */}
-      <h2 className="text-2xl font-bold mb-6">Your Rating</h2>
+  
       
       {/* Rating Circle */}
       <div className="flex mb-4 justify-center items-center">
