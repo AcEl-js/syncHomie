@@ -24,6 +24,7 @@ import Sidebar from "@/components/Sidebar";
 import EpisodeProgressTracker from "./episode-tracker";
 import ReviewsSection from "./reviewsSection";
 import { TabsContent } from "@radix-ui/react-tabs";
+import DiscussionSection from "@/components/DiscussionSection";
 
 interface Show {
     title: string
@@ -660,6 +661,7 @@ const shows: Show[] = [
         return null;
     }
   };
+  const [currentView, setCurrentView] = useState<'episodes' | 'discussion'>('discussion');
 
   return (
     <div className="min-w-full">
@@ -710,7 +712,9 @@ const shows: Show[] = [
 
       <div className=" flex justify-center #comment">
       <section className="w-full mx-4" id="comments">
-     <CommentSys/>
+      <div>
+    {currentView === 'episodes' ? <CommentSys /> : <DiscussionSection />}
+  </div>
      </section>
       </div>
 
