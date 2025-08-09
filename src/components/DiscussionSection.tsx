@@ -543,10 +543,12 @@ export default function DiscussionSection() {
 
     // Create optimistic discussion post immediately
     const optimisticComment: CommentType = {
+      _id: `temp_${Date.now()}`, // Add missing _id property
       comment_id: `temp_${Date.now()}`, // Temporary ID
       username: userName || 'Anonymous',
       user_id: userId || '',
       post_id: selectedEpisode ? `Episode ${selectedEpisode}` : 'General Discussion',
+      user_profile_picture_url: '', // Add missing property
       comment_text: content,
       timestamp: new Date().toISOString(),
       parent_comment_id: null,
@@ -558,7 +560,9 @@ export default function DiscussionSection() {
       replies: [],
       isSpoiler,
       containsUrls: false,
-      status: 'active'
+      status: 'active',
+      edited_timestamp: undefined,
+      flags: 0 // Add missing flags property
     };
 
     // Add immediately to UI
@@ -685,10 +689,12 @@ export default function DiscussionSection() {
 
     // Create optimistic reply immediately
     const optimisticReply: CommentType = {
+      _id: `temp_reply_${Date.now()}`, // Add missing _id property
       comment_id: `temp_${Date.now()}`,
       username: userName || 'Anonymous',
       user_id: userId || '',
       post_id: selectedEpisode ? `Episode ${selectedEpisode}` : 'General Discussion',
+      user_profile_picture_url: '', // Add missing property
       comment_text: content,
       timestamp: new Date().toISOString(),
       parent_comment_id: parentId,
@@ -700,7 +706,9 @@ export default function DiscussionSection() {
       replies: [],
       isSpoiler,
       containsUrls: false,
-      status: 'active'
+      status: 'active',
+      edited_timestamp: undefined,
+      flags: 0 // Add missing flags property
     };
 
     // Add reply immediately to UI
@@ -758,14 +766,31 @@ export default function DiscussionSection() {
               ...comment,
               replies: comment.replies.map(reply => 
                 reply.comment_id === optimisticReply.comment_id ? serverReply : reply
-              ).length > 0 ? updateWithServerReply([...comment.replies]).flat() : comment.replies
+              ).concat(updateWithServerReply(comment.replies.filter(reply => reply.comment_id !== optimisticReply.comment_id)))
             };
           }
           return comment;
         });
       };
 
-      setDiscussionComments(prevComments => updateWithServerReply(prevComments));
+      const replaceOptimisticWithServer = (comments: CommentType[]): CommentType[] => {
+        return comments.map(comment => {
+          if (comment.replies && comment.replies.length > 0) {
+            return {
+              ...comment,
+              replies: comment.replies.map(reply => {
+                if (reply.comment_id === optimisticReply.comment_id) {
+                  return serverReply;
+                }
+                return replaceOptimisticWithServer([reply])[0];
+              })
+            };
+          }
+          return comment;
+        });
+      };
+
+      setDiscussionComments(prevComments => replaceOptimisticWithServer(prevComments));
 
       if (selectedPost) {
         const updateSelectedPostWithServer = (comment: CommentType): CommentType => {
@@ -795,7 +820,7 @@ export default function DiscussionSection() {
           if (comment.replies && comment.replies.length > 0) {
             return {
               ...comment,
-              replies: comment.replies.filter(reply => reply.comment_id !== optimisticReply.comment_id)
+              replies: removeOptimisticReply(comment.replies.filter(reply => reply.comment_id !== optimisticReply.comment_id))
             };
           }
           return comment;
